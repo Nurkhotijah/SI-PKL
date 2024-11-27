@@ -55,15 +55,15 @@
             @foreach ($listSiswa as $item)
                 <tr class="student-row">
                     <td class="py-2 px-4 border-b text-center">
-                        <input type="checkbox" class="student-checkbox" value="1">
+                        <input type="checkbox" class="student-checkbox" value="{{ $item->id }}">
                     </td>
                     <td class="py-2 px-4 border-b text-center">1</td>
                     <td class="py-2 px-4 border-b text-left">{{ $item->nama_siswa }}</td>
                     <td class="py-2 px-4 border-b text-left">{{ $item->jurusan }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ $item->tanggal_mulai }}</td>
-                    <td class="py-2 px-4 border-b text-center">{{ $item->tanggal_selesai }}</td>
+                    <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($item->tanggal_mulai)->locale('id')->format('d F Y') }}</td>
+                    <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($item->tanggal_selesai)->locale('id')->format('d F Y') }}</td>
                     <td class="py-2 px-4 border-b text-center">
-                        <a href="/path/to/cv-budi.pdf" target="_blank" class="text-blue-500 hover:underline">Download</a>
+                        <a href="{{ asset('storage/' . $item->cv) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
                     </td>
                     <td class="py-2 px-4 border-b text-center">
                         <span id="status-1" class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">Menunggu</span>
@@ -77,71 +77,71 @@
 
 <script>
     function pushCertificate() {
-    // Ambil data siswa yang dipilih
-    const selectedRows = document.querySelectorAll('.student-checkbox:checked');
-    if (selectedRows.length === 0) {
-        alert('Pilih setidaknya satu siswa untuk memproses sertifikat.');
-        return;
-    }
+        // Ambil data siswa yang dipilih
+        const selectedRows = document.querySelectorAll('.student-checkbox:checked');
+        if (selectedRows.length === 0) {
+            alert('Pilih setidaknya satu siswa untuk memproses sertifikat.');
+            return;
+        }
 
-    // Kumpulkan ID siswa dan ID sekolah
-    const data = Array.from(selectedRows).map((checkbox) => ({
-        studentId: checkbox.value, // ID Siswa
-        schoolId: checkbox.dataset.schoolId, // ID Sekolah
-    }));
+        // Kumpulkan ID siswa dan ID sekolah
+        const data = Array.from(selectedRows).map((checkbox) => ({
+            studentId: checkbox.value, // ID Siswa
+            schoolId: checkbox.dataset.schoolId, // ID Sekolah
+        }));
 
-    // Kirim data ke backend
-    fetch('/push-certificate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-        },
-        body: JSON.stringify({ students: data }),
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.success) {
-                alert('Sertifikat berhasil diproses!');
-                // Lakukan pembaruan UI jika diperlukan
-            } else {
-                alert('Terjadi kesalahan: ' + data.message);
-            }
+        // Kirim data ke backend
+        fetch('/push-certificate', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            },
+            body: JSON.stringify({ students: data }),
         })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('Terjadi kesalahan saat memproses sertifikat.');
-        });
-}
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    alert('Sertifikat berhasil diproses!');
+                    // Lakukan pembaruan UI jika diperlukan
+                } else {
+                    alert('Terjadi kesalahan: ' + data.message);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan saat memproses sertifikat.');
+            });
+    }
 
      // Fungsi untuk memilih semua siswa
-function toggleSelectAll(source) {
-    const checkboxes = document.querySelectorAll('.student-checkbox');
-    checkboxes.forEach(checkbox => checkbox.checked = source.checked);
-}
-
-// Fungsi untuk update status siswa yang dipilih secara multiple
-function updateMultipleStatus(status) {
-    const selectedCheckboxes = document.querySelectorAll('.student-checkbox:checked');
-    if (selectedCheckboxes.length === 0) {
-        alert('Pilih setidaknya satu siswa untuk memperbarui status.');
-        return;
+    function toggleSelectAll(source) {
+        const checkboxes = document.querySelectorAll('.student-checkbox');
+        checkboxes.forEach(checkbox => checkbox.checked = source.checked);
     }
 
-    selectedCheckboxes.forEach(checkbox => {
-        const studentId = checkbox.value;
-        const statusElement = document.getElementById(`status-${studentId}`);
-        if (status === "Disetujui") {
-            statusElement.textContent = "Disetujui";
-            statusElement.className = "bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full";
-        } else if (status === "Ditolak") {
-            statusElement.textContent = "Ditolak";
-            statusElement.className = "bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full";
+// Fungsi untuk update status siswa yang dipilih secara multiple
+    function updateMultipleStatus(status) {
+        const selectedCheckboxes = document.querySelectorAll('.student-checkbox:checked');
+        if (selectedCheckboxes.length === 0) {
+            alert('Pilih setidaknya satu siswa untuk memperbarui status.');
+            return;
         }
-    });
 
-    alert(`Status ${selectedCheckboxes.length} siswa telah diubah menjadi: ${status}`);
-}
+        selectedCheckboxes.forEach(checkbox => {
+            const studentId = checkbox.value;
+            const statusElement = document.getElementById(`status-${studentId}`);
+            if (status === "Disetujui") {
+                statusElement.textContent = "Disetujui";
+                statusElement.className = "bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full";
+            } else if (status === "Ditolak") {
+                statusElement.textContent = "Ditolak";
+                statusElement.className = "bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full";
+            }
+        });
+
+        alert(`Status ${selectedCheckboxes.length} siswa telah diubah menjadi: ${status}`);
+    }
 
     // Function to handle searching in the student table
     function searchTable() {
