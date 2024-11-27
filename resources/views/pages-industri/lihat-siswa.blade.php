@@ -38,9 +38,8 @@
                 <th class="py-2 px-4 border-b text-center">
                     <input 
                     type="checkbox" 
-                    class="student-checkbox" 
-                    value="1" 
-                    data-school-id="101">
+                    id="checkAll" 
+                    class="student-checkbox-master">
                 </th>
                 <th class="py-2 px-4 border-b text-center">No</th>
                 <th class="py-2 px-4 border-b text-left">Nama Siswa</th>
@@ -57,7 +56,7 @@
                     <td class="py-2 px-4 border-b text-center">
                         <input type="checkbox" class="student-checkbox" value="{{ $item->id }}">
                     </td>
-                    <td class="py-2 px-4 border-b text-center">1</td>
+                    <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
                     <td class="py-2 px-4 border-b text-left">{{ $item->nama_siswa }}</td>
                     <td class="py-2 px-4 border-b text-left">{{ $item->jurusan }}</td>
                     <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($item->tanggal_mulai)->locale('id')->format('d F Y') }}</td>
@@ -66,7 +65,13 @@
                         <a href="{{ asset('storage/' . $item->cv) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
                     </td>
                     <td class="py-2 px-4 border-b text-center">
-                        <span id="status-1" class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">Menunggu</span>
+                        @if ($item->status == 'Menunggu')
+                            <span id="status-{{ $item->id }}" class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">{{ $item->status }}</span>
+                        @elseif ($item->status == 'Disetujui')
+                            <span id="status-{{ $item->id }}" class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">{{ $item->status }}</span>
+                        @elseif ($item->status == 'Ditolak')
+                            <span id="status-{{ $item->id }}" class="bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full">{{ $item->status }}</span>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -74,8 +79,19 @@
     </table>
 </div>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
+    $(document).ready(function() {
+        $('#checkAll').on('change', function() {
+            $('.student-checkbox').prop('checked', this.checked);
+        });
+
+        $('.student-checkbox').on('change', function() {
+            const allChecked = $('.student-checkbox:checked').length === $('.student-checkbox').length;
+            $('#checkAll').prop('checked', allChecked);
+        });
+    });
+
     function pushCertificate() {
         // Ambil data siswa yang dipilih
         const selectedRows = document.querySelectorAll('.student-checkbox:checked');
