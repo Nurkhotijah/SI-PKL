@@ -16,14 +16,14 @@
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                     </div>
                     <div class="flex items-center w-full sm:w-auto sm:ml-auto">
-                        <label class="mr-2" for="school">Pilih Sekolah:</label>
-                        <select class="border rounded p-2 w-full sm:w-auto" id="school" onchange="filterBySchool()">
-                            <option value="">Pilih Sekolah</option>
-                            <option value="smkn_1_ciomas">SMKN 1 Ciomas</option>
-                            <option value="smk_komputer_indonesia">SMK Komputer Indonesia</option>
-                            <option value="smk_adi_sanggoro">SMK Adi Sanggoro</option>
-                        </select>
-                    </div>
+                        <label class="mr-2" for="date">Pilih Tanggal:</label>
+                        <input 
+                            type="date" 
+                            class="border rounded p-2 w-full sm:w-auto" 
+                            id="date" 
+                            onchange="filterByDate()"
+                        />
+                    </div>                    
                 </div>
             </div>
 
@@ -303,19 +303,17 @@ function showImage(type) {
             });
         }
 
-        function filterBySchool() {
-            const school = document.getElementById("school").value.toLowerCase();
-            const rows = document.querySelectorAll("#attendanceTable tbody tr");
-
-            rows.forEach(row => {
-                const rowSchool = row.children[2].textContent.toLowerCase().replace(/\s+/g, '_');
-                if (school === "" || rowSchool.includes(school)) {
-                    row.style.display = "";
-                } else {
-                    row.style.display = "none";
-                }
-            });
+        function filterByDate() {
+        const selectedDate = document.getElementById('date').value;
+        if (selectedDate) {
+            console.log(`Filter berdasarkan tanggal: ${selectedDate}`);
+            // Tambahkan logika untuk memfilter data berdasarkan tanggal
+            // Misalnya, panggil API atau filter data lokal
+        } else {
+            console.log('Tidak ada tanggal yang dipilih.');
         }
+    }
+
     </script>
 </div>
 @endsection

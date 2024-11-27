@@ -19,11 +19,6 @@
 
     <!-- Tombol Tambah Akun di dalam kotak Selamat Datang -->
     <div class="mt-4">
-      <button 
-        class="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition duration-300" 
-        onclick="toggleModal()">
-        Tambah Akun
-      </button>
     </div>
   </div>
 

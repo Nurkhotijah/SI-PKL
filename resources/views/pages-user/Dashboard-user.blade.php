@@ -60,135 +60,107 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const ayoAbsenButton = document.getElementById('ayo-absen');
-    const cameraModal = document.getElementById('cameraModal');
-    const video = document.getElementById('video');
-    const captureButton = document.getElementById('captureButton');
-    const doneButton = document.getElementById('doneButton');
-    const closeButton = document.getElementById('closeButton');
-    const capturedImage = document.getElementById('captured-image');
-    let sudahAbsenMasuk = false;
-    let sudahAbsenPulang = false;
-    let photoDataUrl = null; // Tempat menyimpan foto
+    // Timer untuk Waktu Saat Ini
+    function updateTime() {
+        const timeElement = document.getElementById("current-time");
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        timeElement.textContent = `${hours}:${minutes}:${seconds} WIB`;
+    }
 
     // Update waktu setiap detik
-    function updateTime() {
-        const timeElement = document.getElementById('current-time');
-        const now = new Date();
-        timeElement.textContent = `${now.toLocaleTimeString('id-ID', { hour12: false })} WIB`;
-    }
     setInterval(updateTime, 1000);
 
-    // Fungsi untuk memulai video kamera
-    function startVideo() {
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => {
-                video.srcObject = stream;
-            })
-            .catch(error => {
-                console.error('Gagal mengakses kamera:', error);
-                alert('Gagal mengakses kamera. Pastikan izin kamera diaktifkan.');
-            });
+    // Mendapatkan elemen modal dan tombol
+    const cameraModal = document.getElementById("cameraModal");
+    const captureButton = document.getElementById("captureButton");
+    const doneButton = document.getElementById("doneButton");
+    const videoElement = document.getElementById("video");
+    const capturedImage = document.getElementById("captured-image");
+    const closeButton = document.getElementById("closeButton");
+
+    // Fungsi untuk membuka kamera
+    async function startCamera() {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        videoElement.srcObject = stream;
     }
 
-    // Fungsi untuk menghentikan kamera
-    function stopCamera() {
-        const stream = video.srcObject;
-        if (stream) {
-            const tracks = stream.getTracks();
-            tracks.forEach(track => track.stop());
-            video.srcObject = null;
-        }
-    }
-
-    // Fungsi membuka modal kamera
-    function openModal() {
-        cameraModal.classList.remove('hidden');
-        startVideo();
-    }
-
-    // Fungsi menutup modal kamera
-    function closeModal() {
-        cameraModal.classList.add('hidden');
-        stopCamera();
-    }
-
-    // Fungsi mengambil foto
+    // Fungsi untuk mengambil foto
     function capturePhoto() {
-        const canvas = document.createElement('canvas');
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        const context = canvas.getContext('2d');
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-        return canvas.toDataURL('image/png'); // Mengubah foto ke format base64
+        const canvas = document.createElement("canvas");
+        canvas.width = videoElement.videoWidth;
+        canvas.height = videoElement.videoHeight;
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+        const dataUrl = canvas.toDataURL("image/png");
+
+        capturedImage.src = dataUrl;
+        capturedImage.classList.remove("hidden");
+        videoElement.classList.add("hidden");
+        captureButton.classList.add("hidden");
+        doneButton.classList.remove("hidden");
     }
 
-    // Event listener untuk tombol "Ayo Absen"
-    ayoAbsenButton.addEventListener('click', function () {
-        if (!sudahAbsenMasuk) {
-            openModal(); // Buka modal untuk absen masuk
-        } else if (!sudahAbsenPulang) {
-            openModal(); // Buka modal untuk absen pulang
+    // Menangani klik tombol Ambil Foto
+    captureButton.addEventListener("click", capturePhoto);
+
+    // Fungsi untuk menonaktifkan tombol setelah absen
+    function disableButton() {
+        const absensiButton = document.getElementById("ayo-absen");
+        absensiButton.disabled = true;  // Nonaktifkan tombol
+        absensiButton.classList.add("cursor-not-allowed");  // Menambahkan kelas agar terlihat tidak aktif
+        absensiButton.classList.add("opacity-50");  // Mengurangi opacity tombol untuk menunjukkan bahwa tombol tidak aktif
+    }
+
+    // Fungsi untuk mengganti teks dan ID tombol
+    function toggleButton() {
+        const absensiButton = document.getElementById("ayo-absen");
+        if (absensiButton.textContent === "Ayo Absen") {
+            absensiButton.textContent = "Ayo Pulang";
+            absensiButton.setAttribute("id", "ayo-pulang"); // Ubah ID tombol
         } else {
-            alert('Anda sudah melakukan absen masuk dan pulang hari ini!');
+            absensiButton.textContent = "Ayo Absen";
+            absensiButton.setAttribute("id", "ayo-absen"); // Kembalikan ID tombol
         }
+        disableButton(); // Menonaktifkan tombol setelah klik
+    }
+
+    // Menangani klik tombol Selesai
+    doneButton.addEventListener("click", () => {
+        cameraModal.classList.add("hidden");
+        updateAttendance();  // Mengupdate jumlah absen
+        toggleButton(); // Ganti tombol "Ayo Absen" menjadi "Ayo Pulang" dan menonaktifkan tombol
     });
 
-    // Event listener untuk tombol "Ambil Foto"
-    captureButton.addEventListener('click', function () {
-        photoDataUrl = capturePhoto(); // Menyimpan foto dalam format base64
-        console.log('Foto diambil:', photoDataUrl); // Simulasi pengiriman ke server
-
-        // Tampilkan gambar yang diambil
-        capturedImage.src = photoDataUrl;
-        capturedImage.classList.remove('hidden'); // Menampilkan gambar
-
-        // Hentikan video setelah foto diambil
-        stopCamera();
-
-        // Sembunyikan tombol "Ambil Foto" dan tampilkan tombol "Selesai"
-        captureButton.classList.add('hidden');
-        doneButton.classList.remove('hidden');
+    // Menangani klik tombol Tutup
+    closeButton.addEventListener("click", () => {
+        cameraModal.classList.add("hidden");
     });
 
-    // Event listener untuk tombol "Selesai"
-    doneButton.addEventListener('click', function () {
-        closeModal();
+    // Menangani klik untuk membuka modal kamera
+    document.getElementById("ayo-absen").addEventListener("click", () => {
+        // Reset gambar dan video saat membuka modal absen
+        capturedImage.classList.add("hidden");
+        capturedImage.src = "";
+        videoElement.classList.remove("hidden");
+        captureButton.classList.remove("hidden");
+        doneButton.classList.add("hidden");
 
-        if (!sudahAbsenMasuk) {
-            sudahAbsenMasuk = true;
-            ayoAbsenButton.textContent = 'Ayo Pulang';
-        } else if (!sudahAbsenPulang) {
-            sudahAbsenPulang = true;
-            ayoAbsenButton.textContent = 'Sudah Absen';
-            ayoAbsenButton.disabled = true;
-            ayoAbsenButton.classList.add('bg-gray-500', 'cursor-not-allowed');
-            ayoAbsenButton.classList.remove('bg-green-500');
-        }
-
-        // Kirim foto ke server menggunakan fetch atau simpan di database
-        if (photoDataUrl) {
-            fetch('/path/to/save-photo', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                },
-                body: JSON.stringify({ photo: photoDataUrl })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Foto berhasil disimpan:', data);
-            })
-            .catch(error => {
-                console.error('Gagal menyimpan foto:', error);
-            });
-        }
+        // Buka modal kamera
+        cameraModal.classList.remove("hidden");
     });
 
-    // Event listener untuk tombol "Tutup Modal"
-    closeButton.addEventListener('click', closeModal);
-});
+    // Memulai kamera saat halaman dimuat
+    window.addEventListener("DOMContentLoaded", startCamera);
+
+    // Fungsi untuk mengupdate jumlah absen
+    function updateAttendance() {
+        const attendanceCountElement = document.getElementById("jumlah-absen");
+        let currentCount = parseInt(attendanceCountElement.textContent);
+        attendanceCountElement.textContent = currentCount + 1;
+    }
 </script>
+
 @endsection

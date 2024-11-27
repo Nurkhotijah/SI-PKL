@@ -23,11 +23,6 @@
                     <tr>
                         <th class="py-2 px-4 border-b text-center">No</th>
                         <th class="py-2 px-4 border-b text-left">Nama Lengkap</th>
-                        <th class="py-2 px-4 border-b text-left">Sekolah</th>
-                        <th class="py-2 px-4 border-b text-left">Kegiatan</th>
-                        <th class="py-2 px-4 border-b text-center">Tanggal</th>
-                        <th class="py-2 px-4 border-b text-center">Waktu Mulai</th>
-                        <th class="py-2 px-4 border-b text-center">Waktu Selesai</th>
                         <th class="py-2 px-4 border-b text-center">Laporan PKL</th>
                         <th class="py-2 px-4 border-b text-center">Aksi</th>
                     </tr>
@@ -37,11 +32,6 @@
                     <tr>
                         <td class="py-2 px-4 border-b text-center">1</td>
                         <td class="py-2 px-4 border-b text-left">Fitri Amaliah</td>
-                        <td class="py-2 px-4 border-b text-left">SMKN 1 Ciomas</td>
-                        <td class="py-2 px-4 border-b text-left">Mengerjakan kelola nilai</td>
-                        <td class="py-2 px-4 border-b text-center">2023-10-01</td>
-                        <td class="py-2 px-4 border-b text-center">08:00</td>
-                        <td class="py-2 px-4 border-b text-center">16:00</td>
                         <td class="py-2 px-4 border-b text-center">
                             <button onclick="openLaporanModal('path-to-pdf/laporan-fitri.pdf')"
                                     class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
@@ -51,7 +41,7 @@
                         
                         <td class="py-2 px-4 border-b text-center">
                             <div class="flex justify-center space-x-2">
-                                <a href="#" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
+                                <a href="{{ route('jurnal-detail') }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
                                     <i class="fas fa-eye mr-1"></i> Lihat
                                 </a>
                             </div>
@@ -61,11 +51,6 @@
                     <tr>
                         <td class="py-2 px-4 border-b text-center">2</td>
                         <td class="py-2 px-4 border-b text-left">Marsya</td>
-                        <td class="py-2 px-4 border-b text-left">SMKN 1 Ciomas</td>
-                        <td class="py-2 px-4 border-b text-left">Mengerjakan kelola nilai</td>
-                        <td class="py-2 px-4 border-b text-center">2023-10-02</td>
-                        <td class="py-2 px-4 border-b text-center">09:00</td>
-                        <td class="py-2 px-4 border-b text-center">17:00</td>
                         <td class="py-2 px-4 border-b text-center">
                             <button onclick="openLaporanModal('path-to-pdf/laporan-fitri.pdf')"
                                     class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
@@ -75,7 +60,7 @@
                         
                         <td class="py-2 px-4 border-b text-center">
                             <div class="flex justify-center space-x-2">
-                                <a href="#" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
+                                <a href="{{ route('jurnal-detail') }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
                                     <i class="fas fa-eye mr-1"></i> Lihat
                                 </a>
                             </div>
@@ -109,19 +94,6 @@
     </div>
 </div>
 
-
-<!-- Modal untuk menampilkan bukti foto -->
-<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="modal" onclick="closeModal()">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-96" onclick="event.stopPropagation();">
-        <h2 class="text-xl font-bold mb-4 flex justify-between items-center">
-            Bukti Foto Kegiatan
-            <span class="cursor-pointer text-black" onclick="closeModal()">×</span>
-        </h2>
-        <div class="mt-4">
-            <img alt="Bukti Kegiatan" class="w-full h-auto rounded-lg shadow-md transition-transform transform hover:scale-105" id="activityImage"/>
-        </div>
-    </div>
-</div>
 
 <script>
     function openLaporanModal(fileUrl) {

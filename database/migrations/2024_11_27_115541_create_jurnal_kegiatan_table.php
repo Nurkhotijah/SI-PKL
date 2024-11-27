@@ -7,19 +7,20 @@ use Illuminate\Support\Facades\Schema;
 class CreateJurnalKegiatanTable extends Migration
 {
     public function up()
-    {
-        Schema::create('jurnal_kegiatan', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama');
-            $table->string('kegiatan');
-            $table->date('tanggal');
-            $table->time('waktu_mulai');
-            $table->time('waktu_selesai');
-            $table->string('laporan_pkl')->nullable();
-            $table->string('foto_kegiatan')->nullable();
-            $table->timestamps();
-        });
-    }
+{
+    Schema::create('jurnal_kegiatans', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade');  // Relasi dengan User
+        $table->string('kegiatan');
+        $table->date('tanggal');
+        $table->time('waktu_mulai');
+        $table->time('waktu_selesai');
+        $table->string('laporan_pkl')->nullable();
+        $table->string('foto_kegiatan')->nullable();
+        $table->timestamps();
+    });
+}
+
 
     public function down()
     {

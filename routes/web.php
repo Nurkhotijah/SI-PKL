@@ -47,8 +47,11 @@ Route::get('/kelola-nilai', [IndustriController::class, 'kelolaNilai'])->name('k
 
 Route::get('/kehadiran-siswa', [IndustriController::class, 'kehadiranSiswa'])->name('kehadiran-siswa');
 
-// Rute untuk jurnal siswa
-Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->name('jurnal-siswapkl');
+// Rute untuk Industri melihat jurnal siswa
+Route::get('/jurnal-siswapkl', [IndustriController::class, 'index'])->name('jurnal-siswapkl');
+
+// Rute untuk Industri melihat detail jurnal berdasarkan ID siswa
+Route::get('/detail-jurnal/{id}', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
 
 Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
 
@@ -116,12 +119,9 @@ Route::get('/pengajuan', [AdminController::class, 'pengajuan'])->name('pengajuan
 Route::get('/pengajuan-siswa', [PengajuanSiswaController::class, 'index'])->name('pengajuan-siswa');
 Route::get('/tambah-siswa', [PengajuanSiswaController::class, 'create'])->name('tambah-siswa');
 Route::post('/pengajuan-siswa/store', [PengajuanSiswaController::class, 'store'])->name('pengajuan-siswa.store');
-Route::delete('/siswa/{id}', [PengajuanSiswaController::class, 'destroy'])->name('hapus-siswa');
+Route::delete('/pengajuan-siswa/{id}', [PengajuanSiswaController::class, 'destroy'])->name('pengajuan-siswa.destroy');
 
-Route::middleware(['auth'])->group(function () {
-    // Menampilkan daftar pengajuan siswa
 
-});
 
 Route::get('/data-siswa', [AdminController::class, 'dataSiswa'])->name('data-siswa');
 
@@ -133,14 +133,10 @@ Route::get('/rekap-kehadiransiswa', [AdminController::class, 'rekapKehadiransisw
 
 // Rute untuk jurnal siswa
 Route::get('/jurnal-siswa', [AdminController::class, 'jurnalSiswa'])->name('jurnal-siswa');
-
+Route::get('/jurnal-detail', [AdminController::class, 'jurnalDetail'])->name('jurnal-detail');
 Route::get('/profile-admin', [AdminController::class, 'profileAdmin'])->name('profile-admin');
 Route::get('/profile-update', [AdminController::class, 'profileUpdate'])->name('profile-update');
 
-
-// Route::get('/edit-pengajuan', [AdminController::class, 'edit'])->name('edit-pengajuan');
-
-// Route::get('/edit-Kehadiran', [AdminController::class, 'edit'])->name('edit-kehadiran');
 
 // USER
 
@@ -152,13 +148,13 @@ Route::get('/dashboard-user', [UserController::class, 'dashboard'])->name('user.
 
 Route::get('/riwayat-kehadiran', [UserController::class, 'riwayatKehadiran'])->name('riwayat-kehadiran');
 
-Route::middleware(['auth'])->group(function () {
+
     Route::get('/jurnal-kegiatan', [JurnalKegiatanController::class, 'index'])->name('jurnal-kegiatan');
-    Route::get('/create', [JurnalKegiatanController::class, 'create'])->name('tambah-jurnal');
+    Route::get('/tambah-jurnal', [JurnalKegiatanController::class, 'create'])->name('tambah-jurnal');
     Route::post('/store', [JurnalKegiatanController::class, 'store'])->name('jurnal-kegiatan.store');
-    Route::get('/{id}', [JurnalKegiatanController::class, 'show'])->name('show');
-    Route::delete('/{id}', [JurnalKegiatanController::class, 'destroy'])->name('destroy');
-});
+    // Route::get('/{id}', [JurnalKegiatanController::class, 'show'])->name('show');
+    // Route::delete('/{id}', [JurnalKegiatanController::class, 'destroy'])->name('destroy');
+
 Route::get('/pengajuan-izin', [UserController::class, 'pengajuanizin'])->name('pengajuan-izin');
 
 Route::get('/penilaian-pkl', [UserController::class, 'penilaianpkl'])->name('penilaian-pkl');

@@ -25,8 +25,6 @@
                             <th class="py-2 px-4 border-b text-center">No</th>
                             <th class="py-2 px-4 border-b text-left">Nama Siswa</th>
                             <th class="py-2 px-4 border-b text-left">Jurusan</th>
-                            <th class="py-2 px-4 border-b text-center">Tanggal Mulai</th>
-                            <th class="py-2 px-4 border-b text-center">Tanggal Selesai</th>
                             <th class="py-2 px-4 border-b text-center">Nilai</th>
                             <th class="py-2 px-4 border-b text-center">Kehadiran</th>
                             <th class="py-2 px-4 border-b text-center">Sertifikat</th>
@@ -40,8 +38,6 @@
                             <td class="py-2 px-4 border-b text-center">1</td>
                             <td class="py-2 px-4 border-b text-left">Budi Santoso</td>
                             <td class="py-2 px-4 border-b text-left">PPLG</td>
-                            <td class="py-2 px-4 border-b text-center">01 Januari 2024</td>
-                            <td class="py-2 px-4 border-b text-center">30 Juni 2024</td>
                             <td class="py-2 px-4 border-b text-center">
                                 <a href="/path/to/grades/budi_santoso.pdf" target="_blank" class="text-blue-500 hover:underline">
                                     Unduh PDF
@@ -72,8 +68,6 @@
                             <td class="py-2 px-4 border-b text-center">2</td>
                             <td class="py-2 px-4 border-b text-left">Siti Aisyah</td>
                             <td class="py-2 px-4 border-b text-left">PPLG</td>
-                            <td class="py-2 px-4 border-b text-center">15 Januari 2024</td>
-                            <td class="py-2 px-4 border-b text-center">15 Juli 2024</td>
                             <td class="py-2 px-4 border-b text-center">
                                 <a href="/path/to/grades/siti_aisyah.pdf" target="_blank" class="text-blue-500 hover:underline">
                                     Unduh PDF

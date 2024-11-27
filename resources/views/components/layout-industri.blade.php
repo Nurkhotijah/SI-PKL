@@ -49,10 +49,10 @@
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/attendance-mark.png" alt="attendance-mark" />
             <a href="{{ route('kelola-kehadiran') }}" class="text-sm">Kelola Kehadiran</a>
           </li>
-          <li class="p-3 {{ request()->is('kelola-pengajuan') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
+          {{-- <li class="p-3 {{ request()->is('kelola-pengajuan') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/submit-document.png" alt="submit-document" />
             <a href="{{ route('kelola-pengajuan') }}" class="text-sm">Pengajuan Izin Siswa</a>
-          </li>
+          </li> --}}
           <li class="p-3 {{ request()->is('jurnal-siswapkl') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/book--v1.png" alt="book--v1" />
             <a href="{{ route('jurnal-siswapkl') }}" class="text-sm">Jurnal Siswa</a>

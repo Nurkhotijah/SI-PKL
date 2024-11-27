@@ -10,10 +10,6 @@
         <div class="mb-4">
             <h1 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Jurnal</h1>
             <div class="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0 sm:space-x-4">
-                <div class="relative w-full sm:w-auto">
-                    <input class="border rounded-l p-2 pl-10 w-full sm:w-64" id="search" placeholder="Cari Nama atau sekolah" type="text" oninput="filterTable()">
-                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
-                </div>
             </div>
         </div>
 
@@ -32,71 +28,33 @@
 
         </div>
 
-        <!-- Table Section -->
-        <div class="overflow-x-auto mt-4">
-            <table class="min-w-full bg-white border" id="pengajuanTable">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="py-2 px-4 border-b text-center">No</th>
-                        <th class="py-2 px-4 border-b text-left">Nama Lengkap</th>
-                        <th class="py-2 px-4 border-b text-left">Kegiatan</th>
-                        <th class="py-2 px-4 border-b text-center">Tanggal</th>
-                        <th class="py-2 px-4 border-b text-center">Waktu Mulai</th>
-                        <th class="py-2 px-4 border-b text-center">Waktu Selesai</th>
-                        <th class="py-2 px-4 border-b text-center">Laporan PKL</th>
-                        <th class="py-2 px-4 border-b text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Example Row 1 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b text-center">1</td>
-                        <td class="py-2 px-4 border-b text-left">Fitri Amaliah</td>
-                        <td class="py-2 px-4 border-b text-left">Mengerjakan kelola nilai</td>
-                        <td class="py-2 px-4 border-b text-center">2023-10-01</td>
-                        <td class="py-2 px-4 border-b text-center">08:00</td>
-                        <td class="py-2 px-4 border-b text-center">16:00</td>
-                        <td class="py-2 px-4 border-b text-center">
-                            <button onclick="openLaporanModal('path-to-pdf/laporan-fitri.pdf')"
-                                    class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
-                                <i class="fas fa-file-pdf mr-1"></i> Unduh
-                            </button>
-                        </td>
-                        
-                        <td class="py-2 px-4 border-b text-center">
-                            <div class="flex justify-center space-x-2">
-                                <a href="#" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
-                                    <i class="fas fa-eye mr-1"></i> Lihat
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Example Row 2 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b text-center">2</td>
-                        <td class="py-2 px-4 border-b text-left">Marsya</td>
-                        <td class="py-2 px-4 border-b text-left">SMKN 1 Ciomas</td>
-                        <td class="py-2 px-4 border-b text-left">Mengerjakan kelola nilai</td>
-                        <td class="py-2 px-4 border-b text-center">2023-10-02</td>
-                        <td class="py-2 px-4 border-b text-center">09:00</td>
-                        <td class="py-2 px-4 border-b text-center">17:00</td>
-                        <td class="py-2 px-4 border-b text-center">
-                            <button onclick="openLaporanModal('path-to-pdf/laporan-fitri.pdf')"
-                                    class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
-                                <i class="fas fa-file-pdf mr-1"></i> Unduh
-                            </button>
-                        </td>
-                        
-                        <td class="py-2 px-4 border-b text-center">
-                            <div class="flex justify-center space-x-2">
-                                <a href="#" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
-                                    <i class="fas fa-eye mr-1"></i> Lihat
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        @foreach($jurnal as $index => $data)
+        <tr>
+            <td class="py-2 px-4 border-b text-center">{{ $index + 1 }}</td>
+            <td class="py-2 px-4 border-b text-left">{{ $data->kegiatan }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($data->tanggal)->format('d M Y') }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($data->waktu_mulai)->format('H:i') }}</td>
+            <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($data->waktu_selesai)->format('H:i') }}</td>
+            <td class="py-2 px-4 border-b text-center">
+                <button onclick="openLaporanModal('{{ asset('storage/'.$data->laporan_pkl) }}')"
+                        class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
+                    <i class="fas fa-file-pdf mr-1"></i> Unduh
+                </button>
+            </td>
+            <td class="py-2 px-4 border-b text-center">
+                <img src="{{ asset('storage/'.$data->foto_kegiatan) }}" alt="Foto Kegiatan" class="w-14 h-14 object-cover rounded-full cursor-pointer" onclick="showActivityImage('{{ asset('storage/'.$data->foto_kegiatan) }}')">
+            </td>
+        </tr>
+        @endforeach
+        
+
+        <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white rounded-lg p-4 relative max-w-md w-full">
+                <button onclick="closeModal()" class="absolute top-2 right-2 text-gray-500 hover:text-black">
+                    ✕
+                </button>
+                <img id="activityImage" src="" alt="Activity Image" class="w-full rounded-md">
+            </div>
         </div>
 
         <!-- Pagination Section -->
@@ -124,20 +82,23 @@
 </div>
 
 
-<!-- Modal untuk menampilkan bukti foto -->
-<div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="modal" onclick="closeModal()">
-    <div class="bg-white rounded-lg shadow-lg p-6 w-96" onclick="event.stopPropagation();">
-        <h2 class="text-xl font-bold mb-4 flex justify-between items-center">
-            Bukti Foto Kegiatan
-            <span class="cursor-pointer text-black" onclick="closeModal()">×</span>
-        </h2>
-        <div class="mt-4">
-            <img alt="Bukti Kegiatan" class="w-full h-auto rounded-lg shadow-md transition-transform transform hover:scale-105" id="activityImage"/>
-        </div>
-    </div>
-</div>
 
 <script>
+
+     // Fungsi untuk menampilkan gambar besar di modal
+   function showActivityImage(imageSrc) {
+        const modal = document.getElementById('imageModal');
+        const image = document.getElementById('activityImage');
+        image.src = imageSrc;
+        modal.classList.remove('hidden');
+    }
+
+    // Fungsi untuk menutup modal
+    function closeModal() {
+        const modal = document.getElementById('imageModal');
+        modal.classList.add('hidden');
+    }
+
     function openLaporanModal(fileUrl) {
     const modal = document.getElementById('modal-laporan');
     const iframe = document.getElementById('laporanContent');

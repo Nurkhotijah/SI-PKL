@@ -57,4 +57,25 @@ class PengajuanSiswaController extends Controller
 
         return view('pages-admin.pengajuan-siswa', compact('pengajuanSiswa'));
     }
+     public function destroy($id)
+    {
+        // Mencari pengajuan siswa berdasarkan ID
+        $pengajuanSiswa = PengajuanSiswa::find($id);
+
+        // Jika data pengajuan siswa tidak ditemukan
+        if (!$pengajuanSiswa) {
+            return redirect()->route('pengajuan-siswa.index')->with('error', 'Pengajuan siswa tidak ditemukan.');
+        }
+
+        // Menghapus file CV jika ada
+        if ($pengajuanSiswa->cv) {
+            Storage::disk('public')->delete($pengajuanSiswa->cv);
+        }
+
+        // Menghapus data pengajuan siswa
+        $pengajuanSiswa->delete();
+
+        return redirect()->route('pengajuan-siswa.index')->with('success', 'Pengajuan siswa berhasil dihapus.');
+    }
+    
 }

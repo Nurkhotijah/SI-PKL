@@ -47,6 +47,12 @@ class AdminController extends Controller
         return view('pages-admin.jurnal-siswa'); 
     }
 
+    public function jurnalDetail()
+    {
+        // Logika untuk menampilkan jurnal siswa
+        return view('pages-admin.jurnal-detail'); 
+    }
+
     public function nilaiSiswa()
     {
        

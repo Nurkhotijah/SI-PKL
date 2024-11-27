@@ -34,6 +34,18 @@
 
             <!-- Table Section -->
             <div class="overflow-x-auto">
+                @if (session('success'))
+                <div class="bg-green-500 text-white p-2 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="bg-red-500 text-white p-2 rounded mb-4">
+                    {{ session('error') }}
+                </div>
+            @endif
+
                 <table class="min-w-full bg-white border" id="studentTable">
                     <thead class="bg-gray-200">
                         <tr>
@@ -63,13 +75,12 @@
                             </td>
                             <td class="py-2 px-4 border-b text-center">
                                 <div class="flex justify-center space-x-2">
-                                    <form action="{{ route('hapus-siswa', $siswa->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data siswa ini?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="bg-red-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
-                                            <i class="fas fa-trash mr-1"></i> Hapus
-                                        </button>
-                                    </form>
+                                <!-- Tombol Hapus -->
+                                <form action="{{ route('pengajuan-siswa.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengajuan ini?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Hapus</button>
+                                </form>
                                 </div>
                             </td>
                         </tr>

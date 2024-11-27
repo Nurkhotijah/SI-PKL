@@ -12,7 +12,7 @@ class JurnalKegiatan extends Model
     protected $table = 'jurnal_kegiatan';
 
     protected $fillable = [
-        'nama',
+        'user_id',
         'kegiatan',
         'tanggal',
         'waktu_mulai',
@@ -20,4 +20,9 @@ class JurnalKegiatan extends Model
         'laporan_pkl',
         'foto_kegiatan',
     ];
+    // Relasi ke model User (Siswa)
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

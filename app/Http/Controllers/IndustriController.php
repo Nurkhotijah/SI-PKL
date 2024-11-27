@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\PengajuanSiswa;
+use App\Models\JurnalKegiatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,7 @@ class IndustriController extends Controller
         return view('pages-industri.lihat-siswa', compact('listSiswa'));
     }
 
+
     public function kelolaPengajuansiswa()
     {
         // Logika untuk mengelola kehadiran
@@ -48,13 +50,23 @@ class IndustriController extends Controller
         // Logika untuk mengelola pengajuan
         return view('pages-industri.kelola-pengajuan');
     }
-
     public function jurnalSiswapkl()
     {
-        // Logika untuk menampilkan jurnal siswa
-        return view('pages-industri.jurnal-siswapkl');
+        // Mengambil semua data jurnal dari siswa yang sudah diinput
+        $detailjurnal = JurnalKegiatan::with('user')  // Mengambil relasi data user (siswa)
+            ->get();  // Menampilkan semua jurnal kegiatan siswa
+
+        return view('pages-industri.jurnal-siswapkl', compact('detailjurnal'));
     }
 
+    public function detailJurnal($id)
+    {
+        // Mengambil data jurnal berdasarkan ID siswa
+        $jurnal = JurnalKegiatan::where('user_id', $id)->get();
+
+        return view('pages-industri.detail-jurnal', compact('jurnal'));
+    }
+   
     public function kelolaNilai()
     {
 
