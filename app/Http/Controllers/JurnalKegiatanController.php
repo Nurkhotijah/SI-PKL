@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JurnalKegiatan;
-use App\Models\Jurnal; // Model Jurnal untuk akses ke jurnal kegiatan
-use App\Models\User;  // Model Siswa untuk akses ke data siswa
-use App\Models\Sekolah; // Model Sekolah untuk akses ke data sekolah
 use Illuminate\Support\Facades\Storage;
 
 class JurnalKegiatanController extends Controller
 {
     public function index()
     {
-        $jurnal = JurnalKegiatan::where('user_id', auth()->user()->id)->get();
-
+        $jurnal = JurnalKegiatan::all();
         return view('pages-user.jurnal-kegiatan', compact('jurnal'));
     }
 
@@ -51,32 +47,23 @@ class JurnalKegiatanController extends Controller
         return redirect()->route('jurnal-kegiatan')->with('success', 'Jurnal kegiatan berhasil ditambahkan!');
     }
 
-    public function showJurnalKegiatan()
+    public function show($id)
     {
-        // Mengambil semua jurnal yang dimiliki oleh siswa
-        $jurnal = Jurnalkegiatan::all();
-
-        // Mengirim data ke view siswa
-        return view('jurnal-kegiatan', compact('jurnal'));
+        $jurnal = JurnalKegiatan::findOrFail($id);
+        return view('pages-user.detail-jurnal', compact('jurnal'));
     }
 
-    // Menampilkan data siswa dan sekolah di halaman industri
-    public function showSiswaIndustri()
+    public function destroy($id)
     {
-        // Mengambil semua jurnal kegiatan beserta data siswa terkait
-        $detailjurnal = JurnalKegiatan::with('user')->get();  // Mengambil jurnal dengan relasi ke user (siswa)
-        dd($detailjurnal); // Memeriksa data yang diambil
-        // Mengirim data jurnal ke view industri
-        return view('jurnal-siswapkl', compact('detailjurnal'));
-    }
-    
-    // Menampilkan detail jurnal kegiatan siswa berdasarkan ID
-    public function showJurnalDetail($id)
-    {
-        // Mencari jurnal kegiatan berdasarkan ID
-        $jurnal = Jurnalkegiatan::findOrFail($id);
+        $jurnal = JurnalKegiatan::findOrFail($id);
+        if ($jurnal->laporan_pkl) {
+            Storage::disk('public')->delete($jurnal->laporan_pkl);
+        }
+        if ($jurnal->foto_kegiatan) {
+            Storage::disk('public')->delete($jurnal->foto_kegiatan);
+        }
+        $jurnal->delete();
 
-        // Mengirim data ke view detail jurnal
-        return view('detail-jurnal', compact('jurnal'));
+        return redirect()->route('pages-user.jurnal-kegiatan')->with('success', 'Jurnal kegiatan berhasil dihapus!');
     }
 }

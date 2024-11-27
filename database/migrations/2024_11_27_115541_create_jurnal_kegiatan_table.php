@@ -8,9 +8,8 @@ class CreateJurnalKegiatanTable extends Migration
 {
     public function up()
 {
-    Schema::create('jurnal_kegiatans', function (Blueprint $table) {
+    Schema::create('jurnal_kegiatan', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('user_id')->constrained()->onDelete('cascade');  // Relasi dengan User
         $table->string('kegiatan');
         $table->date('tanggal');
         $table->time('waktu_mulai');

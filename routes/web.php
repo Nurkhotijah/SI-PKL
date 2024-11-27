@@ -47,11 +47,9 @@ Route::get('/kelola-nilai', [IndustriController::class, 'kelolaNilai'])->name('k
 
 Route::get('/kehadiran-siswa', [IndustriController::class, 'kehadiranSiswa'])->name('kehadiran-siswa');
 
-// Rute untuk Industri melihat jurnal siswa
-Route::get('/jurnal-siswapkl', [IndustriController::class, 'index'])->name('jurnal-siswapkl');
-
-// Rute untuk Industri melihat detail jurnal berdasarkan ID siswa
-Route::get('/detail-jurnal/{id}', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
+// Rute untuk jurnal siswa
+Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->name('jurnal-siswapkl');
+Route::get('/detail-jurnal', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
 
 Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
 
@@ -151,9 +149,9 @@ Route::get('/riwayat-kehadiran', [UserController::class, 'riwayatKehadiran'])->n
 
     Route::get('/jurnal-kegiatan', [JurnalKegiatanController::class, 'index'])->name('jurnal-kegiatan');
     Route::get('/tambah-jurnal', [JurnalKegiatanController::class, 'create'])->name('tambah-jurnal');
-    Route::post('/store', [JurnalKegiatanController::class, 'store'])->name('jurnal-kegiatan.store');
-    // Route::get('/{id}', [JurnalKegiatanController::class, 'show'])->name('show');
-    // Route::delete('/{id}', [JurnalKegiatanController::class, 'destroy'])->name('destroy');
+    Route::post('jurnal-kegiatan/store', [JurnalKegiatanController::class, 'store'])->name('jurnal-kegiatan.store');
+    Route::get('/{id}', [JurnalKegiatanController::class, 'show'])->name('show');
+    Route::delete('/{id}', [JurnalKegiatanController::class, 'destroy'])->name('destroy');
 
 Route::get('/pengajuan-izin', [UserController::class, 'pengajuanizin'])->name('pengajuan-izin');
 

@@ -19,25 +19,62 @@
         </div>
 
         <!-- Table Section -->
-        @foreach ($detailjurnal as $item)
-        <tr>
-            <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
-            <td class="py-2 px-4 border-b text-left">{{ $item->user->name }}</td>  <!-- Mengambil nama siswa -->
-            <td class="py-2 px-4 border-b text-left">{{ $item->user->sekolah->nama_sekolah }}</td>  <!-- Mengambil nama sekolah -->
-            <td class="py-2 px-4 border-b text-center">
-                <button onclick="openLaporanModal('{{ asset('storage/'.$item->laporan_pkl) }}')"
-                        class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
-                    <i class="fas fa-file-pdf mr-1"></i> Unduh
-                </button>
-            </td>
-            <td class="py-2 px-4 border-b text-center">
-                <a href="{{ route('detail-jurnal', ['id' => $item->user_id]) }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
-                    <i class="fas fa-eye mr-1"></i> Lihat
-                </a>
-            </td>
-        </tr>
-        @endforeach
-        
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border" id="pengajuanTable">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="py-2 px-4 border-b text-center">No</th>
+                        <th class="py-2 px-4 border-b text-left">Nama Lengkap</th>
+                        <th class="py-2 px-4 border-b text-left">Sekolah</th>
+                        <th class="py-2 px-4 border-b text-center">Laporan PKL</th>
+                        <th class="py-2 px-4 border-b text-center">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Row 1 -->
+                    @foreach ($detailjurnal as $item)
+                    <tr>
+                        <td class="py-2 px-4 border-b text-center">1</td>
+                        <td class="py-2 px-4 border-b text-left">{{ $item->name }}</td>
+                        <td class="py-2 px-4 border-b text-left">{{ $item->nama_sekolah }}</td>
+                        <td class="py-2 px-4 border-b text-center">
+                            <button onclick="openLaporanModal('path-to-pdf/laporan-fitri.pdf')"
+                                    class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
+                                <i class="fas fa-file-pdf mr-1"></i> Unduh
+                            </button>
+                        </td>
+                        
+                        <td class="py-2 px-4 border-b text-center">
+                            <div class="flex justify-center space-x-2">
+                                <a href="{{ route('detail-jurnal') }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
+                                    <i class="fas fa-eye mr-1"></i> Lihat
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    <!-- Example Row 2 -->
+                    <tr>
+                        <td class="py-2 px-4 border-b text-center">2</td>
+                        <td class="py-2 px-4 border-b text-left">Marsya</td>
+                        <td class="py-2 px-4 border-b text-left">SMK Komputer Indonesia</td>
+                        <td class="py-2 px-4 border-b text-center">
+                            <button onclick="openLaporanModal('path-to-pdf/laporan-fitri.pdf')"
+                                    class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
+                                <i class="fas fa-file-pdf mr-1"></i> Unduh
+                            </button>
+                        </td>
+                        
+                        <td class="py-2 px-4 border-b text-center">
+                            <div class="flex justify-center space-x-2">
+                                <a href="{{ route('detail-jurnal') }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
+                                    <i class="fas fa-eye mr-1"></i> Lihat
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!-- Pagination Section -->
         <div class="flex justify-end items-center mt-4">

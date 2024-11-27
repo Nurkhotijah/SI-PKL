@@ -16,59 +16,44 @@
             </div>
         </div>
 
-        <!-- Table Section -->
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white border" id="pengajuanTable">
-                <thead class="bg-gray-200">
-                    <tr>
-                        <th class="py-2 px-4 border-b text-center">No</th>
-                        <th class="py-2 px-4 border-b text-left">Nama Lengkap</th>
-                        <th class="py-2 px-4 border-b text-center">Laporan PKL</th>
-                        <th class="py-2 px-4 border-b text-center">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Example Row 1 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b text-center">1</td>
-                        <td class="py-2 px-4 border-b text-left">Fitri Amaliah</td>
-                        <td class="py-2 px-4 border-b text-center">
-                            <button onclick="openLaporanModal('path-to-pdf/laporan-fitri.pdf')"
-                                    class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
-                                <i class="fas fa-file-pdf mr-1"></i> Unduh
-                            </button>
-                        </td>
-                        
-                        <td class="py-2 px-4 border-b text-center">
-                            <div class="flex justify-center space-x-2">
-                                <a href="{{ route('jurnal-detail') }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
-                                    <i class="fas fa-eye mr-1"></i> Lihat
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- Example Row 2 -->
-                    <tr>
-                        <td class="py-2 px-4 border-b text-center">2</td>
-                        <td class="py-2 px-4 border-b text-left">Marsya</td>
-                        <td class="py-2 px-4 border-b text-center">
-                            <button onclick="openLaporanModal('path-to-pdf/laporan-fitri.pdf')"
-                                    class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
-                                <i class="fas fa-file-pdf mr-1"></i> Unduh
-                            </button>
-                        </td>
-                        
-                        <td class="py-2 px-4 border-b text-center">
-                            <div class="flex justify-center space-x-2">
-                                <a href="{{ route('jurnal-detail') }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="showActivityImage('assets/coding.png')">
-                                    <i class="fas fa-eye mr-1"></i> Lihat
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+       <!-- Table Section -->
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border" id="pengajuanTable">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="py-2 px-4 border-b text-center">No</th>
+                <th class="py-2 px-4 border-b text-left">Nama Lengkap</th>
+                <th class="py-2 px-4 border-b text-center">Laporan PKL</th>
+                <th class="py-2 px-4 border-b text-center">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($jurnalKegiatan as $index => $data)
+                <tr>
+                    <td class="py-2 px-4 border-b text-center">{{ $index + 1 }}</td>
+                    <td class="py-2 px-4 border-b text-left">{{ $data->nama_lengkap }}</td>
+                    <td class="py-2 px-4 border-b text-center">
+                        <button onclick="openLaporanModal('{{ asset('storage/'.$data->laporan_pkl) }}')"
+                                class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
+                            <i class="fas fa-file-pdf mr-1"></i> Unduh
+                        </button>
+                    </td>
+                    
+                    <td class="py-2 px-4 border-b text-center">
+                        <div class="flex justify-center space-x-2">
+                            <a href="{{ route('jurnal-detail', ['id' => $data->id]) }}" 
+                               class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" 
+                               onclick="showActivityImage('{{ asset('storage/'.$data->foto_kegiatan) }}')">
+                                <i class="fas fa-eye mr-1"></i> Lihat
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 
         <!-- Pagination Section -->
         <div class="flex justify-end items-center mt-4">

@@ -12,7 +12,6 @@ class JurnalKegiatan extends Model
     protected $table = 'jurnal_kegiatan';
 
     protected $fillable = [
-        'user_id',
         'kegiatan',
         'tanggal',
         'waktu_mulai',
