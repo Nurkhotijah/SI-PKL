@@ -40,54 +40,24 @@
                     </thead>
                     <tbody>
                         <!-- Example rows for schools -->
-                        <tr class="school-row" data-school="smkn_1_ciomas">
-                            <td class="py-2 px-4 border-b text-center">1</td>
-                            <td class="py-2 px-4 border-b text-left">SMKN 1 Ciomas</td>
-                            <td class="py-2 px-4 border-b text-left">ciomas@smkn1.sch.id</td>
-                            <td class="py-2 px-4 border-b text-left">Jl. Raya Ciomas No.1</td>
-                            <td class="py-2 px-4 border-b text-center">
-                                <div class="flex justify-center space-x-2">
-                                    <button onclick="window.open('{{ route('lihat-siswa', 2) }}', '_blank')" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out">
-                                        <i class="fas fa-eye mr-1"></i> Lihat
-                                    </button>                                    
-                                    <button onclick="deleteSchool(1)" class="bg-red-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
-                                        <i class="fas fa-trash mr-1"></i> Hapus
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="school-row" data-school="smk_komputer_indonesia">
-                            <td class="py-2 px-4 border-b text-center">2</td>
-                            <td class="py-2 px-4 border-b text-left">SMK Komputer Indonesia</td>
-                            <td class="py-2 px-4 border-b text-left">info@smkkomputer.sch.id</td>
-                            <td class="py-2 px-4 border-b text-left">Jl. Teknologi No.15</td>
-                            <td class="py-2 px-4 border-b text-center">
-                                <div class="flex justify-center space-x-2">
-                                    <button onclick="viewStudents('smk_komputer_indonesia')" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out">
-                                        <i class="fas fa-eye mr-1"></i> Lihat
-                                    </button>
-                                    <button onclick="deleteSchool(2)" class="bg-red-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
-                                        <i class="fas fa-trash mr-1"></i> Hapus
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr class="school-row" data-school="smk_adi_sanggoro">
-                            <td class="py-2 px-4 border-b text-center">3</td>
-                            <td class="py-2 px-4 border-b text-left">SMK Adi Sanggoro</td>
-                            <td class="py-2 px-4 border-b text-left">admin@adisanggoro.sch.id</td>
-                            <td class="py-2 px-4 border-b text-left">Jl. Adi No.30</td>
-                            <td class="py-2 px-4 border-b text-center">
-                                <div class="flex justify-center space-x-2">
-                                    <button onclick="viewStudents('smk_adi_sanggoro')" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out">
-                                        <i class="fas fa-eye mr-1"></i> Lihat
-                                    </button>
-                                    <button onclick="deleteSchool(3)" class="bg-red-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
-                                        <i class="fas fa-trash mr-1"></i> Hapus
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach ($listSekolah as $item)
+                            <tr class="school-row" data-school="smkn_1_ciomas">
+                                <td class="py-2 px-4 border-b text-center">1</td>
+                                <td class="py-2 px-4 border-b text-left">{{ $item->name }}</td>
+                                <td class="py-2 px-4 border-b text-left">{{ $item->email }}</td>
+                                <td class="py-2 px-4 border-b text-left">{{ $item->alamat }}</td>
+                                <td class="py-2 px-4 border-b text-center">
+                                    <div class="flex justify-center space-x-2">
+                                        <button onclick="window.open('{{ route('lihat-siswa', 2) }}', '_blank')" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out">
+                                            <i class="fas fa-eye mr-1"></i> Lihat
+                                        </button>                                    
+                                        <button onclick="deleteSchool(1)" class="bg-red-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
+                                            <i class="fas fa-trash mr-1"></i> Hapus
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

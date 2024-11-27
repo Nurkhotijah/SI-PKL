@@ -30,14 +30,10 @@ class PengajuanSiswaController extends Controller
             'cv' => 'required|mimes:pdf',
         ]);
 
-        dd($request->all());
-
         $users = Auth::user(); // Mendapatkan data pengguna yang login
 
-        dd($request->file('cv'));
         // Menyimpan file CV ke direktori public
         $filePath = $request->file('cv')->store('cv_siswa', 'public');
-        
 
         // Menyimpan pengajuan siswa ke dalam database
         PengajuanSiswa::create([
@@ -50,13 +46,13 @@ class PengajuanSiswaController extends Controller
             'id_sekolah' => $users->id, // ID Sekolah yang login
         ]);
 
-        return redirect()->route('pages-admin.pengajuan-siswa')->with('success', 'Pengajuan siswa berhasil diajukan.');
+        return redirect('/pengajuan-siswa')->with('success', 'Pengajuan siswa berhasil diajukan.');
     }
 
     public function index()
     {
         // Mengambil semua pengajuan siswa yang diajukan oleh sekolah yang login
-        $users = auth()->user();
+        $users = Auth::user();
         $pengajuanSiswa = PengajuanSiswa::where('id_sekolah', $users->id)->get();
 
         return view('pages-admin.pengajuan-siswa', compact('pengajuanSiswa'));

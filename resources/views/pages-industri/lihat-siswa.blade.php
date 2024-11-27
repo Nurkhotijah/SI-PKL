@@ -52,38 +52,24 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="student-row">
-                <td class="py-2 px-4 border-b text-center">
-                    <input type="checkbox" class="student-checkbox" value="1">
-                </td>
-                <td class="py-2 px-4 border-b text-center">1</td>
-                <td class="py-2 px-4 border-b text-left">Budi Santoso</td>
-                <td class="py-2 px-4 border-b text-left">PPLG</td>
-                <td class="py-2 px-4 border-b text-center">01 Januari 2024</td>
-                <td class="py-2 px-4 border-b text-center">01 Juni 2024</td>
-                <td class="py-2 px-4 border-b text-center">
-                    <a href="/path/to/cv-budi.pdf" target="_blank" class="text-blue-500 hover:underline">Download</a>
-                </td>
-                <td class="py-2 px-4 border-b text-center">
-                    <span id="status-1" class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">Menunggu</span>
-                </td>
-            </tr>
-            <tr class="student-row">
-                <td class="py-2 px-4 border-b text-center">
-                    <input type="checkbox" class="student-checkbox" value="2">
-                </td>
-                <td class="py-2 px-4 border-b text-center">2</td>
-                <td class="py-2 px-4 border-b text-left">Tono</td>
-                <td class="py-2 px-4 border-b text-left">PPLG</td>
-                <td class="py-2 px-4 border-b text-center">05 Januari 2024</td>
-                <td class="py-2 px-4 border-b text-center">05 Juni 2024</td>
-                <td class="py-2 px-4 border-b text-center">
-                    <a href="/path/to/cv-tono.pdf" target="_blank" class="text-blue-500 hover:underline">Download</a>
-                </td>
-                <td class="py-2 px-4 border-b text-center">
-                    <span id="status-2" class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">Menunggu</span>
-                </td>
-            </tr>
+            @foreach ($listSiswa as $item)
+                <tr class="student-row">
+                    <td class="py-2 px-4 border-b text-center">
+                        <input type="checkbox" class="student-checkbox" value="1">
+                    </td>
+                    <td class="py-2 px-4 border-b text-center">1</td>
+                    <td class="py-2 px-4 border-b text-left">{{ $item->nama_siswa }}</td>
+                    <td class="py-2 px-4 border-b text-left">{{ $item->jurusan }}</td>
+                    <td class="py-2 px-4 border-b text-center">{{ $item->tanggal_mulai }}</td>
+                    <td class="py-2 px-4 border-b text-center">{{ $item->tanggal_selesai }}</td>
+                    <td class="py-2 px-4 border-b text-center">
+                        <a href="/path/to/cv-budi.pdf" target="_blank" class="text-blue-500 hover:underline">Download</a>
+                    </td>
+                    <td class="py-2 px-4 border-b text-center">
+                        <span id="status-1" class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">Menunggu</span>
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </div>

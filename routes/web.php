@@ -52,7 +52,7 @@ Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->n
 
 Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
 
-Route::get('/lihat-siswa', [IndustriController::class, 'lihatSiswa'])->name('lihat-siswa');
+Route::get('/lihat-siswa/{id}', [IndustriController::class, 'lihatSiswa'])->name('lihat-siswa');
 
 Route::get('/kelola-pengajuansiswa', [IndustriController::class, 'kelolaPengajuansiswa'])->name('kelola-pengajuansiswa');
 
@@ -120,7 +120,7 @@ Route::delete('/siswa/{id}', [PengajuanSiswaController::class, 'destroy'])->name
 
 Route::middleware(['auth'])->group(function () {
     // Menampilkan daftar pengajuan siswa
-    
+
 });
 
 Route::get('/data-siswa', [AdminController::class, 'dataSiswa'])->name('data-siswa');
@@ -175,4 +175,3 @@ Route::get('/hapus-izin', [UserController::class, 'hapusizin'])->name('hapus-izi
 
 // Route untuk mengganti kata sandi
 Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
-
