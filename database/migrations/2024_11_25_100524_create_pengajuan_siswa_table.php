@@ -16,7 +16,9 @@ class CreatePengajuanSiswaTable extends Migration
             $table->date('tanggal_selesai');
             $table->string('cv'); // Menyimpan path file CV
             $table->enum('status', ['Menunggu', 'Disetujui', 'Ditolak'])->default('Menunggu');
-            $table->foreignId('sekolah_id')->constrained('users')->onDelete('cascade'); // Kolom untuk ID Sekolah, mengacu ke tabel users
+            $table->foreignId('id_sekolah') // Menggunakan id_sekolah, bukan sekolah_id
+                ->constrained('users')
+                ->onDelete('cascade'); // Kolom untuk ID Sekolah, mengacu ke tabel users
 
             $table->timestamps();
         });

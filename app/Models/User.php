@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles; // Tambahkan ini
@@ -12,6 +13,12 @@ use Spatie\Permission\Traits\HasRoles; // Tambahkan ini
 class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
+
+    // Relasi satu ke banyak (User ke PengajuanSiswa)
+    public function pengajuanSiswa()
+    {
+        return $this->hasMany(PengajuanSiswa::class, 'id_sekolah');
+    }
 
     /**
      * The attributes that are mass assignable.

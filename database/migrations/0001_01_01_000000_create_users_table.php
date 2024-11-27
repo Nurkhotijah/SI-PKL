@@ -13,9 +13,9 @@ class CreateUsersTable extends Migration
             $table->string('name'); // Nama pengguna (Sekolah, Industri, Siswa)
             $table->string('email')->unique(); // Email pengguna
             $table->string('password'); // Password pengguna
-            $table->string('role'); // Role pengguna (admin-sekolah, admin-industri, siswa)
+            $table->string('role'); 
             $table->string('alamat')->nullable(); // Alamat, hanya untuk sekolah
-            $table->timestamps(); // Timestamp untuk created_at dan updated_at
+            $table->timestamps(); //
         });
     }
 

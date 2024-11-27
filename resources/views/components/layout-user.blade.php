@@ -40,11 +40,11 @@
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/book--v1.png" alt="book--v1"/>
             <a href="{{ route('jurnal-kegiatan') }}" class="text-sm">Jurnal Kegiatan Harian</a>
         </li>
-        <!-- Pengajuan Izin/Cuti -->
+        {{-- <!-- Pengajuan Izin/Cuti -->
         <li class="p-3 {{ request()->is('pengajuan-izin') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/submit-document.png" alt="submit-document"/>
             <a href="{{ route('pengajuan-izin') }}" class="text-sm">Pengajuan Izin</a>
-        </li>
+        </li> --}}
         <li class="p-3 {{ request()->is('penilaian-pkl') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/permanent-job.png" alt="permanent-job"/>
             <a href="{{ route('penilaian-pkl') }}" class="text-sm">Penilaian PKL</a>

@@ -10,8 +10,8 @@ class RolesSeeder extends Seeder
     public function run()
     {
         // Membuat role admin dan siswa
-        Role::create(['name' => 'admin-industri']);
-        Role::create(['name' => 'admin-sekolah']);
+        Role::create(['name' => 'industri']);
+        Role::create(['name' => 'sekolah']);
         Role::create(['name' => 'siswa']);
     }
 }

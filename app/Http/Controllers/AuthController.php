@@ -16,7 +16,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255', // Nama Sekolah atau Username
             'email' => 'required|string|email|max:255|unique:users',
             'alamat' => 'required|string|max:255', // Alamat
-            'password' => 'required|string|min:8', // Password
+            'password' => 'required|string|min:5', // Password
             'agreement' => 'accepted', // Validasi checkbox persetujuan
         ]);
     
@@ -26,11 +26,11 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'alamat' => $validated['alamat'], // Menambahkan alamat
             'password' => Hash::make($validated['password']),
-            'role' => 'admin-sekolah', // Mengubah role menjadi sekolah
+            'role' => 'sekolah', // Mengubah role menjadi sekolah
         ]);
     
         // Menetapkan role sekolah
-        $user->assignRole('admin-sekolah');
+        $user->assignRole('sekolah');
     
         // Login otomatis setelah registrasi (opsional)
         // auth()->login($user);

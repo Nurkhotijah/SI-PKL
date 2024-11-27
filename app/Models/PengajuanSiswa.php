@@ -17,12 +17,12 @@ class PengajuanSiswa extends Model
         'tanggal_mulai',
         'tanggal_selesai',
         'cv',
-        'sekolah_id', // Menambahkan 'sekolah_id' ke dalam fillable
+        'id_sekolah', // Menambahkan 'sekolah_id' ke dalam fillable
     ];
 
     // Relasi dengan model Sekolah
     public function sekolah()
     {
-        return $this->belongsTo(Sekolah::class);
+        return $this->belongsTo(User::class, 'id_sekolah');
     }
 }

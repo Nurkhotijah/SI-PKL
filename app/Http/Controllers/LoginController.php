@@ -24,17 +24,17 @@ class LoginController extends Controller
         // Validasi input
         $request->validate([
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:5',
         ]);
 
         // Coba autentikasi pengguna
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // Cek role pengguna dan redirect ke halaman sesuai
-            if (Auth::user()->role === 'admin-industri') {
+            if (Auth::user()->role === 'industri') {
                 return redirect()->route('industri.dashboard');
             } elseif (Auth::user()->role === 'siswa') {
                 return redirect()->route('user.dashboard'); 
-            } elseif (Auth::user()->role === 'admin-sekolah') {
+            } elseif (Auth::user()->role === 'sekolah') {
             return redirect()->route('admin.dashboard'); 
         }
          

@@ -1,6 +1,6 @@
 @extends('components.layout-user')
 
-@section('title', 'Jurnal Kegiatan Siswa')
+@section('title', 'Jurnal Kegiatan')
 
 @section('content')
 
@@ -8,7 +8,7 @@
     <div class="max-w-7xl mx-auto bg-white p-4 sm:p-6 rounded-lg shadow-md">
         <!-- Header Section -->
         <div class="mb-4">
-            <h1 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Riwayat Jurnal</h1>
+            <h1 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Jurnal</h1>
             <div class="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0 sm:space-x-4">
                 <div class="relative w-full sm:w-auto">
                     <input class="border rounded-l p-2 pl-10 w-full sm:w-64" id="search" placeholder="Cari Nama atau sekolah" type="text" oninput="filterTable()">
@@ -22,9 +22,14 @@
             <a href="{{ route('tambah-jurnal') }}" class="bg-blue-500 text-white text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
                 <i class="fas fa-user-plus mr-2"></i>Tambah Jurnal
             </a>
-            <a href="{{ route('tambah-siswa') }}" class="bg-blue-500 text-white text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
-                <i class="fas fa-upload mr-2"></i>Upload Laporan
-            </a>
+           <!-- Tombol untuk mengupload laporan PKL -->
+<a href="javascript:void(0)" class="bg-blue-500 text-white text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out" onclick="document.getElementById('fileInput').click();">
+    <i class="fas fa-upload mr-2"></i>Upload Laporan
+</a>
+
+<!-- Input file untuk memilih laporan PKL, hanya menerima file PDF -->
+<input type="file" id="laporan_pkl" name="laporan_pkl" class="hidden" accept=".pdf" onchange="uploadFile(event)">
+
         </div>
 
         <!-- Table Section -->
@@ -34,7 +39,6 @@
                     <tr>
                         <th class="py-2 px-4 border-b text-center">No</th>
                         <th class="py-2 px-4 border-b text-left">Nama Lengkap</th>
-                        <th class="py-2 px-4 border-b text-left">Sekolah</th>
                         <th class="py-2 px-4 border-b text-left">Kegiatan</th>
                         <th class="py-2 px-4 border-b text-center">Tanggal</th>
                         <th class="py-2 px-4 border-b text-center">Waktu Mulai</th>
@@ -48,7 +52,6 @@
                     <tr>
                         <td class="py-2 px-4 border-b text-center">1</td>
                         <td class="py-2 px-4 border-b text-left">Fitri Amaliah</td>
-                        <td class="py-2 px-4 border-b text-left">SMKN 1 Ciomas</td>
                         <td class="py-2 px-4 border-b text-left">Mengerjakan kelola nilai</td>
                         <td class="py-2 px-4 border-b text-center">2023-10-01</td>
                         <td class="py-2 px-4 border-b text-center">08:00</td>

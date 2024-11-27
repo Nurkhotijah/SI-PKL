@@ -6,22 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
-        Schema::create('absens', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->timestamp('absen_masuk')->nullable();
-            $table->timestamp('absen_keluar')->nullable();
-            $table->string('foto_masuk')->nullable();
-            $table->string('foto_keluar')->nullable();
-            $table->timestamps();
-        });
-    }
-
+    public function up()
+{
+    Schema::create('absens', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('user_id')->constrained()->onDelete('cascade'); // ID user/siswa
+        $table->enum('status', ['masuk', 'keluar'])->default('masuk');
+        $table->timestamp('waktu')->useCurrent(); // Waktu absen
+        $table->string('foto')->nullable(); // Kolom untuk menyimpan nama file foto
+        $table->timestamps();
+    });
+}
     /**
      * Reverse the migrations.
      */
