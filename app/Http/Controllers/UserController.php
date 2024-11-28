@@ -21,14 +21,22 @@ class UserController extends Controller
         return view('pages-user.dashboard-user', compact('attendanceData'));
     }
     
-    public function riwayatKehadiran() {
-    return view('pages-user.Riwayat-absensi');
+    public function riwayatabsensi() {
+    return view('pages-user.riwayat-absensi');
+}
+
+public function uploadFotoizin() {
+    return view('pages-user.uploadFotoizin');
 }
      public function pengajuanizin() {
     return view('pages-user.Pengajuan-izin');
 }
 public function jurnalKegiatan() {
     return view('pages-user.Jurnal-kegiatan');
+}
+
+public function editjurnal() {
+    return view('pages-user.Edit-jurnal');
 }
 public function penilaianpkl() {
     return view('pages-user.Penilaian-pkl');

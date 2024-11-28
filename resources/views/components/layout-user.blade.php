@@ -31,9 +31,9 @@
             <a href="{{ route('user.dashboard') }}" class="text-sm">Dashboard</a>
         </li>
         <!-- Riwayat Kehadiran -->
-        <li class="p-3 {{ request()->is('riwayat-kehadiran') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
+        <li class="p-3 {{ request()->is('riwayat-absensi') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/attendance-mark.png" alt="attendance-mark"/>
-            <a href="{{ route('riwayat-kehadiran') }}" class="text-sm">Riwayat Kehadiran</a>
+            <a href="{{ route('riwayat-absensi') }}" class="text-sm">Riwayat Kehadiran</a>
         </li>
         <!-- Jurnal Kegiatan Harian -->
         <li class="p-3 {{ request()->is('jurnal-kegiatan') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">

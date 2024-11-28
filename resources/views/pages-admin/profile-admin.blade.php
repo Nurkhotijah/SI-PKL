@@ -13,7 +13,7 @@
                     <img id="profilePic" class="w-auto h-20 mx-auto" src="{{ asset('assets/skanic.jpg') }}" alt="Profile Picture">
                     <input type="file" id="fileInput" class="hidden" onchange="changePhoto()">
                     <div class="mt-4">
-                        <h2 class="text-2xl font-semibold text-gray-800">Sekolah</h2>
+                        <h2 class="text-2xl font-semibold text-gray-800">{{ $profilesekolah->name }}</h2>
                         <p class="text-gray-600">Admin</p>
                     </div>
                 </div>                              
@@ -23,15 +23,15 @@
                     <div class="max-w-2xl mx-auto border border-gray-300 rounded-lg mb-6">
                         <h3 class="bg-blue-500 text-white p-3 font-semibold text-center rounded-t-lg">Informasi Sekolah</h3>
                         <div class="p-3 text-left space-y-2">
-                            <p class="font-sans text-base"><span class="font-medium">Nama Sekolah:</span> SMK Negeri 1 Bogor</p>
-                            <p class="font-sans text-base"><span class="font-medium">Alamat:</span> Jl. Raya No. 123, Bogor, Jawa Barat</p>
-                            <p class="font-sans text-base"><span class="font-medium">Email:</span> info@smk1bogor.sch.id</p>
+                            <p class="font-sans text-base"><span class="font-medium">Nama Sekolah:</span> {{ $profilesekolah->name }}</p>
+                            <p class="font-sans text-base"><span class="font-medium">Alamat:</span> {{ $profilesekolah->alamat }}</p>
+                            <p class="font-sans text-base"><span class="font-medium">Email:</span> {{ $profilesekolah->email }}</p>
                         </div>
                     </div>                    
                     <!-- Tombol Edit di bawah Info Sekolah -->
                     <div class="flex justify-end mt-4">
                         <button class="bg-yellow-400 text-white text-base px-4 py-2 rounded-lg shadow-lg hover:bg-yellow-500 transition duration-300 ease-in-out flex items-center transform hover:scale-105">
-                            <a href="{{ route('profile-update') }}" class="flex items-center">
+                            <a href="{{ route('profile.edit') }}" class="flex items-center">
                                 <i class="fas fa-edit mr-2"></i>
                                 Edit
                             </a>
@@ -57,19 +57,5 @@
     }
     </script>
 </body>
- 
-<script>
-function changePhoto() {
-    const fileInput = document.getElementById('fileInput');
-    const reader = new FileReader();
-
-    if (fileInput.files && fileInput.files[0]) {
-        reader.onload = function (e) {
-            document.getElementById('profilePic').src = e.target.result;
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-    }
-}
-</script>
 
 @endsection

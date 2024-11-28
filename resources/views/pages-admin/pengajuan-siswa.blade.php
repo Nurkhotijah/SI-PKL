@@ -76,10 +76,12 @@
                             <td class="py-2 px-4 border-b text-center">
                                 <div class="flex justify-center space-x-2">
                                 <!-- Tombol Hapus -->
-                                <form action="{{ route('pengajuan-siswa.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengajuan ini?')">
+                                <form action="{{ route('pengajuan-siswa.destroy', $siswa->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengajuan ini?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">Hapus</button>
+                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">
+                                        Hapus
+                                    </button>
                                 </form>
                                 </div>
                             </td>

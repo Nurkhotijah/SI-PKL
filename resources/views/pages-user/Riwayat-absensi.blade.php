@@ -7,78 +7,69 @@
 <main class="bg-gray-100 p-8">
     <div class="container mx-auto bg-white p-6 shadow-lg rounded-lg">
         <h1 class="text-2xl font-bold mb-4">Riwayat Kehadiran</h1>
-        
-        <!-- Tombol Upload Foto Izin -->
-        <div class="mt-4 sm:mt-0 mb-4">
-            <label for="uploadIzin" class="bg-blue-500 text-white text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out cursor-pointer">
-                <i class="fas fa-upload mr-2"></i> Upload Foto Izin
-            </label>
-            <input type="file" id="uploadIzin" class="hidden" accept="image/*" onchange="uploadIzin(event)">
-        </div>
+       <!-- Tombol Upload Foto Izin -->
+<div class="mt-4 sm:mt-0 mb-4 flex items-center space-x-4">
+    <!-- Tombol Upload Foto Izin -->
+    <form action="{{ route('uploadFotoIzin') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <label for="uploadIzin" class="bg-blue-500 text-white text-xs px-6 py-3 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out cursor-pointer flex items-center w-auto">
+            <i class="fas fa-upload mr-2"></i> Upload Foto Izin
+        </label>
+        <input type="file" id="uploadIzin" name="foto_izin" class="hidden" accept="image/jpeg, image/png" required>
+        <button type="submit" class="hidden">Submit</button>
+    </form>
 
-        <!-- Tabel Riwayat Kehadiran -->
-        <div class="overflow-x-auto">
-            <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-                <thead class="bg-gray-200">
-                    <tr class="text-gray-600 text-sm">
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">No</th>
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Nama Lengkap</th>
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Tanggal</th>
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Status Kehadiran</th>
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Waktu Masuk</th>
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Waktu Keluar</th>
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Foto Izin</th>
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody class="text-gray-600 text-sm font-light" id="riwayatKehadiran">
-                    <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-700">1</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-800">Ahmad Zaki</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-11-20</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">Izin</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">09:00</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">17:00</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">
-                            <img class="w-16 h-16 object-cover rounded-full mx-auto" src="https://via.placeholder.com/150" alt="Foto Izin">
-                        </td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
-                                <i class="fas fa-eye"></i> Lihat
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-700">2</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-800">Lina Maulida</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-11-19</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">Hadir</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">08:30</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">16:30</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">-</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
-                                <i class="fas fa-eye"></i> Lihat
-                            </button>
-                        </td>
-                    </tr>
-                    <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-700">3</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-800">Rizki Fadillah</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-11-18</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">Tidak Hadir</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">-</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">-</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">-</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">
-                            <button class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
-                                <i class="fas fa-eye"></i> Lihat
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+    <!-- Tombol Unduh Rekap Kehadiran -->
+    <a class="bg-green-500 text-white text-xs px-6 py-3 rounded-lg hover:bg-green-600 transition duration-300 ease-in-out flex items-center space-x-2 w-auto" 
+       href="{{ asset('path/to/certificate.pdf') }}" 
+       download="Sertifikat_PKL_{{ Auth::user()->name }}">
+        <i class="fas fa-download"></i>
+        <span>Rekap Kehadiran</span>
+    </a>
+</div>
+
+<!-- Tabel Riwayat Kehadiran -->
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+        <thead class="bg-gray-200">
+            <tr class="text-gray-600 text-sm">
+                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">No</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Nama Lengkap</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Tanggal</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Status Kehadiran</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Waktu Masuk</th>
+                <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Waktu Keluar</th>
+                <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Foto Izin</th>
+                <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Aksi</th>
+            </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+            @foreach($kehadiran as $item)
+            <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
+                <td class="py-4 px-4 border-b border-gray-300 text-gray-700">{{ $loop->iteration }}</td>
+                <td class="py-4 px-4 border-b border-gray-300 text-gray-800">{{ $item->name }}</td>
+                <td class="py-4 px-4 border-b border-gray-300 text-gray-600">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
+                <td class="py-4 px-4 border-b border-gray-300 text-gray-600">{{ $item->status_kehadiran }}</td>
+                <td class="py-4 px-4 border-b border-gray-300 text-gray-600">{{ \Carbon\Carbon::parse($item->waktu_masuk)->format('H:i') }}</td>
+                <td class="py-4 px-4 border-b border-gray-300 text-gray-600">{{ \Carbon\Carbon::parse($item->waktu_keluar)->format('H:i') }}</td>
+                <td class="py-4 px-4 border-b border-gray-300 text-center">
+                    @if($item->foto_izin)
+                    <img class="w-16 h-16 object-cover rounded-full mx-auto" src="{{ asset('storage/foto_izin/' . $item->foto_izin) }}" alt="Foto Izin">
+                    @else
+                    Tidak ada foto
+                    @endif
+                </td>
+                <td class="py-4 px-4 border-b border-gray-300 text-center">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
+                        <i class="fas fa-eye"></i> Lihat
+                    </button>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
         
         <!-- Pagination -->
         <div class="flex justify-end items-center mt-4">
@@ -92,37 +83,40 @@
         </div>
     </div>
 
-    <!-- Modal Untuk Melihat Foto -->
-    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="modal" onclick="closeModal()">
+    @foreach($kehadiran as $item)
+    <!-- Modal untuk Foto Absen Masuk dan Keluar -->
+    <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="modal-{{ $item->id }}" onclick="closeModal({{ $item->id }})">
         <div class="bg-white rounded-lg shadow-lg p-6 w-96" onclick="event.stopPropagation();">
             <h2 class="text-xl font-bold mb-4 flex justify-between items-center">
-                Absen
-                <span class="cursor-pointer text-black" onclick="closeModal()">×</span>
+                Lihat Foto Kehadiran
+                <span class="cursor-pointer text-black" onclick="closeModal({{ $item->id }})">×</span>
             </h2>
             <div class="flex justify-around">
                 <div class="flex flex-col items-center">
-                    <button class="text-black font-semibold px-4 py-2 hover:underline" id="checkInButton" onclick="showImage('checkIn')">
+                    <button class="text-black font-semibold px-4 py-2 hover:underline" id="checkInButton-{{ $item->id }}" onclick="showImage('checkIn', {{ $item->id }})">
                         Masuk
                     </button>
                     <div class="border-b border-green-500 w-16 mt-1"></div>
                 </div>
                 <div class="flex flex-col items-center">
-                    <button class="text-black font-semibold px-4 py-2 hover:underline" id="checkOutButton" onclick="showImage('checkOut')">
+                    <button class="text-black font-semibold px-4 py-2 hover:underline" id="checkOutButton-{{ $item->id }}" onclick="showImage('checkOut', {{ $item->id }})">
                         Pulang
                     </button>
                     <div class="border-b border-red-500 w-16 mt-1"></div>
                 </div>
             </div>
-            <div class="mt-4" id="checkInImage">
-                <img alt="Check In" class="w-full h-auto rounded-lg shadow-md transition-transform transform hover:scale-105" src="https://storage.googleapis.com/a1aa/image/WztpJ9sAYAbAJtoJTVPK6Dzcc3JdredOr5FsatACWT5Auy0JA.jpg"/>
+            <div class="mt-4 hidden" id="checkInImage-{{ $item->id }}">
+                <img alt="Absen Masuk" class="w-full h-auto rounded-lg shadow-md transition-transform transform hover:scale-105" src="{{ asset('storage/'.$item->foto_masuk) }}"/>
             </div>
-            <div class="hidden mt-4" id="checkOutImage">
-                <img alt="Check Out" class="w-full h-auto rounded-lg shadow-md transition-transform transform hover:scale-105" height="300" src="https://storage.googleapis.com/a1aa/image/g3oYLVfAcszXFincakeNQgd7iGD8hUjPaeNQJJXHBXvo6tbnA.jpg" width="300"/>
+            <div class="hidden mt-4" id="checkOutImage-{{ $item->id }}">
+                <img alt="Absen Keluar" class="w-full h-auto rounded-lg shadow-md transition-transform transform hover:scale-105" src="{{ asset('storage/'.$item->foto_keluar) }}"/>
             </div>
         </div>
     </div>
+    @endforeach
+    
 </main>
-<!-- Chart.js -->
+{{-- <!-- Chart.js -->
 <script>
         // Simulasi upload foto izin
         function uploadIzin(event) {
@@ -245,5 +239,5 @@ function openModal() {
     }
 });
 
-</script>
+</script> --}}
 @endsection

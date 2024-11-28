@@ -129,6 +129,24 @@
   </div>
   
   <script>
+
+    // Menampilkan popup saat tombol logout diklik
+  document.getElementById('logout').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.getElementById('confirmationLogout').classList.remove('hidden');
+    });
+
+    // Mengonfirmasi logout dan redirect ke halaman lain
+    document.getElementById('confirmLogout').addEventListener('click', function() {
+        document.getElementById('confirmationLogout').classList.add('hidden');
+        window.location.href = '/'; // Ganti '/' dengan URL halaman tujuan setelah logout
+    });
+
+    // Membatalkan logout dan menutup popup
+    document.getElementById('cancelLogout').addEventListener('click', function() {
+        document.getElementById('confirmationLogout').classList.add('hidden');
+    });
+    
      // Menampilkan dropdown profile
      document.getElementById('profileButton').addEventListener('click', function() {
         const dropdown = document.getElementById('profileDropdown');

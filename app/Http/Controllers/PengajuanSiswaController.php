@@ -57,25 +57,28 @@ class PengajuanSiswaController extends Controller
 
         return view('pages-admin.pengajuan-siswa', compact('pengajuanSiswa'));
     }
-     public function destroy($id)
+    public function destroy($id)
     {
-        // Mencari pengajuan siswa berdasarkan ID
-        $pengajuanSiswa = PengajuanSiswa::find($id);
+        // Cari pengajuan siswa berdasarkan ID
+        $pengajuan = PengajuanSiswa::find($id);
 
-        // Jika data pengajuan siswa tidak ditemukan
-        if (!$pengajuanSiswa) {
-            return redirect()->route('pengajuan-siswa.index')->with('error', 'Pengajuan siswa tidak ditemukan.');
+        // Periksa apakah data pengajuan ditemukan
+        if (!$pengajuan) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Pengajuan siswa tidak ditemukan'
+            ], 404);
         }
 
-        // Menghapus file CV jika ada
-        if ($pengajuanSiswa->cv) {
-            Storage::disk('public')->delete($pengajuanSiswa->cv);
+        // Hapus file CV jika ada
+        if ($pengajuan->cv && Storage::exists('public/' . $pengajuan->cv)) {
+            Storage::delete('public/' . $pengajuan->cv);
         }
 
-        // Menghapus data pengajuan siswa
-        $pengajuanSiswa->delete();
+        // Hapus data pengajuan siswa dari database
+        $pengajuan->delete();
 
-        return redirect()->route('pengajuan-siswa.index')->with('success', 'Pengajuan siswa berhasil dihapus.');
+        // Kembali ke halaman yang sama dengan pesan sukses
+        return redirect()->back()->with('success', 'Pengajuan siswa berhasil dihapus.');
     }
-    
 }

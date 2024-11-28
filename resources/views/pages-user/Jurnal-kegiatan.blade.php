@@ -40,6 +40,7 @@
                         <th class="py-2 px-4 border-b text-center">Waktu Selesai</th>
                         <th class="py-2 px-4 border-b text-center">Laporan PKL</th>
                         <th class="py-2 px-4 border-b text-center">Foto</th>
+                        <th class="py-2 px-4 border-b text-center">Aksi</th> <!-- Kolom Aksi -->
                     </tr>
                 </thead>
                 <tbody>
@@ -59,11 +60,17 @@
                             <td class="py-2 px-4 border-b text-center">
                                 <img src="{{ asset('storage/'.$data->foto_kegiatan) }}" alt="Foto Kegiatan" class="w-14 h-14 object-cover rounded-full cursor-pointer" onclick="showActivityImage('{{ asset('storage/'.$data->foto_kegiatan) }}')">
                             </td>
+                            <td class="py-2 px-4 border-b text-center">
+                                <a href="{{ route('jurnal-kegiatan.edit', ['id' => $data->id]) }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
+                                    <i class="fas fa-edit mr-1"></i> Edit
+                                </a>
+                            </td> <!-- Kolom Aksi -->
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
+        
         
 
         <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
