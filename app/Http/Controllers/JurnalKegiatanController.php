@@ -95,20 +95,25 @@ public function update(Request $request, $id)
 
     return redirect()->route('jurnal-kegiatan')->with('success', 'Jurnal berhasil diperbarui!');
 }
-    public function destroy($id)
-    {
-        $jurnal = JurnalKegiatan::findOrFail($id);
+public function destroy($id)
+{
+    $jurnal = JurnalKegiatan::findOrFail($id);
 
-        if ($jurnal->laporan_pkl) {
-            Storage::disk('public')->delete($jurnal->laporan_pkl);
-        }
-
-        if ($jurnal->foto_kegiatan) {
-            Storage::disk('public')->delete($jurnal->foto_kegiatan);
-        }
-
-        $jurnal->delete();
-
-        return redirect()->route('pages-user.jurnal-kegiatan')->with('success', 'Jurnal kegiatan berhasil dihapus!');
+    // Hapus file laporan jika ada
+    if ($jurnal->laporan_pkl) {
+        Storage::disk('public')->delete($jurnal->laporan_pkl);
     }
+
+    // Hapus file foto jika ada
+    if ($jurnal->foto_kegiatan) {
+        Storage::disk('public')->delete($jurnal->foto_kegiatan);
+    }
+
+    // Hapus data jurnal
+    $jurnal->delete();
+
+    // Redirect ke halaman jurnal kegiatan dengan pesan sukses
+    return redirect()->route('jurnal-kegiatan')->with('success', 'Jurnal kegiatan berhasil dihapus!');
+}
+
 }

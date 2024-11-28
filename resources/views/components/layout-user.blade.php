@@ -16,7 +16,7 @@
 <body class="bg-white min-h-screen">
   <div class="flex h-screen">
    <!-- Sidebar -->
-   <div class="w-64 bg-gray-800 text-white flex flex-col shadow-lg fixed md:relative top-0 h-full md:h-screen hidden md:block" id="sidebar">
+   <div class=" w-64 md:w-1/6 bg-gray-800 text-white flex flex-col shadow-lg fixed md:relative top-0 h-full md:h-screen hidden md:block" id="sidebar">
     <div class="flex items-center justify-center p-3 text-lg font-bold border-b border-gray-700">
      <img alt="profile" class="rounded-full w-10 h-10 border-2 border-gray-400 mr-4" height="40" src="https://storage.googleapis.com/a1aa/image/HywtUjZR476QI542dgq5sHDxG2zRdIHNbfBYeY5GMsoLcjtTA.jpg" width="40"/>
      <span>
