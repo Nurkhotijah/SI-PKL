@@ -47,7 +47,8 @@ Route::get('/kelola-nilai', [IndustriController::class, 'kelolaNilai'])->name('k
 
 Route::get('/kehadiran-siswa', [IndustriController::class, 'kehadiranSiswa'])->name('kehadiran-siswa');
 
-Route::get('/jurnal-siswapkl/{id}', [IndustriController::class, 'jurnalSiswapkl']);
+// Rute untuk jurnal siswa
+Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->name('jurnal-siswapkl');
 Route::get('/detail-jurnal', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
 
 Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
@@ -145,6 +146,7 @@ Route::put('/update-profile', [ProfileController::class, 'update'])->name('profi
 
 
 Route::get('/dashboard-user', [UserController::class, 'dashboard'])->name('user.dashboard');
+
 
 Route::get('/riwayat-absensi', [KehadiranController::class, 'index'])->name('riwayat-absensi');
 Route::post('/upload-foto-izin', [KehadiranController::class, 'uploadFotoIzin'])->name('uploadFotoIzin');

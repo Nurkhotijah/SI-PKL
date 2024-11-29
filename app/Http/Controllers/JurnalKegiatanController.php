@@ -5,19 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\JurnalKegiatan;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 
 class JurnalKegiatanController extends Controller
 {
-    public function index()
+        public function index()
     {
-        $users = Auth::user(); // Mendapatkan data pengguna yang sedang login
-        $jurnal = JurnalKegiatan::where('id_user', $users->id) // Berdasarkan ID pengguna
-                                 ->where('id_sekolah', $users->id_sekolah) // Berdasarkan ID sekolah pengguna
-                                 ->get(); // Ambil semua data jurnal
+        $jurnal = JurnalKegiatan::all();
         return view('pages-user.jurnal-kegiatan', compact('jurnal'));
-    }    
+    }
 
 
     public function create()

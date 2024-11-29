@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\JurnalKegiatan;
 use App\Models\PengajuanSiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class IndustriController extends Controller
 {
@@ -25,12 +23,6 @@ class IndustriController extends Controller
         return view('pages-industri.kelola-kehadiran');
     }
 
-    public function kelolaPengajuansiswa()
-    {
-        // Logika untuk mengelola kehadiran
-        return view('pages-industri.kelola-pengajuansiswa');
-    }
-
     public function dataSekolah()
     {
         $listSekolah = User::where('role', 'sekolah')->get();
@@ -46,30 +38,23 @@ class IndustriController extends Controller
     }
 
 
-    public function jurnalSiswapkl($id)
+    public function kelolaPengajuansiswa()
     {
-        $users = Auth::user(); // Mendapatkan data pengguna yang sedang login
-    
-        // Mengambil data jurnal kegiatan berdasarkan ID sekolah pengguna yang sedang login
-        $listjurnal = JurnalKegiatan::where('id_sekolah', $users->id_sekolah)
-                                     ->where('id_user', $users->id)
-                                     ->get();
-    
-        // Mengirimkan data jurnal ke tampilan
-        return view('pages-industri.jurnal-siswapkl', compact('listjurnal'));
+        // Logika untuk mengelola kehadiran
+        return view('pages-industri.kelola-pengajuansiswa');
     }
-    public function detailJurnal($id)
-{
-    $users = Auth::user(); // Mendapatkan data pengguna yang sedang login
-    
-    // Mengambil data jurnal kegiatan berdasarkan ID pengguna yang sedang login
-    $listdetail = JurnalKegiatan::where('id_user', $users->id) // Berdasarkan ID pengguna (siswa) yang sedang login
-                                ->get();
-    
-    // Mengirimkan data detail jurnal ke tampilan
-    return view('pages-industri.detail-jurnal', compact('listdetail'));
-}
 
+   z
+    public function jurnalSiswapkl()
+    {
+        // Logika untuk menampilkan jurnal siswa
+        return view('pages-industri.jurnal-siswapkl');
+    }
+    public function detailJurnal()
+    {
+        // Logika untuk menampilkan jurnal siswa
+        return view('pages-industri.detail-jurnal');
+    }
 
     public function kelolaNilai()
     {
