@@ -81,86 +81,110 @@
     const capturedImage = document.getElementById("captured-image");
     const closeButton = document.getElementById("closeButton");
 
-    // Fungsi untuk membuka kamera
-    async function startCamera() {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        videoElement.srcObject = stream;
+   // Fungsi untuk membuka kamera
+async function startCamera() {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    videoElement.srcObject = stream;
+}
+
+// Fungsi untuk mengambil foto
+function capturePhoto() {
+    const canvas = document.createElement("canvas");
+    canvas.width = videoElement.videoWidth;
+    canvas.height = videoElement.videoHeight;
+    const ctx = canvas.getContext("2d");
+    ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
+    const dataUrl = canvas.toDataURL("image/png");
+
+    capturedImage.src = dataUrl;
+    capturedImage.classList.remove("hidden");
+    videoElement.classList.add("hidden");
+    captureButton.classList.add("hidden");
+    doneButton.classList.remove("hidden");
+}
+
+// Menangani klik tombol Ambil Foto
+captureButton.addEventListener("click", capturePhoto);
+
+// Fungsi untuk menonaktifkan tombol setelah absen
+function disableButton() {
+    const absensiButton = document.getElementById("ayo-absen");
+    absensiButton.disabled = true;  // Nonaktifkan tombol
+    absensiButton.classList.add("cursor-not-allowed");  // Menambahkan kelas agar terlihat tidak aktif
+    absensiButton.classList.add("opacity-50");  // Mengurangi opacity tombol untuk menunjukkan bahwa tombol tidak aktif
+}
+
+// Fungsi untuk mengganti teks dan ID tombol
+function toggleButton() {
+    const absensiButton = document.getElementById("ayo-absen");
+    if (absensiButton.textContent === "Ayo Absen") {
+        absensiButton.textContent = "Ayo Pulang";
+        absensiButton.setAttribute("id", "ayo-pulang"); // Ubah ID tombol
+    } else {
+        absensiButton.textContent = "Ayo Absen";
+        absensiButton.setAttribute("id", "ayo-absen"); // Kembalikan ID tombol
     }
+    disableButton(); // Menonaktifkan tombol setelah klik
+}
 
-    // Fungsi untuk mengambil foto
-    function capturePhoto() {
-        const canvas = document.createElement("canvas");
-        canvas.width = videoElement.videoWidth;
-        canvas.height = videoElement.videoHeight;
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(videoElement, 0, 0, canvas.width, canvas.height);
-        const dataUrl = canvas.toDataURL("image/png");
+// Menangani klik tombol Selesai
+doneButton.addEventListener("click", () => {
+    cameraModal.classList.add("hidden");
+    updateAttendance();  // Mengupdate jumlah absen
+    toggleButton(); // Ganti tombol "Ayo Absen" menjadi "Ayo Pulang" dan menonaktifkan tombol
+});
 
-        capturedImage.src = dataUrl;
-        capturedImage.classList.remove("hidden");
-        videoElement.classList.add("hidden");
-        captureButton.classList.add("hidden");
-        doneButton.classList.remove("hidden");
+// Menangani klik tombol Tutup
+closeButton.addEventListener("click", () => {
+    cameraModal.classList.add("hidden");
+});
+
+// Menangani klik untuk membuka modal kamera
+document.getElementById("ayo-absen").addEventListener("click", () => {
+    // Reset gambar dan video saat membuka modal absen
+    capturedImage.classList.add("hidden");
+    capturedImage.src = "";
+    videoElement.classList.remove("hidden");
+    captureButton.classList.remove("hidden");
+    doneButton.classList.add("hidden");
+
+    // Buka modal kamera
+    cameraModal.classList.remove("hidden");
+});
+
+// Memulai kamera saat halaman dimuat
+window.addEventListener("DOMContentLoaded", startCamera);
+
+// Fungsi untuk mengupdate jumlah absen
+function updateAttendance() {
+    const attendanceCountElement = document.getElementById("jumlah-absen");
+    let currentCount = parseInt(attendanceCountElement.textContent);
+    attendanceCountElement.textContent = currentCount + 1;
+}
+
+// Fungsi untuk membuka modal
+function openModal(absensiId) {
+    // Menampilkan modal sesuai ID
+    document.getElementById('modal-' + absensiId).classList.remove('hidden');
+}
+
+// Fungsi untuk menutup modal
+function closeModal(absensiId) {
+    // Menyembunyikan modal sesuai ID
+    document.getElementById('modal-' + absensiId).classList.add('hidden');
+}
+
+// Fungsi untuk menampilkan gambar absen (Masuk/Pulang)
+function showImage(type, absensiId) {
+    if (type === 'checkIn') {
+        document.getElementById('checkInImage-' + absensiId).classList.remove('hidden');
+        document.getElementById('checkOutImage-' + absensiId).classList.add('hidden');
+    } else if (type === 'checkOut') {
+        document.getElementById('checkOutImage-' + absensiId).classList.remove('hidden');
+        document.getElementById('checkInImage-' + absensiId).classList.add('hidden');
     }
+}
 
-    // Menangani klik tombol Ambil Foto
-    captureButton.addEventListener("click", capturePhoto);
-
-    // Fungsi untuk menonaktifkan tombol setelah absen
-    function disableButton() {
-        const absensiButton = document.getElementById("ayo-absen");
-        absensiButton.disabled = true;  // Nonaktifkan tombol
-        absensiButton.classList.add("cursor-not-allowed");  // Menambahkan kelas agar terlihat tidak aktif
-        absensiButton.classList.add("opacity-50");  // Mengurangi opacity tombol untuk menunjukkan bahwa tombol tidak aktif
-    }
-
-    // Fungsi untuk mengganti teks dan ID tombol
-    function toggleButton() {
-        const absensiButton = document.getElementById("ayo-absen");
-        if (absensiButton.textContent === "Ayo Absen") {
-            absensiButton.textContent = "Ayo Pulang";
-            absensiButton.setAttribute("id", "ayo-pulang"); // Ubah ID tombol
-        } else {
-            absensiButton.textContent = "Ayo Absen";
-            absensiButton.setAttribute("id", "ayo-absen"); // Kembalikan ID tombol
-        }
-        disableButton(); // Menonaktifkan tombol setelah klik
-    }
-
-    // Menangani klik tombol Selesai
-    doneButton.addEventListener("click", () => {
-        cameraModal.classList.add("hidden");
-        updateAttendance();  // Mengupdate jumlah absen
-        toggleButton(); // Ganti tombol "Ayo Absen" menjadi "Ayo Pulang" dan menonaktifkan tombol
-    });
-
-    // Menangani klik tombol Tutup
-    closeButton.addEventListener("click", () => {
-        cameraModal.classList.add("hidden");
-    });
-
-    // Menangani klik untuk membuka modal kamera
-    document.getElementById("ayo-absen").addEventListener("click", () => {
-        // Reset gambar dan video saat membuka modal absen
-        capturedImage.classList.add("hidden");
-        capturedImage.src = "";
-        videoElement.classList.remove("hidden");
-        captureButton.classList.remove("hidden");
-        doneButton.classList.add("hidden");
-
-        // Buka modal kamera
-        cameraModal.classList.remove("hidden");
-    });
-
-    // Memulai kamera saat halaman dimuat
-    window.addEventListener("DOMContentLoaded", startCamera);
-
-    // Fungsi untuk mengupdate jumlah absen
-    function updateAttendance() {
-        const attendanceCountElement = document.getElementById("jumlah-absen");
-        let currentCount = parseInt(attendanceCountElement.textContent);
-        attendanceCountElement.textContent = currentCount + 1;
-    }
 </script>
 
 @endsection

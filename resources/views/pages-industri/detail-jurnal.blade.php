@@ -13,15 +13,15 @@
         </div>
 
        <!-- Table Section -->
-       @foreach($jurnal as $data)
+       @foreach($listdetail as $item)
        <tr>
            <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
-           <td class="py-2 px-4 border-b text-left">{{ $data->kegiatan }}</td>
-           <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($data->tanggal)->format('d M Y') }}</td>
-           <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($data->waktu_mulai)->format('H:i') }}</td>
-           <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($data->waktu_selesai)->format('H:i') }}</td>
+           <td class="py-2 px-4 border-b text-left">{{ $item->kegiatan }}</td>
+           <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}</td>
+           <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($item->waktu_mulai)->format('H:i') }}</td>
+           <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($item->waktu_selesai)->format('H:i') }}</td>
            <td class="py-2 px-4 border-b text-center">
-               <img src="{{ asset('storage/'.$data->foto_kegiatan) }}" alt="Foto Kegiatan" class="w-16 h-16 object-cover rounded-full cursor-pointer" onclick="showActivityImage('{{ asset('storage/'.$data->foto_kegiatan) }}')">
+               <img src="{{ asset('storage/'.$item->foto_kegiatan) }}" alt="Foto Kegiatan" class="w-16 h-16 object-cover rounded-full cursor-pointer" onclick="showActivityImage('{{ asset('storage/'.$item->foto_kegiatan) }}')">
            </td>
        </tr>
        @endforeach

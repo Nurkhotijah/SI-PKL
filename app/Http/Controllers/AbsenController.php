@@ -18,30 +18,39 @@ class AbsenController extends Controller
         return view('pages-user.Riwayat-absensi', compact('kehadiran'));
     }
 
-     // Method untuk upload foto izin
-     public function uploadFotoIzin(Request $request)
-     {
-         // Validasi foto izin yang di-upload (foto izin opsional)
-         $request->validate([
-             'foto_izin' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-         ]);
- 
-         // Mengecek apakah ada foto yang di-upload
-         if ($request->hasFile('foto_izin')) {
-             // Menyimpan foto izin ke storage
-             $fotoIzin = $request->file('foto_izin');
-             $fotoIzinPath = $fotoIzin->store('foto_izin', 'public'); // Menyimpan file di folder foto_izin
- 
-             // Menyimpan nama file foto izin ke tabel Absen
-             $absen = Absen::where('user_id', Auth::id())->latest()->first(); // Mengambil riwayat absen terbaru untuk user yang login
-             if ($absen) {
-                 $absen->update(['foto_izin' => $fotoIzinPath]); // Update kolom foto_izin dengan path file
-             }
-         }
- 
-         // Redirect kembali dengan pesan sukses
-         return redirect()->route('riwayat-kehadiran')->with('success', 'Foto izin berhasil di-upload');
-     }
+    public function uploadFotoIzin(Request $request)
+{
+    // Validasi input untuk file foto izin
+    $request->validate([
+        'foto_izin' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+    ]);
+
+    // Mengecek apakah file diunggah
+    if ($request->hasFile('foto_izin')) {
+        // Menyimpan file ke dalam storage lokal
+        $fotoIzin = $request->file('foto_izin');
+        $fotoIzinPath = $fotoIzin->store('foto_izin', 'public'); // Menyimpan ke folder storage/app/public/foto_izin
+
+        // Menyimpan data ke tabel Absen berdasarkan user login
+        $absen = Absen::where('user_id', Auth::id())
+                      ->latest()
+                      ->first(); // Ambil data absen terbaru dari user yang login
+
+        if ($absen) {
+            $absen->update(['foto_izin' => $fotoIzinPath]); // Update data kolom `foto_izin`
+        } else {
+            // Jika tidak ada data absen sebelumnya, buat data baru
+            Absen::create([
+                'user_id' => Auth::id(),
+                'tanggal' => now(),
+                'status_kehadiran' => 'Izin', // Set status kehadiran sebagai 'Izin'
+                'foto_izin' => $fotoIzinPath,
+            ]);
+        }
+    }
+
+    return redirect()->route('riwayat-kehadiran')->with('success', 'Foto izin berhasil di-upload');
+}
 
     public function downloadRekap()
     {

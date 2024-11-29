@@ -17,11 +17,7 @@ class PengajuanSiswaController extends Controller
     public function store(Request $request) // Untuk menyimpan pengajuan siswa baru
     {
 
-        // Pastikan yang login adalah sekolah
-        // if ($users->role !== 'sekolah') {
-        //     return redirect()->back()->with('error', 'Hanya sekolah yang dapat mengajukan siswa.');
-        // }
-
+        
         $request->validate([
             'nama_siswa' => 'required|string|max:255',
             'jurusan' => 'required|string|max:255',

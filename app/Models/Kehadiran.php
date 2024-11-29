@@ -5,24 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Absen extends Model
+class Kehadiran extends Model
 {
     use HasFactory;
+    
+    // Tentukan nama tabel yang sesuai dengan tabel di database
+    protected $table = 'kehadiran';
 
     protected $fillable = [
-        'user_id', 
-        'tanggal', 
-        'status_kehadiran', 
-        'waktu_masuk', 
-        'waktu_keluar', 
+        'user_id',
+        'tanggal',
+        'status_kehadiran',
+        'waktu_masuk',
+        'waktu_keluar',
         'foto_izin',
         'foto_masuk',
-        'foto_keluar'
+        'foto_keluar',
     ];
 
+    // Relasi ke model User
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 }
-

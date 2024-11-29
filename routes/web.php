@@ -8,7 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndustriController;
-use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\KehadiranController;
 use App\Http\Controllers\PengajuanSiswaController;
 use App\Http\Controllers\JurnalKegiatanController;
 use App\Http\Controllers\SekolahController;
@@ -47,8 +47,7 @@ Route::get('/kelola-nilai', [IndustriController::class, 'kelolaNilai'])->name('k
 
 Route::get('/kehadiran-siswa', [IndustriController::class, 'kehadiranSiswa'])->name('kehadiran-siswa');
 
-// Rute untuk jurnal siswa
-Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->name('jurnal-siswapkl');
+Route::get('/jurnal-siswapkl/{id}', [IndustriController::class, 'jurnalSiswapkl']);
 Route::get('/detail-jurnal', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
 
 Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
@@ -141,21 +140,15 @@ Route::put('/update-profile', [ProfileController::class, 'update'])->name('profi
 
 // USER
 
-Route::post('/absen/masuk', [AbsenController::class, 'absenMasuk']);
-Route::post('/absen/keluar', [AbsenController::class, 'absenKeluar']);
+// Route::post('/absen/masuk', [AbsenController::class, 'absenMasuk']);
+// Route::post('/absen/keluar', [AbsenController::class, 'absenKeluar']);
 
 
 Route::get('/dashboard-user', [UserController::class, 'dashboard'])->name('user.dashboard');
 
-
-    // Menampilkan riwayat absensi
-    Route::get('riwayat-absensi', [AbsenController::class, 'index'])->name('riwayat-absensi');
-
-    // Menangani pengunggahan foto izin
-    Route::post('upload-foto-izin', [AbsenController::class, 'uploadFotoIzin'])->name('uploadFotoIzin');
-
-    // Menyediakan fitur untuk mendownload rekap absensi
-    Route::get('download-rekap', [AbsenController::class, 'downloadRekap'])->name('downloadRekap');
+Route::get('/riwayat-absensi', [KehadiranController::class, 'index'])->name('riwayat-absensi');
+Route::post('/upload-foto-izin', [KehadiranController::class, 'uploadFotoIzin'])->name('uploadFotoIzin');
+Route::get('/unduh-rekap', [KehadiranController::class, 'downloadRekap'])->name('downloadRekap');
 
     Route::get('/jurnal-kegiatan', [JurnalKegiatanController::class, 'index'])->name('jurnal-kegiatan');
     Route::get('/jurnal-kegiatan/create', [JurnalKegiatanController::class, 'create'])->name('tambah-jurnal');
@@ -164,6 +157,8 @@ Route::get('/dashboard-user', [UserController::class, 'dashboard'])->name('user.
     Route::get('/jurnal-kegiatan/{id}/edit', [JurnalKegiatanController::class, 'edit'])->name('jurnal-kegiatan.edit');
 Route::put('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'update'])->name('jurnal-kegiatan.update');
     Route::delete('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'destroy'])->name('jurnal-kegiatan.destroy');
+    Route::post('/jurnal/upload/{id}', [JurnalKegiatanController::class, 'uploadLaporan'])->name('jurnal.upload');
+
 
 Route::get('/pengajuan-izin', [UserController::class, 'pengajuanizin'])->name('pengajuan-izin');
 
