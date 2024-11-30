@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PengajuanSiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class PengajuanSiswaController extends Controller
@@ -16,7 +17,7 @@ class PengajuanSiswaController extends Controller
 
     public function store(Request $request) // Untuk menyimpan pengajuan siswa baru
     {
-         dd($request->all());
+        //  dd($request->all());
         
         $request->validate([
             'nama_siswa' => 'required|string|max:255',
@@ -77,4 +78,7 @@ class PengajuanSiswaController extends Controller
         // Kembali ke halaman yang sama dengan pesan sukses
         return redirect()->back()->with('success', 'Pengajuan siswa berhasil dihapus.');
     }
+
+     // Method untuk mengupdate status pengajuan siswa yang dipilih
+    
 }

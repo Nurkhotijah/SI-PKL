@@ -13,7 +13,6 @@ class JurnalKegiatanController extends Controller
 {
     // Mendapatkan data pengguna yang login
     $users = Auth::user();
-    
 
     // Mengambil semua jurnal kegiatan berdasarkan ID sekolah dan ID user
     $jurnal = JurnalKegiatan::where('id_sekolah', $users->id)

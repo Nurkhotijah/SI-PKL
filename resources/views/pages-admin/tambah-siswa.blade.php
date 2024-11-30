@@ -16,7 +16,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('pengajuan-siswa.store')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('pengajuan-siswa.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <!-- Nama Siswa -->

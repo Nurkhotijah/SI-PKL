@@ -34,7 +34,7 @@
                     <tr>
                         <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
                         <td class="py-2 px-4 border-b text-left">{{ $item->user->name }}</td> <!-- Menampilkan Nama Siswa -->
-                        <td class="py-2 px-4 border-b text-left">{{ $item->user->alamat }}</td> <!-- Menampilkan Nama Sekolah -->
+                        <td class="py-2 px-4 border-b text-left">{{ $item->user->sekolah }}</td> <!-- Menampilkan Nama Sekolah -->
                         <td class="py-2 px-4 border-b text-center">
                             <button onclick="openLaporanModal('{{ $item->laporan_pkl }}')"
                                     class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">

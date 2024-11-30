@@ -6,6 +6,7 @@ use App\Models\PengajuanSiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class IndustriController extends Controller
 {
@@ -37,6 +38,43 @@ class IndustriController extends Controller
 
         return view('pages-industri.lihat-siswa', compact('listSiswa'));
     }
+
+    public function updateMultipleStatus(Request $request)
+    {
+        // Validasi input yang diterima
+        $validated = $request->validate([
+            'user' => 'required|array', // Pastikan ada array siswa yang dipilih
+            'status' => 'required|string|in:Disetujui,Ditolak,Menunggu', // Status yang bisa diterima
+        ]);
+    
+        // Ambil data siswa yang dipilih dan status yang baru
+        $user = $validated['user'];
+        $status = $validated['status'];
+    
+        // Update status siswa yang dipilih di dalam tabel
+        PengajuanSiswa::whereIn('id', $user)->update(['status' => $status]);
+    
+        // Kembalikan response sukses
+        return response()->json([
+            'success' => true,
+            'message' => "Status siswa telah diperbarui menjadi {$status}.",
+        ]);
+    }
+    
+
+
+// Fungsi untuk membuat akun siswa setelah pengajuan disetujui
+protected function createSiswaAccount(PengajuanSiswa $pengajuanSiswa)
+{
+    // Membuat akun siswa baru
+    $user = User::create([
+        'name' => $pengajuanSiswa->nama_siswa,
+        'email' => $pengajuanSiswa->nama_siswa . '@gmail.com', // Contoh: email berdasarkan nama siswa
+        'password' => bcrypt('siswa123'), // Password default atau bisa diset sesuai kebutuhan
+        'role' => 'siswa', // Menandakan bahwa role-nya adalah siswa
+        'id_sekolah' => $pengajuanSiswa->id_sekolah, // Menyimpan ID sekolah dari siswa
+    ]);
+}
 
     public function jurnalSiswapkl()
     {
