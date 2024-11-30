@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\JurnalKegiatan;
 use App\Models\PengajuanSiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndustriController extends Controller
 {
@@ -37,25 +38,49 @@ class IndustriController extends Controller
         return view('pages-industri.lihat-siswa', compact('listSiswa'));
     }
 
+    public function jurnalSiswapkl()
+    {
+        // Mendapatkan data user yang sedang login
+        $users = Auth::user(); // Mendapatkan pengguna yang sedang login
+    
+        // Cek apakah pengguna memiliki relasi 'sekolah' dan id_sekolah ada
+        if (!$users || !$users->id_user) {
+            return redirect()->route('login')->with('error', 'Pengguna tidak memiliki data sekolah.');
+        }
+    
+        // Mendapatkan data jurnal berdasarkan ID sekolah dan ID user (siswa)
+        $listjurnal = JurnalKegiatan::where('id_sekolah', $users->id_sekolah) // Filter berdasarkan ID sekolah
+                                    ->where('id_user', $users->id) // Filter berdasarkan ID user (siswa)
+                                    ->get();
+    
+        // Mengirim data jurnal ke tampilan
+        return view('pages-industri.jurnal-siswapkl', compact('listjurnal'));
+    }
+    
+
+public function detailJurnal($sekolahId, $userId)
+{
+    // Cek apakah ID sekolah dan ID user valid
+    if (!$sekolahId || !$userId) {
+        return redirect()->route('dataSekolah')->with('error', 'Data tidak ditemukan.');
+    }
+
+    // Mendapatkan data jurnal berdasarkan ID sekolah dan ID user yang dipilih
+    $listdetail = JurnalKegiatan::where('id_sekolah', $sekolahId)
+                                ->where('id_user', $userId)
+                                ->get();
+
+    // Mengirim data detail jurnal ke tampilan
+    return view('pages-industri.detail-jurnal', compact('listdetail'));
+}
 
     public function kelolaPengajuansiswa()
     {
         // Logika untuk mengelola kehadiran
         return view('pages-industri.kelola-pengajuansiswa');
     }
-
-   z
-    public function jurnalSiswapkl()
-    {
-        // Logika untuk menampilkan jurnal siswa
-        return view('pages-industri.jurnal-siswapkl');
-    }
-    public function detailJurnal()
-    {
-        // Logika untuk menampilkan jurnal siswa
-        return view('pages-industri.detail-jurnal');
-    }
-
+    
+    
     public function kelolaNilai()
     {
 

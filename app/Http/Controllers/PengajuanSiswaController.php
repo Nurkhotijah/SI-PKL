@@ -16,7 +16,7 @@ class PengajuanSiswaController extends Controller
 
     public function store(Request $request) // Untuk menyimpan pengajuan siswa baru
     {
-
+         dd($request->all());
         
         $request->validate([
             'nama_siswa' => 'required|string|max:255',

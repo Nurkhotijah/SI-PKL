@@ -47,9 +47,11 @@ Route::get('/kelola-nilai', [IndustriController::class, 'kelolaNilai'])->name('k
 
 Route::get('/kehadiran-siswa', [IndustriController::class, 'kehadiranSiswa'])->name('kehadiran-siswa');
 
-// Rute untuk jurnal siswa
+// Route untuk menampilkan jurnal siswa
 Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->name('jurnal-siswapkl');
-Route::get('/detail-jurnal', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
+
+// Route untuk menampilkan detail jurnal berdasarkan ID sekolah dan ID user
+Route::get('/detail-jurnal/{sekolahId}/{userId}', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
 
 Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
 
@@ -120,8 +122,6 @@ Route::post('/pengajuan-siswa/store', [PengajuanSiswaController::class, 'store']
 Route::delete('/pengajuan-siswa/{id}', [PengajuanSiswaController::class, 'destroy'])->name('pengajuan-siswa.destroy');
 
 
-
-
 Route::get('/data-siswa', [AdminController::class, 'dataSiswa'])->name('data-siswa');
 
 // Route::get('/tambah-siswa', [AdminController::class, 'tambahSiswa'])->name('tambah-siswa');
@@ -152,14 +152,14 @@ Route::get('/riwayat-absensi', [KehadiranController::class, 'index'])->name('riw
 Route::post('/upload-foto-izin', [KehadiranController::class, 'uploadFotoIzin'])->name('uploadFotoIzin');
 Route::get('/unduh-rekap', [KehadiranController::class, 'downloadRekap'])->name('downloadRekap');
 
-    Route::get('/jurnal-kegiatan', [JurnalKegiatanController::class, 'index'])->name('jurnal-kegiatan');
-    Route::get('/jurnal-kegiatan/create', [JurnalKegiatanController::class, 'create'])->name('tambah-jurnal');
-    Route::post('/jurnal-kegiatan/store', [JurnalKegiatanController::class, 'store'])->name('jurnal-kegiatan.store');
-    Route::get('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'show'])->name('jurnal-kegiatan.show');
-    Route::get('/jurnal-kegiatan/{id}/edit', [JurnalKegiatanController::class, 'edit'])->name('jurnal-kegiatan.edit');
+Route::get('/jurnal-kegiatan', [JurnalKegiatanController::class, 'index'])->name('jurnal-kegiatan');
+Route::get('/jurnal-kegiatan/create', [JurnalKegiatanController::class, 'create'])->name('tambah-jurnal');
+Route::post('/jurnal-kegiatan/store', [JurnalKegiatanController::class, 'store'])->name('jurnal-kegiatan.store');
+Route::get('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'show'])->name('jurnal-kegiatan.show');
+Route::get('/jurnal-kegiatan/{id}/edit', [JurnalKegiatanController::class, 'edit'])->name('jurnal-kegiatan.edit');
 Route::put('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'update'])->name('jurnal-kegiatan.update');
-    Route::delete('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'destroy'])->name('jurnal-kegiatan.destroy');
-    Route::post('/jurnal/upload/{id}', [JurnalKegiatanController::class, 'uploadLaporan'])->name('jurnal.upload');
+Route::delete('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'destroy'])->name('jurnal-kegiatan.destroy');
+Route::post('/jurnal/upload/{id}', [JurnalKegiatanController::class, 'uploadLaporan'])->name('jurnal.upload');
 
 
 Route::get('/pengajuan-izin', [UserController::class, 'pengajuanizin'])->name('pengajuan-izin');

@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Models\JurnalKegiatan;
 
 class JurnalKegiatanController extends Controller
 {
-        public function index()
-    {
-        $jurnal = JurnalKegiatan::all();
-        return view('pages-user.jurnal-kegiatan', compact('jurnal'));
-    }
+    public function index()
+{
+    // Mendapatkan data pengguna yang login
+    $users = Auth::user();
+    
 
+    // Mengambil semua jurnal kegiatan berdasarkan ID sekolah dan ID user
+    $jurnal = JurnalKegiatan::where('id_sekolah', $users->id)
+                             ->where('id_user', $users->id)
+                             ->get();
+
+    return view('pages-user.jurnal-kegiatan', compact('jurnal'));
+}
 
     public function create()
     {
@@ -21,37 +29,45 @@ class JurnalKegiatanController extends Controller
     }
 
     public function store(Request $request)
+{
+    // Validasi input dari form
+    $request->validate([
+        'kegiatan' => 'required|string|max:100',
+        'tanggal' => 'required|date',
+        'waktu_mulai' => 'required',
+        'waktu_selesai' => 'required',
+        'laporan_pkl' => 'nullable|file|mimes:pdf|max:5000',
+        'foto_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:5000',
+    ]);
+
+    // Mendapatkan data pengguna yang login
+    $users = Auth::user();
+
+    // Menyimpan file laporan PKL jika ada
+    $laporanPath = $request->file('laporan_pkl') ? $request->file('laporan_pkl')->store('laporan', 'public') : null;
+    // Menyimpan file foto kegiatan jika ada
+    $fotoPath = $request->file('foto_kegiatan') ? $request->file('foto_kegiatan')->store('kegiatan', 'public') : null;
+
+    // Menyimpan data jurnal kegiatan ke dalam database
+    JurnalKegiatan::create([
+        'kegiatan' => $request->kegiatan,
+        'tanggal' => $request->tanggal,
+        'waktu_mulai' => $request->waktu_mulai,
+        'waktu_selesai' => $request->waktu_selesai,
+        'laporan_pkl' => $laporanPath,
+        'foto_kegiatan' => $fotoPath,
+        'id_user' => $users->id,  // ID pengguna yang login (siswa)
+        'id_sekolah' => $users->id_sekolah,  // ID sekolah yang terkait dengan pengguna
+    ]);
+
+    // Redirect ke halaman jurnal kegiatan dengan pesan sukses
+    return redirect()->route('jurnal-kegiatan')->with('success', 'Jurnal kegiatan berhasil ditambahkan!');
+}
+    public function show($id)
     {
-        $request->validate([
-            'kegiatan' => 'required|string|max:255',
-            'tanggal' => 'required|date',
-            'waktu_mulai' => 'required',
-            'waktu_selesai' => 'required',
-            'laporan_pkl' => 'nullable|file|mimes:pdf|max:2048',
-            'foto_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-        $laporanPath = $request->file('laporan_pkl') ? $request->file('laporan_pkl')->store('laporan', 'public') : null;
-        $fotoPath = $request->file('foto_kegiatan') ? $request->file('foto_kegiatan')->store('kegiatan', 'public') : null;
-
-        JurnalKegiatan::create([
-            'kegiatan' => $request->kegiatan,
-            'tanggal' => $request->tanggal,
-            'waktu_mulai' => $request->waktu_mulai,
-            'waktu_selesai' => $request->waktu_selesai,
-            'laporan_pkl' => $laporanPath,
-            'foto_kegiatan' => $fotoPath,
-        ]);
-
-        return redirect()->route('jurnal-kegiatan')->with('success', 'Jurnal kegiatan berhasil ditambahkan!');
-    }
-
-        public function show($id)
-    {
-        $jurnal = JurnalKegiatan::findOrFail($id); // Ambil satu jurnal berdasarkan ID
+        $jurnal = JurnalKegiatan::findOrFail($id);
         return view('pages-user.jurnal-kegiatan', compact('jurnal'));
     }
-
 
     public function edit($id)
     {
@@ -62,12 +78,12 @@ class JurnalKegiatanController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kegiatan' => 'required|string|max:255',
+            'kegiatan' => 'required|string|max:100',
             'tanggal' => 'required|date',
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required',
-            'laporan_pkl' => 'nullable|file|mimes:pdf|max:2048',
-            'foto_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'laporan_pkl' => 'nullable|file|mimes:pdf|max:5000',
+            'foto_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:5000',
         ]);
 
         $jurnal = JurnalKegiatan::findOrFail($id);
@@ -117,24 +133,25 @@ class JurnalKegiatanController extends Controller
     }
 
     public function uploadLaporan(Request $request, $id)
-{
-    $request->validate([
-        'laporan_pkl' => 'required|mimes:pdf|max:9000', // Hanya menerima file PDF dengan ukuran maksimal 2MB
-    ]);
+    {
+        $request->validate([
+            'laporan_pkl' => 'required|file|mimes:pdf|max:5000',
+        ]);
 
-    // Simpan file ke direktori storage/app/public/laporan_pkl
-    $path = $request->file('laporan_pkl')->store('laporan_pkl', 'public');
+        $jurnal = JurnalKegiatan::findOrFail($id);
 
-    // Cari jurnal berdasarkan ID dan perbarui path laporan
-    $jurnal = Jurnalkegiatan::find($id);
+        // Hapus file lama jika ada
+        if ($jurnal->laporan_pkl) {
+            Storage::disk('public')->delete($jurnal->laporan_pkl);
+        }
 
-    if ($jurnal) {
-        $jurnal->laporan_pkl = $path;
-        $jurnal->save();
+        // Simpan file baru
+        $laporanPath = $request->file('laporan_pkl')->store('laporan', 'public');
 
-        return redirect()->back()->with('success', 'Laporan PKL berhasil diunggah dan disimpan ke database!');
-    } else {
-        return redirect()->back()->with('error', 'Jurnal tidak ditemukan.');
+        $jurnal->update([
+            'laporan_pkl' => $laporanPath,
+        ]);
+
+        return redirect()->back()->with('success', 'Laporan berhasil diunggah!');
     }
-}
 }

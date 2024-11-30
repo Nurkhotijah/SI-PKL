@@ -23,9 +23,15 @@ class User extends Authenticatable
     // Relasi dengan JurnalKegiatan (Seorang User dapat memiliki banyak JurnalKegiatan)
     public function jurnalKegiatan()
     {
-        return $this->hasMany(JurnalKegiatan::class);
+        return $this->hasMany(JurnalKegiatan::class,'id_user');
     }
 
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'id_sekolah');
+    }
+    
+    
     /**
      * The attributes that are mass assignable.
      *
