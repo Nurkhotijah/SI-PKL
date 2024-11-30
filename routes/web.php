@@ -56,6 +56,7 @@ Route::get('/detail-jurnal/{sekolahId}/{userId}', [IndustriController::class, 'd
 Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
 
 Route::get('/lihat-siswa/{id}', [IndustriController::class, 'lihatSiswa'])->name('lihat-siswa');
+Route::post('/update-status-siswa', [IndustriController::class, 'updateStatusSiswa'])->name('update-status-siswa');
 
 Route::get('/kelola-pengajuansiswa', [IndustriController::class, 'kelolaPengajuansiswa'])->name('kelola-pengajuansiswa');
 

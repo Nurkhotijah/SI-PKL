@@ -54,7 +54,7 @@
             @foreach ($listSiswa as $item)
                 <tr class="student-row">
                     <td class="py-2 px-4 border-b text-center">
-                        <input type="checkbox" class="student-checkbox" value="{{ $item->id }}">
+                        <input type="checkbox" class="student-checkbox" value="{{ $item->id }}" {{ in_array($item->status, ['Disetujui', 'Ditolak']) ? 'disabled' : '' }}>
                     </td>
                     <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
                     <td class="py-2 px-4 border-b text-left">{{ $item->nama_siswa }}</td>
@@ -82,12 +82,13 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#checkAll').on('change', function() {
-            $('.student-checkbox').prop('checked', this.checked);
+            $('#checkAll').on('change', function () {
+            $('.student-checkbox:not(:disabled)').prop('checked', this.checked);
         });
 
-        $('.student-checkbox').on('change', function() {
-            const allChecked = $('.student-checkbox:checked').length === $('.student-checkbox').length;
+        $('.student-checkbox').on('change', function () {
+            const allEnabledCheckboxes = $('.student-checkbox:not(:disabled)');
+            const allChecked = allEnabledCheckboxes.length > 0 && allEnabledCheckboxes.filter(':checked').length === allEnabledCheckboxes.length;
             $('#checkAll').prop('checked', allChecked);
         });
     });
@@ -144,19 +145,38 @@
             return;
         }
 
-        selectedCheckboxes.forEach(checkbox => {
+        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        let completedRequests = 0;
+
+        selectedCheckboxes.forEach(async (checkbox) => {
             const studentId = checkbox.value;
-            const statusElement = document.getElementById(`status-${studentId}`);
-            if (status === "Disetujui") {
-                statusElement.textContent = "Disetujui";
-                statusElement.className = "bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full";
-            } else if (status === "Ditolak") {
-                statusElement.textContent = "Ditolak";
-                statusElement.className = "bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full";
+            
+            try {
+                const response = await fetch(`/update-status-siswa`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify({
+                        id: studentId,
+                        status: status,
+                    }),
+                });
+
+                if (response.ok) {
+                    completedRequests++;
+
+                    if (completedRequests === selectedCheckboxes.length) {
+                        location.reload();
+                    }
+                } else {
+                    console.error(`Failed to update status for student ${studentId}:`, response.statusText);
+                }
+            } catch (error) {
+                console.error(`Error updating status for student ${studentId}:`, error);
             }
         });
-
-        alert(`Status ${selectedCheckboxes.length} siswa telah diubah menjadi: ${status}`);
     }
 
     // Function to handle searching in the student table

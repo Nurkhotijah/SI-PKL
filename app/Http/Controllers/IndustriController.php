@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\JurnalKegiatan;
 use App\Models\PengajuanSiswa;
 use App\Models\User;
@@ -39,86 +40,91 @@ class IndustriController extends Controller
         return view('pages-industri.lihat-siswa', compact('listSiswa'));
     }
 
-    public function updateMultipleStatus(Request $request)
+    public function updateStatusSiswa(Request $request)
     {
-        // Validasi input yang diterima
         $validated = $request->validate([
-            'user' => 'required|array', // Pastikan ada array siswa yang dipilih
-            'status' => 'required|string|in:Disetujui,Ditolak,Menunggu', // Status yang bisa diterima
+            'id' => 'required',
+            'status' => 'required',
         ]);
-    
-        // Ambil data siswa yang dipilih dan status yang baru
-        $user = $validated['user'];
+
+        $id = $validated['id'];
         $status = $validated['status'];
-    
-        // Update status siswa yang dipilih di dalam tabel
-        PengajuanSiswa::whereIn('id', $user)->update(['status' => $status]);
-    
+
+        $pengajuanSiswa = PengajuanSiswa::where('id', $id)->first();
+
+        PengajuanSiswa::where('id', $id)->update(['status' => $status]);
+
+        User::create([
+            'name' => $pengajuanSiswa->nama_siswa,
+            'email' => preg_replace('/\s+/', '-', $pengajuanSiswa->nama_siswa) . '@gmail.com',
+            'alamat' => null,
+            'password' => Hash::make('siswa123'),
+            'role' => 'siswa',
+        ]);
+
         // Kembalikan response sukses
         return response()->json([
-            'success' => true,
+            'success' => 200,
             'message' => "Status siswa telah diperbarui menjadi {$status}.",
         ]);
     }
-    
 
-
-// Fungsi untuk membuat akun siswa setelah pengajuan disetujui
-protected function createSiswaAccount(PengajuanSiswa $pengajuanSiswa)
-{
-    // Membuat akun siswa baru
-    $user = User::create([
-        'name' => $pengajuanSiswa->nama_siswa,
-        'email' => $pengajuanSiswa->nama_siswa . '@gmail.com', // Contoh: email berdasarkan nama siswa
-        'password' => bcrypt('siswa123'), // Password default atau bisa diset sesuai kebutuhan
-        'role' => 'siswa', // Menandakan bahwa role-nya adalah siswa
-        'id_sekolah' => $pengajuanSiswa->id_sekolah, // Menyimpan ID sekolah dari siswa
-    ]);
-}
+    // Fungsi untuk membuat akun siswa setelah pengajuan disetujui
+    protected function createSiswaAccount(PengajuanSiswa $pengajuanSiswa)
+    {
+        // Membuat akun siswa baru
+        $user = User::create([
+            'name' => $pengajuanSiswa->nama_siswa,
+            'email' => $pengajuanSiswa->nama_siswa . '@gmail.com', // Contoh: email berdasarkan nama siswa
+            'password' => bcrypt('siswa123'), // Password default atau bisa diset sesuai kebutuhan
+            'role' => 'siswa', // Menandakan bahwa role-nya adalah siswa
+            'id_sekolah' => $pengajuanSiswa->id_sekolah, // Menyimpan ID sekolah dari siswa
+        ]);
+    }
 
     public function jurnalSiswapkl()
     {
         // Mendapatkan data user yang sedang login
         $users = Auth::user(); // Mendapatkan pengguna yang sedang login
-    
+
         // Cek apakah pengguna memiliki relasi 'sekolah' dan id_sekolah ada
         if (!$users || !$users->id_user) {
             return redirect()->route('login')->with('error', 'Pengguna tidak memiliki data sekolah.');
         }
-    
+
         // Mendapatkan data jurnal berdasarkan ID sekolah dan ID user (siswa)
         $listjurnal = JurnalKegiatan::where('id_sekolah', $users->id_sekolah) // Filter berdasarkan ID sekolah
-                                    ->where('id_user', $users->id) // Filter berdasarkan ID user (siswa)
-                                    ->get();
-    
+            ->where('id_user', $users->id) // Filter berdasarkan ID user (siswa)
+            ->get();
+
         // Mengirim data jurnal ke tampilan
         return view('pages-industri.jurnal-siswapkl', compact('listjurnal'));
     }
-    
 
-public function detailJurnal($sekolahId, $userId)
-{
-    // Cek apakah ID sekolah dan ID user valid
-    if (!$sekolahId || !$userId) {
-        return redirect()->route('dataSekolah')->with('error', 'Data tidak ditemukan.');
+
+    public function detailJurnal($sekolahId, $userId)
+    {
+        // Cek apakah ID sekolah dan ID user valid
+        if (!$sekolahId || !$userId) {
+            return redirect()->route('dataSekolah')->with('error', 'Data tidak ditemukan.');
+        }
+
+        // Mendapatkan data jurnal berdasarkan ID sekolah dan ID user yang dipilih
+        $listdetail = JurnalKegiatan::where('id_sekolah', $sekolahId)
+            ->where('id_user', $userId)
+            ->get();
+
+        // Mengirim data detail jurnal ke tampilan
+        return view('pages-industri.detail-jurnal', compact('listdetail'));
     }
-
-    // Mendapatkan data jurnal berdasarkan ID sekolah dan ID user yang dipilih
-    $listdetail = JurnalKegiatan::where('id_sekolah', $sekolahId)
-                                ->where('id_user', $userId)
-                                ->get();
-
-    // Mengirim data detail jurnal ke tampilan
-    return view('pages-industri.detail-jurnal', compact('listdetail'));
-}
 
     public function kelolaPengajuansiswa()
     {
         // Logika untuk mengelola kehadiran
         return view('pages-industri.kelola-pengajuansiswa');
     }
-    
-    
+
+
     public function kelolaNilai()
     {
 
