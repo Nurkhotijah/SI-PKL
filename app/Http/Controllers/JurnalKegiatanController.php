@@ -56,7 +56,7 @@ class JurnalKegiatanController extends Controller
         'laporan_pkl' => $laporanPath,
         'foto_kegiatan' => $fotoPath,
         'id_user' => $users->id,  // ID pengguna yang login (siswa)
-        'id_sekolah' => $users->id_sekolah,  // ID sekolah yang terkait dengan pengguna
+        'id_sekolah' => $users->id,  // ID sekolah yang terkait dengan pengguna
     ]);
 
     // Redirect ke halaman jurnal kegiatan dengan pesan sukses
