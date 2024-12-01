@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -11,6 +10,7 @@ use App\Http\Controllers\IndustriController;
 use App\Http\Controllers\KehadiranController;
 use App\Http\Controllers\PengajuanSiswaController;
 use App\Http\Controllers\JurnalKegiatanController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\SekolahController;
 
 
@@ -114,14 +114,10 @@ Route::get('/dashboard-admin', [AdminController::class, 'dashboard'])->name('adm
 // Rute untuk mengelola kehadiran
 Route::get('/kehadiran-siswapkl', [AdminController::class, 'kehadiranSiswapkl'])->name('kehadiran-siswapkl');
 
-// Rute untuk mengelola pengajuan
-Route::get('/pengajuan', [AdminController::class, 'pengajuan'])->name('pengajuan');
-
-Route::get('/pengajuan-siswa', [PengajuanSiswaController::class, 'index'])->name('pengajuan-siswa');
-Route::get('/tambah-siswa', [PengajuanSiswaController::class, 'create'])->name('tambah-siswa');
-Route::post('/pengajuan-siswa/store', [PengajuanSiswaController::class, 'store'])->name('pengajuan-siswa.store');
-Route::delete('/pengajuan-siswa/{id}', [PengajuanSiswaController::class, 'destroy'])->name('pengajuan-siswa.destroy');
-
+    Route::get('pengajuan-siswa', [SiswaController::class, 'index'])->name('pengajuan-siswa');
+    Route::get('tambah-siswa', [SiswaController::class, 'create'])->name('tambah-siswa');
+    Route::post('pengajuan-siswa', [SiswaController::class, 'store'])->name('pengajuan-siswa.store');
+    Route::delete('hapus-siswa/{id}', [SiswaController::class, 'destroy'])->name('hapus-siswa');
 
 Route::get('/data-siswa', [AdminController::class, 'dataSiswa'])->name('data-siswa');
 

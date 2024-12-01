@@ -9,15 +9,6 @@
             <!-- Header Section -->
             <div class="mb-4">
                 <h1 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Pengajuan Siswa</h1>
-                @if ($errors->any())
-                <div class="bg-red-500 text-white p-4 mb-4">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
                 <div class="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0 sm:space-x-4">
                     <div class="relative w-full sm:w-auto">
                         <input class="border rounded p-2 pl-10 w-full sm:w-64" id="search" placeholder="Cari Nama Siswa" type="text" oninput="searchTable()">
@@ -34,18 +25,6 @@
 
             <!-- Table Section -->
             <div class="overflow-x-auto">
-                @if (session('success'))
-                <div class="bg-green-500 text-white p-2 rounded mb-4">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            @if (session('error'))
-                <div class="bg-red-500 text-white p-2 rounded mb-4">
-                    {{ session('error') }}
-                </div>
-            @endif
-
                 <table class="min-w-full bg-white border" id="studentTable">
                     <thead class="bg-gray-200">
                         <tr>
@@ -60,34 +39,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pengajuanSiswa as $index => $siswa)
-                        <tr class="student-row">
-                            <td class="py-2 px-4 border-b text-center">{{ $index + 1 }}</td>
-                            <td class="py-2 px-4 border-b text-left">{{ $siswa->nama_siswa }}</td>
-                            <td class="py-2 px-4 border-b text-left">{{ $siswa->jurusan }}</td>
-                            <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($siswa->tanggal_mulai)->format('d M Y') }}</td>
-                            <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($siswa->tanggal_selesai)->format('d M Y') }}</td>
+                        @foreach($siswas as $siswa)
+                        <tr>
+                            <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
+                            <td class="py-2 px-4 border-b">{{ $siswa->nama }}</td>
+                            <td class="py-2 px-4 border-b">{{ $siswa->jurusan }}</td>
+                            <td class="py-2 px-4 border-b text-center">{{ $siswa->tanggal_mulai->format('d M Y') }}</td>
+                            <td class="py-2 px-4 border-b text-center">{{ $siswa->tanggal_selesai->format('d M Y') }}</td>
                             <td class="py-2 px-4 border-b text-center">
-                                <a href="{{ Storage::url($siswa->cv) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
+                                <a href="{{ asset('storage/' . $siswa->cv) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
                             </td>
                             <td class="py-2 px-4 border-b text-center">
                                 <span class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">{{ $siswa->status }}</span>
                             </td>
                             <td class="py-2 px-4 border-b text-center">
-                                <div class="flex justify-center space-x-2">
-                                <!-- Tombol Hapus -->
-                                <form action="{{ route('pengajuan-siswa.destroy', $siswa->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pengajuan ini?')">
+                                <form action="{{ route('hapus-siswa', $siswa->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus siswa ini?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded">
-                                        Hapus
-                                    </button>
+                                    <button type="submit" class="text-red-500 hover:text-red-700">Hapus</button>
                                 </form>
-                                </div>
                             </td>
                         </tr>
                         @endforeach
                     </tbody>
+                    
                 </table>
             </div>
         </div>

@@ -16,51 +16,37 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('pengajuan-siswa.store') }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Nama Siswa -->
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-700">Nama Siswa</label>
-                    <input type="text" id="nama_siswa" name="nama_siswa" placeholder="Masukkan nama siswa" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
+        <div class="bg-gray-100">
+            <main class="p-6 overflow-y-auto h-full">
+                <div class="max-w-7xl mx-auto bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                    <h1 class="text-xl sm:text-2xl font-bold mb-4">Tambah Siswa</h1>
+                    <form action="{{ route('pengajuan-siswa.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="nama" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
+                            <input type="text" name="nama" id="nama" class="w-full p-2 border rounded" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="jurusan" class="block text-sm font-medium text-gray-700">Jurusan</label>
+                            <input type="text" name="jurusan" id="jurusan" class="w-full p-2 border rounded" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="tanggal_mulai" class="block text-sm font-medium text-gray-700">Tanggal Mulai</label>
+                            <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="w-full p-2 border rounded" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="tanggal_selesai" class="block text-sm font-medium text-gray-700">Tanggal Selesai</label>
+                            <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="w-full p-2 border rounded" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="cv" class="block text-sm font-medium text-gray-700">CV</label>
+                            <input type="file" name="cv" id="cv" class="w-full p-2 border rounded">
+                        </div>
+                        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Simpan</button>
+                    </form>
                 </div>
-                
-                <!-- Jurusan -->
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-700">Jurusan</label>
-                    <input type="text" id="jurusan" name="jurusan" placeholder="Masukkan jurusan siswa" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
-                </div>
-        
-                <!-- Tanggal Mulai PKL -->
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Mulai (PKL)</label>
-                    <input type="date" id="tanggal_mulai" name="tanggal_mulai" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
-                </div>
-        
-                <!-- Tanggal Selesai PKL -->
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-700">Tanggal Selesai (PKL)</label>
-                    <input type="date" id="tanggal_selesai" name="tanggal_selesai" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
-                </div>
-                
-                <!-- Upload CV -->
-                <div>
-                    <label class="block mb-2 text-sm font-medium text-gray-700">Upload CV</label>
-                    <input type="file" accept=".pdf" id="cv" name="cv" class="w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500">
-                </div>
-                
-                <!-- Tombol Submit -->
-                <div class="col-span-2 flex justify-end">
-                    <button type="submit" id="submitBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-                        Ajukan
-                    </button>
-                </div>
-            </div>
-        </form>
-            
-        
-    </div>
-</div>
+            </main>
+        </div>
 
 @endsection
 
