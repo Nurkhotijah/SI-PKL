@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('kehadiran', function (Blueprint $table) {
             $table->id();
             $table->foreignId('siswa_id')->constrained('siswa');
+            $table->unsignedBigInteger('user_id');
             $table->date('tanggal');
             $table->time('waktu_masuk')->nullable();
             $table->time('waktu_keluar')->nullable();
@@ -19,6 +20,8 @@ return new class extends Migration
             $table->string('foto_masuk')->nullable();
             $table->string('foto_keluar')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
     

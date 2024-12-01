@@ -48,7 +48,7 @@ class SiswaController extends Controller
         ]);
     
         // Mengarahkan ke halaman yang sesuai
-        return redirect()->route('pengajuan-siswa')->with('success', 'Siswa berhasil ditambahkan.');    }
+        return redirect()->route('pages-admin.pengajuan-siswa')->with('success', 'Siswa berhasil ditambahkan.');    }
     
 
     // Menghapus data siswa

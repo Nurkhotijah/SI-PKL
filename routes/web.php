@@ -11,6 +11,7 @@ use App\Http\Controllers\KehadiranController;
 use App\Http\Controllers\PengajuanSiswaController;
 use App\Http\Controllers\JurnalKegiatanController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\SekolahController;
 
 
@@ -140,7 +141,7 @@ Route::put('/update-profile', [ProfileController::class, 'update'])->name('profi
 
 // Route::post('/absen/masuk', [AbsenController::class, 'absenMasuk']);
 // Route::post('/absen/keluar', [AbsenController::class, 'absenKeluar']);
-
+Route::post('/absen', [AbsensiController::class, 'store'])->name('absen.store');
 
 Route::get('/dashboard-user', [UserController::class, 'dashboard'])->name('user.dashboard');
 

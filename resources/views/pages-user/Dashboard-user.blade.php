@@ -185,6 +185,27 @@ function showImage(type, absensiId) {
     }
 }
 
+// Fungsi untuk mengirimkan absensi ke backend
+async function sendAttendanceData(photoData) {
+    const response = await fetch("{{ route('absen.store') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify({
+            photo: photoData
+        })
+    });
+    const data = await response.json();
+    if (data.message === 'Absen berhasil') {
+        // Handle success (e.g., update UI)
+    } else {
+        // Handle error
+    }
+}
+
+
 </script>
 
 @endsection
