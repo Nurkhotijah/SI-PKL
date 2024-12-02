@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\JurnalKegiatan;
+use App\Models\Pengajuan;
 use App\Models\PengajuanSiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,7 +36,7 @@ class IndustriController extends Controller
 
     public function lihatSiswa($id)
     {
-        $listSiswa = PengajuanSiswa::where('id_sekolah', $id)->get();
+        $listSiswa = Pengajuan::where('id_sekolah', $id)->get();
 
         return view('pages-industri.lihat-siswa', compact('listSiswa'));
     }
@@ -50,9 +51,9 @@ class IndustriController extends Controller
         $id = $validated['id'];
         $status = $validated['status'];
 
-        $pengajuanSiswa = PengajuanSiswa::where('id', $id)->first();
+        $pengajuanSiswa = Pengajuan::where('id', $id)->first();
 
-        PengajuanSiswa::where('id', $id)->update(['status' => $status]);
+        Pengajuan::where('id', $id)->update(['status' => $status]);
 
         User::create([
             'name' => $pengajuanSiswa->nama_siswa,
@@ -70,7 +71,7 @@ class IndustriController extends Controller
     }
 
     // Fungsi untuk membuat akun siswa setelah pengajuan disetujui
-    protected function createSiswaAccount(PengajuanSiswa $pengajuanSiswa)
+    protected function createSiswaAccount(Pengajuan $pengajuanSiswa)
     {
         // Membuat akun siswa baru
         $user = User::create([

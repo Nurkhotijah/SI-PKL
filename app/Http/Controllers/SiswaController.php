@@ -23,8 +23,6 @@ class SiswaController extends Controller
     // Menyimpan data siswa baru
     public function store(Request $request)
     {
-        dd($request->all());
-        
         $request->validate([
             'nama' => 'required|string|max:255',
             'jurusan' => 'required|string|max:255',
@@ -32,12 +30,12 @@ class SiswaController extends Controller
             'tanggal_selesai' => 'required|date',
             'cv' => 'nullable|file|mimes:pdf,doc,docx',
         ]);
-    
+
         $cvPath = null;
         if ($request->hasFile('cv')) {
             $cvPath = $request->file('cv')->store('cv');
         }
-    
+
         Siswa::create([
             'nama' => $request->nama,
             'jurusan' => $request->jurusan,
@@ -46,10 +44,11 @@ class SiswaController extends Controller
             'cv' => $cvPath,
             'status' => 'Pending',
         ]);
-    
+
         // Mengarahkan ke halaman yang sesuai
-        return redirect()->route('pages-admin.pengajuan-siswa')->with('success', 'Siswa berhasil ditambahkan.');    }
-    
+        return redirect()->route('pages-admin.pengajuan-siswa')->with('success', 'Siswa berhasil ditambahkan.');
+    }
+
 
     // Menghapus data siswa
     public function destroy($id)

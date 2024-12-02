@@ -5,24 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PengajuanSiswa extends Model
+class Pengajuan extends Model
 {
     use HasFactory;
 
-    protected $table = 'pengajuan_siswa';
+    protected $table = 'pengajuan';
 
     protected $fillable = [
-        'nama_siswa',
+        'id_sekolah',
+        'nama',
         'jurusan',
         'tanggal_mulai',
         'tanggal_selesai',
-        'cv',
-        'id_sekolah', // Menambahkan 'sekolah_id' ke dalam fillable
+        'cv_file',
+        'status_persetujuan',
     ];
 
     // Relasi dengan model Sekolah
     public function sekolah()
     {
-        return $this->belongsTo(User::class, 'id_sekolah');
+        return $this->belongsTo(Sekolah::class, 'id_sekolah');
     }
 }

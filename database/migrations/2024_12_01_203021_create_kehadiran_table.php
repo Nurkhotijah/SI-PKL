@@ -10,24 +10,20 @@ return new class extends Migration
     {
         Schema::create('kehadiran', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('siswa_id')->constrained('siswa');
             $table->unsignedBigInteger('user_id');
             $table->date('tanggal');
             $table->time('waktu_masuk')->nullable();
             $table->time('waktu_keluar')->nullable();
             $table->enum('status', ['hadir', 'izin', 'tidak hadir'])->default('hadir');
-            $table->string('foto_izin')->nullable();
-            $table->string('foto_masuk')->nullable();
-            $table->string('foto_keluar')->nullable();
+            $table->string('foto')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
-    
+
     public function down()
     {
         Schema::dropIfExists('kehadiran');
     }
-    
 };

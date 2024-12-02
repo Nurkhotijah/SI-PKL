@@ -12,10 +12,10 @@
         </div>
         <!-- Tombol aksi multiple -->
         <div class="flex space-x-2">
-            <button onclick="updateMultipleStatus('Disetujui')" class="bg-green-400 text-white text-xs px-4 py-2 rounded shadow hover:bg-green-500 transition duration-300 ease-in-out">
+            <button onclick="updateMultipleStatus('diterima')" class="bg-green-400 text-white text-xs px-4 py-2 rounded shadow hover:bg-green-500 transition duration-300 ease-in-out">
                 <i class="fas fa-check mr-1"></i> Terima
             </button>
-            <button onclick="updateMultipleStatus('Ditolak')" class="bg-red-400 text-white text-xs px-4 py-2 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
+            <button onclick="updateMultipleStatus('ditolak')" class="bg-red-400 text-white text-xs px-4 py-2 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
                 <i class="fas fa-times mr-1"></i> Tolak
             </button>
         </div>
@@ -54,23 +54,23 @@
             @foreach ($listSiswa as $item)
                 <tr class="student-row">
                     <td class="py-2 px-4 border-b text-center">
-                        <input type="checkbox" class="student-checkbox" value="{{ $item->id }}" {{ in_array($item->status, ['Disetujui', 'Ditolak']) ? 'disabled' : '' }}>
+                        <input type="checkbox" class="student-checkbox" value="{{ $item->id }}" {{ in_array($item->status_persetujuan, ['diterima', 'ditolak']) ? 'disabled' : '' }}>
                     </td>
                     <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
-                    <td class="py-2 px-4 border-b text-left">{{ $item->nama_siswa }}</td>
+                    <td class="py-2 px-4 border-b text-left">{{ $item->nama }}</td>
                     <td class="py-2 px-4 border-b text-left">{{ $item->jurusan }}</td>
                     <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($item->tanggal_mulai)->locale('id')->format('d F Y') }}</td>
                     <td class="py-2 px-4 border-b text-center">{{ \Carbon\Carbon::parse($item->tanggal_selesai)->locale('id')->format('d F Y') }}</td>
                     <td class="py-2 px-4 border-b text-center">
-                        <a href="{{ asset('storage/' . $item->cv) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
+                        <a href="{{ asset('storage/' . $item->cv_file) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
                     </td>
                     <td class="py-2 px-4 border-b text-center">
-                        @if ($item->status == 'Menunggu')
-                            <span id="status-{{ $item->id }}" class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">{{ $item->status }}</span>
-                        @elseif ($item->status == 'Disetujui')
-                            <span id="status-{{ $item->id }}" class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">{{ $item->status }}</span>
-                        @elseif ($item->status == 'Ditolak')
-                            <span id="status-{{ $item->id }}" class="bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full">{{ $item->status }}</span>
+                        @if ($item->status_persetujuan == 'pending')
+                            <span id="status-{{ $item->id }}" class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">{{ $item->status_persetujuan }}</span>
+                        @elseif ($item->status_persetujuan == 'diterima')
+                            <span id="status-{{ $item->id }}" class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">{{ $item->status_persetujuan }}</span>
+                        @elseif ($item->status_persetujuan == 'ditolak')
+                            <span id="status-{{ $item->id }}" class="bg-red-200 text-red-800 text-xs px-2 py-1 rounded-full">{{ $item->status_persetujuan }}</span>
                         @endif
                     </td>
                 </tr>
@@ -152,11 +152,11 @@
             const studentId = checkbox.value;
             
             try {
-                const response = await fetch(`/update-status-siswa`, {
+                const response = await fetch('{{ route("sekolah.update-status-siswa") }}', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': token
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
                     },
                     body: JSON.stringify({
                         id: studentId,

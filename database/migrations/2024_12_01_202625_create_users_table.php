@@ -7,22 +7,19 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     public function up()
-{
-    Schema::create('users', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('alamat')->nullable();
-        $table->string('email')->unique();
-        $table->string('password');
-        $table->enum('role', ['siswa', 'sekolah', 'industri']);
-        $table->string('foto_profil')->nullable();
-        $table->timestamps();
-    });
-}
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->enum('role', ['siswa', 'sekolah', 'industri']);
+            $table->timestamps();
+        });
+    }
 
-public function down()
-{
-    Schema::dropIfExists('users');
-}
-
+    public function down()
+    {
+        Schema::dropIfExists('users');
+    }
 };

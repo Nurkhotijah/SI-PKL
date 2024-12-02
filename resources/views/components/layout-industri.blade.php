@@ -62,9 +62,9 @@
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />
             <a href="{{ route('kehadiran-siswa') }}" class="text-sm">Rekap Penilaian siswa</a>
           </li>
-          <li class="p-3 {{ request()->is('data-sekolah') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
+          <li class="p-3 {{ request()->is('sekolah') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/school.png" alt="school" />
-            <a href="{{ route('data-sekolah') }}" class="text-sm">Data Sekolah</a>
+            <a href="{{ route('sekolah.index') }}" class="text-sm">Data Sekolah</a>
           </li>
           {{-- <li class="p-3 {{ request()->is('kelola-pengajuansiswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />

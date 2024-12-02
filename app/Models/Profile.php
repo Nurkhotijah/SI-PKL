@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sekolah extends Model
+class Profile extends Model
 {
     use HasFactory;
 
     /**
-     * The table associated with the model.
+     * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'sekolah';
+    protected $table = 'profile';
 
     /**
      * The attributes that are mass assignable.
@@ -23,17 +23,16 @@ class Sekolah extends Model
      */
     protected $fillable = [
         'user_id',
-        'nama',
         'alamat',
     ];
 
     /**
-     * Get the user that owns the sekolah.
+     * Define a relationship to the User model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
 }

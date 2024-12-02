@@ -12,6 +12,7 @@ use App\Http\Controllers\PengajuanSiswaController;
 use App\Http\Controllers\JurnalKegiatanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\SekolahController;
 
 
@@ -53,11 +54,6 @@ Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->n
 
 // Route untuk menampilkan detail jurnal berdasarkan ID sekolah dan ID user
 Route::get('/detail-jurnal/{sekolahId}/{userId}', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
-
-Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
-
-Route::get('/lihat-siswa/{id}', [IndustriController::class, 'lihatSiswa'])->name('lihat-siswa');
-Route::post('/update-status-siswa', [IndustriController::class, 'updateStatusSiswa'])->name('update-status-siswa');
 
 Route::get('/kelola-pengajuansiswa', [IndustriController::class, 'kelolaPengajuansiswa'])->name('kelola-pengajuansiswa');
 
@@ -115,10 +111,34 @@ Route::get('/dashboard-admin', [AdminController::class, 'dashboard'])->name('adm
 // Rute untuk mengelola kehadiran
 Route::get('/kehadiran-siswapkl', [AdminController::class, 'kehadiranSiswapkl'])->name('kehadiran-siswapkl');
 
-    Route::get('pengajuan-siswa', [SiswaController::class, 'index'])->name('pengajuan-siswa');
-    Route::get('tambah-siswa', [SiswaController::class, 'create'])->name('tambah-siswa');
-    Route::post('pengajuan-siswa', [SiswaController::class, 'store'])->name('pengajuan-siswa.store');
-    Route::delete('hapus-siswa/{id}', [SiswaController::class, 'destroy'])->name('hapus-siswa');
+/* -------------------------------------------------------------------------- */
+/*                                  INDUSTRI                                  */
+/* -------------------------------------------------------------------------- */
+
+Route::prefix('sekolah')->name('sekolah.')->group(function () {
+    Route::get('', [SekolahController::class, 'index'])->name('index');
+    Route::get('/detail-siswa/{id}', [SekolahController::class, 'detailSiswa'])->name('detail-siswa');
+    Route::post('/update-status-siswa', [SekolahController::class, 'updateStatusSiswa'])->name('update-status-siswa');
+});
+
+/* -------------------------------------------------------------------------- */
+/*                                END INDUSTRI                                */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                                   SEKOLAH                                  */
+/* -------------------------------------------------------------------------- */
+
+Route::prefix('pengajuan')->name('pengajuan.')->group(function () {
+    Route::get('', [PengajuanController::class, 'index'])->name('index');
+    Route::get('/create', [PengajuanController::class, 'create'])->name('create');
+    Route::post('/store', [PengajuanController::class, 'store'])->name('store');
+    Route::delete('/delete/{id}', [PengajuanController::class, 'destroy'])->name('delete');
+});
+
+/* -------------------------------------------------------------------------- */
+/*                                 END SEKOLAH                                */
+/* -------------------------------------------------------------------------- */
 
 Route::get('/data-siswa', [AdminController::class, 'dataSiswa'])->name('data-siswa');
 
