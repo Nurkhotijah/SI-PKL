@@ -45,14 +45,14 @@
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/submit-document.png" alt="submit-document"/>
             <a href="{{ route('pengajuan-izin') }}" class="text-sm">Pengajuan Izin</a>
         </li> --}}
-        <li class="p-3 {{ request()->is('penilaian-pkl') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
+        {{-- <li class="p-3 {{ request()->is('penilaian-pkl') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/permanent-job.png" alt="permanent-job"/>
             <a href="{{ route('penilaian-pkl') }}" class="text-sm">Penilaian PKL</a>
         </li>
         <li class="p-3 {{ request()->is('rekap-kehadiran') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/test-results.png" alt="test-results"/>
             <a href="{{ route('rekap-kehadiran') }}" class="text-sm">Rekap Kehadiran</a>
-        </li>
+        </li> --}}
     </ul>
     </div>
    </div>

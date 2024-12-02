@@ -28,9 +28,10 @@
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Tanggal</th>
                         <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Waktu Masuk</th>
                         <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Waktu Keluar</th>
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Status</th>
-                        <th class="py-2 px-4 border-b text-center">Lampiran</th> <!-- Lampiran column comes before Aksi -->
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Aksi</th> <!-- Aksi column -->
+                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Foto Masuk</th> <!-- Foto Masuk column -->
+                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Foto Keluar</th> <!-- Foto Keluar column -->
+                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Foto Izin</th> <!-- Foto Izin column -->
+                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Status</th> <!-- Status column moved -->
                     </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm font-light">
@@ -41,14 +42,16 @@
                         <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-10-01</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">08:00</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">16:00</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Hadir</td>
-                        <td class="py-2 px-4 border-b text-center"></td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">
-                            <button onclick="openModal('Nur Khotijah', '2024-10-01', '08:00', '16:00', 'Hadir', 'path/to/check-in.jpg', 'path/to/check-out.jpg')" 
-                                    class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
-                                <i class="fas fa-eye"></i> Lihat
-                            </button>
+                        <td class="py-2 px-4 border-b text-center">
+                            <img src="path/to/check-in.jpg" alt="Foto Masuk" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('path/to/check-in.jpg')">
+                        </td> <!-- Foto Masuk -->
+                        <td class="py-2 px-4 border-b text-center">
+                            <img src="path/to/check-out.jpg" alt="Foto Keluar" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('path/to/check-out.jpg')">
+                        </td> <!-- Foto Keluar -->
+                        <td class="py-2 px-4 border-b text-center">
+                            <!-- Foto Izin (empty in this case for "Hadir") -->
                         </td>
+                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Hadir</td> <!-- Status -->
                     </tr>
                     <!-- Data example for "Izin" -->
                     <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
@@ -57,16 +60,16 @@
                         <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-10-02</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">-</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">-</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Izin</td>
                         <td class="py-2 px-4 border-b text-center">
-                            <img src="https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg" alt="Lampiran Izin" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
-                        </td> <!-- Display photo attachment only for "Izin" -->
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">
-                            <button onclick="openModal('Fitri Amaliah', '-', '-', 'Izin', '', '', 'path/to/izin-photo.jpg')" 
-                                    class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
-                                <i class="fas fa-eye"></i> Lihat
-                            </button>
-                        </td>
+                            <img src="https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg" alt="Foto Masuk" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
+                        </td> <!-- Foto Masuk for Izin -->
+                        <td class="py-2 px-4 border-b text-center">
+                            <img src="https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg" alt="Foto Keluar" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
+                        </td> <!-- Foto Keluar for Izin -->
+                        <td class="py-2 px-4 border-b text-center">
+                            <img src="https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg" alt="Foto Izin" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
+                        </td> <!-- Foto Izin for Izin -->
+                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Izin</td> <!-- Status -->
                     </tr>
                     <!-- Data example for "Tidak Hadir" -->
                     <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
@@ -75,18 +78,15 @@
                         <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-10-03</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">-</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">-</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Tidak Hadir</td>
-                        <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" status -->
-                        <td class="py-4 px-4 border-b border-gray-300 text-center">
-                            <button disabled class="bg-gray-300 text-gray-500 px-4 py-2 rounded-lg cursor-not-allowed">
-                                <i class="fas fa-eye"></i> Lihat
-                            </button>
-                        </td>
+                        <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" -->
+                        <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" -->
+                        <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" -->
+                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Tidak Hadir</td> <!-- Status -->
                     </tr>
                 </tbody>                
             </table>
-                    
-        </div> 
+        </div>
+        
         <!-- Pagination Section -->
         <div class="flex justify-end items-center mt-4">
             <span class="mr-4" id="pageNumber">Halaman 1</span>

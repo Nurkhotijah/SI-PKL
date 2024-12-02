@@ -51,46 +51,10 @@
       </p>
     </div>
 
-    <div class="bg-white p-6 rounded-lg shadow">
-      <div class="flex items-center justify-between">
-        <h2 class="text-lg font-semibold">
-          Jumlah Absen yang telah dilakukan
-        </h2>
-        <i class="fas fa-check text-green-500 text-3xl"></i>
-      </div>
-      <p class="text-3xl font-bold mt-4" id="jumlah-absen">
-        0
-      </p>
-      <p class="text-gray-600">
-        Jumlah absensi yang telah dilakukan oleh Anda.
-      </p>
-    </div>
+    
   </div>
 
-  <!-- Modal Pop-up -->
-  <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden">
-    <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
-      <h2 class="text-xl font-semibold mb-4">Tambah Akun Siswa</h2>
-      <form action="#" method="POST">
-        <div class="mb-4">
-          <label for="email" class="block text-sm font-semibold mb-2">Email</label>
-          <input type="email" id="email" name="email" class="w-full p-2 border border-gray-300 rounded-lg" required />
-        </div>
-        <div class="mb-4">
-          <label for="password" class="block text-sm font-semibold mb-2">Password</label>
-          <input type="password" id="password" name="password" class="w-full p-2 border border-gray-300 rounded-lg" required />
-        </div>
-        <div class="flex justify-end">
-          <button type="submit" class="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600">
-            Simpan
-          </button>
-        </div>
-      </form>
-      <button onclick="toggleModal()" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-  </div>
+ 
 </body>
 
 

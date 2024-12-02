@@ -22,8 +22,7 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="flex items-center justify-center p-3 text-lg font-bold border-b border-gray-700">
-                <img src="{{ asset('assets/logo absensipkl.png') }}" alt="profile"
-                    class="rounded-full w-10 h-10 border-2 border-gray-400 mr-4">
+                <img alt="profile" class="rounded-full w-12 h-12 mr-4" src="{{ asset('assets/SI-PKL.png') }}">
                 <span>SI-PKL</span>
             </div>
             <div class="mt-4 flex-grow">

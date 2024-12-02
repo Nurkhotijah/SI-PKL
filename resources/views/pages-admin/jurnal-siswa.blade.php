@@ -40,17 +40,17 @@
                         </td>
                         <td class="py-2 px-4 border-b text-center">
                             <div class="flex justify-center space-x-2">
-                                <button onclick="showActivityImage('path-to-foto-kegiatan.jpg')"
-                                        class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
+                                <a href="{{ route('jurnal-detail') }}" 
+                                   class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
                                     <i class="fas fa-eye mr-1"></i> Lihat
-                                </button>
+                                </a>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
+        
         <!-- Pagination Section -->
         <div class="flex justify-end items-center mt-4">
             <span class="mr-4" id="pageNumber">Halaman 1</span>
