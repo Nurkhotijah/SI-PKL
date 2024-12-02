@@ -33,8 +33,8 @@
 </button>
 
 <div class="flex items-center justify-center p-4 bg-gray-800 text-lg font-bold text-white border-b border-gray-700">
-  <div class="relative flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-tr from-blue-500 to-green-400 p-1 shadow-lg">
-    <div class="flex items-center justify-center w-full h-full bg-white rounded-full border-2 border-gray-200 shadow-md">
+  <div class="relative flex items-center justify-center  rounded-full ">
+    <div class="flex items-center justify-center  bg-white rounded-full border-2 border-gray-200 shadow-md">
       <img src="{{ asset('assets/si-pkl.png') }}" alt="profile" class="rounded-full w-10 h-10">
     </div>
   </div>
