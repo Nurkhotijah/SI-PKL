@@ -44,12 +44,7 @@
                             class="w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-lg p-2 text-sm shadow-sm transition">
                     </div>
             
-                    <div class="space-y-2">
-                        <label for="bidang" class="block font-medium text-gray-700 text-sm">Bidang</label>
-                        <input type="text" id="bidang" name="bidang" 
-                            value="Teknologi Informasi" 
-                            class="w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-lg p-2 text-sm shadow-sm transition">
-                    </div>
+                    
                 </div>
             
                 <!-- Tombol Simpan -->

@@ -30,9 +30,7 @@
                                 Bogor Barat
                                 Kota Bogor
                                 </p>
-                            <p class="font-sans text-base"><span class="font-medium">Email:</span> info@ptabc.com</p>
-                            <p class="font-sans text-base"><span class="font-medium">Bidang:</span> Teknologi Informasi</p>
-                        </div>
+                            <p class="font-sans text-base"><span class="font-medium">Email:</span> info@ptabc.com</p>                        </div>
                     </div>                    
                     <!-- Tombol Edit di bawah Info Tempat PKL -->
                     <div class="flex justify-end mt-4">

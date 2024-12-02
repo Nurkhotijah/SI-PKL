@@ -60,7 +60,7 @@
           </li>
           <li class="p-3 {{ request()->is('kehadiran-siswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />
-            <a href="{{ route('kehadiran-siswa') }}" class="text-sm">Rekap Kehadiran siswa</a>
+            <a href="{{ route('kehadiran-siswa') }}" class="text-sm">Rekap Penilaian siswa</a>
           </li>
           <li class="p-3 {{ request()->is('data-sekolah') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/school.png" alt="school" />
