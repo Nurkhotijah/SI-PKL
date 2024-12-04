@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto"> <!-- Menyembunyikan scroll horizontal di perangkat kecil -->
+            <div class="overflow-x-auto"> 
                 <table class="min-w-full bg-white border" id="studentTable">
                     <thead class="bg-gray-200">
                         <tr>
@@ -43,7 +43,7 @@
                         <!-- Data PKL -->
                         <tr>
                             <td class="py-2 px-4 border-b text-center">1</td>
-                            <td class="py-2 px-4 border-b">Pengembangan Aplikasi Mobile</td>
+                            <td class="py-2 px-4 border-b">pkl qelopak</td>
                             <td class="py-2 px-4 border-b">2024/2025</td>
                             <td class="py-2 px-4 border-b text-center">2024-12-01</td>
                             <td class="py-2 px-4 border-b text-center">2025-02-28</td>
@@ -63,7 +63,7 @@
                         </tr>
                         <tr>
                             <td class="py-2 px-4 border-b text-center">2</td>
-                            <td class="py-2 px-4 border-b">Desain Sistem Jaringan</td>
+                            <td class="py-2 px-4 border-b">pkl qelopak</td>
                             <td class="py-2 px-4 border-b">2023/2024</td>
                             <td class="py-2 px-4 border-b text-center">2024-01-15</td>
                             <td class="py-2 px-4 border-b text-center">2024-03-30</td>
