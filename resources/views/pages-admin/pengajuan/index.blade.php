@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="overflow-x-auto hidden sm:block"> <!-- Menyembunyikan scroll horizontal di perangkat kecil -->
+            <div class="overflow-x-auto"> <!-- Menyembunyikan scroll horizontal di perangkat kecil -->
                 <table class="min-w-full bg-white border" id="studentTable">
                     <thead class="bg-gray-200">
                         <tr>
