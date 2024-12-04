@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+<<<<<<< HEAD
 use App\Models\JurnalKegiatan;
+=======
+use App\Models\Jurnal;
+use App\Models\JurnalKegiatan;
+use App\Models\Pengajuan;
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
 use App\Models\PengajuanSiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -35,7 +41,11 @@ class IndustriController extends Controller
 
     public function lihatSiswa($id)
     {
+<<<<<<< HEAD
         $listSiswa = PengajuanSiswa::where('id_sekolah', $id)->get();
+=======
+        $listSiswa = Pengajuan::where('id_sekolah', $id)->get();
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
 
         return view('pages-industri.lihat-siswa', compact('listSiswa'));
     }
@@ -50,9 +60,15 @@ class IndustriController extends Controller
         $id = $validated['id'];
         $status = $validated['status'];
 
+<<<<<<< HEAD
         $pengajuanSiswa = PengajuanSiswa::where('id', $id)->first();
 
         PengajuanSiswa::where('id', $id)->update(['status' => $status]);
+=======
+        $pengajuanSiswa = Pengajuan::where('id', $id)->first();
+
+        Pengajuan::where('id', $id)->update(['status' => $status]);
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
 
         User::create([
             'name' => $pengajuanSiswa->nama_siswa,
@@ -70,7 +86,11 @@ class IndustriController extends Controller
     }
 
     // Fungsi untuk membuat akun siswa setelah pengajuan disetujui
+<<<<<<< HEAD
     protected function createSiswaAccount(PengajuanSiswa $pengajuanSiswa)
+=======
+    protected function createSiswaAccount(Pengajuan $pengajuanSiswa)
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
     {
         // Membuat akun siswa baru
         $user = User::create([
@@ -82,6 +102,7 @@ class IndustriController extends Controller
         ]);
     }
 
+<<<<<<< HEAD
     public function jurnalSiswapkl()
     {
         // Mendapatkan data user yang sedang login
@@ -118,6 +139,8 @@ class IndustriController extends Controller
         return view('pages-industri.detail-jurnal', compact('listdetail'));
     }
 
+=======
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
     public function kelolaPengajuansiswa()
     {
         // Logika untuk mengelola kehadiran

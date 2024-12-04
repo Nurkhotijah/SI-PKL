@@ -5,25 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sekolah extends Model
+class Profile extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
-    // Kolom yang dapat diisi
-    protected $fillable = [
-        'nama_sekolah',
-        'email',
-        'alamat_sekolah',
-        'password',
-    ];
-=======
     /**
-     * The table associated with the model.
+     * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'sekolah';
+    protected $table = 'profile';
 
     /**
      * The attributes that are mass assignable.
@@ -32,18 +23,26 @@ class Sekolah extends Model
      */
     protected $fillable = [
         'user_id',
-        'nama',
+        'id_sekolah',
         'alamat',
+        'foto_profil',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'cv_file',
     ];
 
     /**
-     * Get the user that owns the sekolah.
+     * Define a relationship to the User model.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class);
     }
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
+
+    public function sekolah()
+    {
+        return $this->belongsTo(Sekolah::class, 'id_sekolah', 'id');
+    }
 }

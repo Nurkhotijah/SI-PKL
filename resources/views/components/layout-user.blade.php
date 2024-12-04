@@ -36,9 +36,15 @@
             <a href="{{ route('riwayat-absensi') }}" class="text-sm">Riwayat Kehadiran</a>
         </li>
         <!-- Jurnal Kegiatan Harian -->
+<<<<<<< HEAD
         <li class="p-3 {{ request()->is('jurnal-kegiatan') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/book--v1.png" alt="book--v1"/>
             <a href="{{ route('jurnal-kegiatan') }}" class="text-sm">Jurnal Kegiatan Harian</a>
+=======
+        <li class="p-3 {{ request()->is('jurnal-siswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
+            <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/book--v1.png" alt="book--v1"/>
+            <a href="{{ route('jurnal-siswa.index') }}" class="text-sm">Jurnal Kegiatan Harian</a>
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
         </li>
         {{-- <!-- Pengajuan Izin/Cuti -->
         <li class="p-3 {{ request()->is('pengajuan-izin') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">

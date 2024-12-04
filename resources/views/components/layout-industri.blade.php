@@ -54,17 +54,29 @@
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/submit-document.png" alt="submit-document" />
             <a href="{{ route('kelola-pengajuan') }}" class="text-sm">Pengajuan Izin Siswa</a>
           </li> --}}
+<<<<<<< HEAD
           <li class="p-3 {{ request()->is('jurnal-siswapkl') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/book--v1.png" alt="book--v1" />
             <a href="{{ route('jurnal-siswapkl') }}" class="text-sm">Jurnal Siswa</a>
+=======
+          <li class="p-3 {{ request()->is('jurnal-industri') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
+            <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/book--v1.png" alt="book--v1" />
+            <a href="{{ route('jurnal-industri.index') }}" class="text-sm">Jurnal Siswa</a>
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
           </li>
           <li class="p-3 {{ request()->is('kehadiran-siswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />
             <a href="{{ route('kehadiran-siswa') }}" class="text-sm">Rekap Penilaian siswa</a>
           </li>
+<<<<<<< HEAD
           <li class="p-3 {{ request()->is('data-sekolah') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/school.png" alt="school" />
             <a href="{{ route('data-sekolah') }}" class="text-sm">Data Sekolah</a>
+=======
+          <li class="p-3 {{ request()->is('sekolah') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
+            <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/school.png" alt="school" />
+            <a href="{{ route('sekolah.index') }}" class="text-sm">Data Sekolah & Siswa</a>
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
           </li>
           {{-- <li class="p-3 {{ request()->is('kelola-pengajuansiswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />
