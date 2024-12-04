@@ -15,67 +15,114 @@
                         <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
                     </div>
                     <!-- Add Student Button -->
-                    <div class="mt-4 sm:mt-0">
-                        <a href="{{ route('pengajuan.create') }}" class="bg-blue-500 text-white text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
-                            <i class="fas fa-user-plus mr-2"></i>Tambah Siswa
+                    <div class="flex flex-row space-x-2 mt-4 sm:mt-0">
+                        <a href="{{ route('pengajuan-index') }}" class="bg-green-500 text-white text-xs px-4 py-2 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
+                            <i class="fas fa-plus-circle mr-2"></i>Tambah Pengajuan
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Table Section -->
-            <div class="overflow-x-auto">
+            <div class="overflow-x-auto hidden sm:block"> <!-- Menyembunyikan scroll horizontal di perangkat kecil -->
                 <table class="min-w-full bg-white border" id="studentTable">
                     <thead class="bg-gray-200">
                         <tr>
                             <th class="py-2 px-4 border-b text-center">No</th>
-                            <th class="py-2 px-4 border-b text-left">Nama Siswa</th>
+                            <th class="py-2 px-4 border-b text-left">Judul PKL</th>
+                            <th class="py-2 px-4 border-b text-left">Tahun Ajaran</th>
+                            <th class="py-2 px-4 border-b text-center">Tanggal Mulai PKL</th>
+                            <th class="py-2 px-4 border-b text-center">Tanggal Selesai PKL</th>
                             <th class="py-2 px-4 border-b text-left">Jurusan</th>
-                            <th class="py-2 px-4 border-b text-center">Tanggal Mulai</th>
-                            <th class="py-2 px-4 border-b text-center">Tanggal Selesai</th>
-                            <th class="py-2 px-4 border-b text-center">CV</th>
+                            <th class="py-2 px-4 border-b text-left">Pembimbing</th>
+                            <th class="py-2 px-4 border-b text-center">Lampiran</th>
                             <th class="py-2 px-4 border-b text-center">Status Persetujuan</th>
                             <th class="py-2 px-4 border-b text-center">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($pengajuan as $item)
+                        <!-- Data PKL -->
                         <tr>
-                            <td class="py-2 px-4 border-b text-center">{{ $loop->iteration }}</td>
-                            <td class="py-2 px-4 border-b">{{ $item->nama }}</td>
-                            <td class="py-2 px-4 border-b">{{ $item->jurusan }}</td>
-                            <td class="py-2 px-4 border-b text-center">{{ $item->tanggal_mulai }}</td>
-                            <td class="py-2 px-4 border-b text-center">{{ $item->tanggal_selesai }}</td>
+                            <td class="py-2 px-4 border-b text-center">1</td>
+                            <td class="py-2 px-4 border-b">Pengembangan Aplikasi Mobile</td>
+                            <td class="py-2 px-4 border-b">2024/2025</td>
+                            <td class="py-2 px-4 border-b text-center">2024-12-01</td>
+                            <td class="py-2 px-4 border-b text-center">2025-02-28</td>
+                            <td class="py-2 px-4 border-b">PPLG</td>
+                            <td class="py-2 px-4 border-b">Bapak Arif Hidayat</td>
                             <td class="py-2 px-4 border-b text-center">
-                                <a href="{{ asset('storage/' . $item->cv_file) }}" target="_blank" class="text-blue-500 hover:underline">Download</a>
+                                <!-- Preview CV when clicked -->
+                                <a href="#" class="text-blue-500 hover:underline" onclick="previewCV('cv1.pdf')">Preview CV</a>
                             </td>
                             <td class="py-2 px-4 border-b text-center">
-                                <span class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">{{ $item->status_persetujuan }}</span>
+                                <span class="bg-yellow-200 text-yellow-800 text-xs px-2 py-1 rounded-full">Menunggu</span>
                             </td>
                             <td class="py-2 px-4 border-b text-center">
-                                <form action="{{ route('pengajuan.delete', $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus siswa ini?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="text-red-500 hover:text-red-700">Hapus</button>
-                                </form>
+                                <a href="{{ route('lihat-siswa') }}" class="text-blue-500 hover:text-blue-700">Lihat</a>                                 
+                                <button onclick="hapusData(this)" class="text-red-500 hover:text-red-700 ml-2">Hapus</button>
                             </td>
                         </tr>
-                        @endforeach
+                        <tr>
+                            <td class="py-2 px-4 border-b text-center">2</td>
+                            <td class="py-2 px-4 border-b">Desain Sistem Jaringan</td>
+                            <td class="py-2 px-4 border-b">2023/2024</td>
+                            <td class="py-2 px-4 border-b text-center">2024-01-15</td>
+                            <td class="py-2 px-4 border-b text-center">2024-03-30</td>
+                            <td class="py-2 px-4 border-b">BCF</td>
+                            <td class="py-2 px-4 border-b">Ibu Rina Kurniawati</td>
+                            <td class="py-2 px-4 border-b text-center">
+                                <!-- Preview CV when clicked -->
+                                <a href="#" class="text-blue-500 hover:underline" onclick="previewCV('cv2.pdf')">Preview CV</a>
+                            </td>
+                            <td class="py-2 px-4 border-b text-center">
+                                <span class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">Disetujui</span>
+                            </td>
+                            <td class="py-2 px-4 border-b text-center">
+                                <button onclick="lihatData(this)" class="text-blue-500 hover:text-blue-700">Lihat</button>
+                                <button onclick="hapusData(this)" class="text-red-500 hover:text-red-700 ml-2">Hapus</button>
+                            </td>
+                        </tr>
                     </tbody>
-                    
                 </table>
             </div>
+
+            <!-- Preview Modal -->
+            <div id="previewModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+                <div class="bg-white p-6 rounded-lg max-w-lg w-full">
+                    <div class="mb-4">
+                        <button onclick="closePreview()" class="absolute top-0 right-0 p-2 text-gray-500">X</button>
+                        <h2 class="text-lg font-bold">Preview CV</h2>
+                        <embed id="cvPreview" class="w-full h-96" src="" type="application/pdf">
+                    </div>
+                </div>
+            </div>
+            
+            <script>
+                function hapusData(button) {
+                    if (confirm('Apakah Anda yakin ingin menghapus data ini?')) {
+                        // Menghapus baris tabel
+                        button.closest('tr').remove();
+                    }
+                }
+
+                function lihatData(button) {
+                    alert('Fungsi untuk melihat data belum tersedia.');
+                }
+
+                // Function to open CV preview
+                function previewCV(fileName) {
+                    const previewModal = document.getElementById('previewModal');
+                    const cvPreview = document.getElementById('cvPreview');
+                    cvPreview.src = '/path/to/cv/' + fileName; // Sesuaikan dengan path tempat menyimpan file
+                    previewModal.classList.remove('hidden');
+                }
+
+                // Function to close CV preview
+                function closePreview() {
+                    const previewModal = document.getElementById('previewModal');
+                    previewModal.classList.add('hidden');
+                }
+            </script>
         </div>
     </main>
 </div>
-
-<script>
-    function deleteStudent(studentId) {
-        if (confirm("Apakah Anda yakin ingin menghapus data siswa ini?")) {
-            // Implementasikan logika penghapusan data di sini
-            console.log(`Data siswa dengan ID ${studentId} dihapus.`);
-        }
-    }
-</script>
-
 @endsection

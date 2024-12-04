@@ -115,4 +115,5 @@ class SekolahController extends Controller
             'message' => "Status siswa telah diperbarui menjadi {$status}.",
         ]);
     }
+    
 }

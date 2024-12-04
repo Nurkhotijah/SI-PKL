@@ -35,6 +35,7 @@ class AdminController extends Controller
         return view('pages-admin.tambah-siswa'); 
         
     }
+    
     public function dataSiswa() 
     {
         // Logika untuk mengelola pengajuan
@@ -76,6 +77,21 @@ class AdminController extends Controller
         // Logika untuk menampilkan jurnal siswa
         return view('pages-admin.profile-update'); 
     }
+
+    public function pengajuanindex() 
+    {
+        // Logika untuk mengelola pengajuan
+        return view('pages-admin.pengajuan.pengajuan-index'); 
+        
+    }
+
+    public function lihatsiswa() 
+    {
+        // Logika untuk mengelola pengajuan
+        return view('pages-admin.pengajuan.lihat-siswa'); 
+        
+    }
+
 
     // public function showRiwayat()
     // {

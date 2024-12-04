@@ -141,6 +141,9 @@ Route::prefix('pengajuan')->name('pengajuan.')->group(function () {
     Route::post('/store', [PengajuanController::class, 'store'])->name('store');
     Route::delete('/delete/{id}', [PengajuanController::class, 'destroy'])->name('delete');
 });
+    Route::get('pengajuan-index', [AdminController::class, 'pengajuanindex'])->name('pengajuan-index');
+    Route::get('lihat-siswa', [AdminController::class, 'lihatsiswa'])->name('lihat-siswa');
+
 
 Route::prefix('jurnal-admin')->name('jurnal-admin.')->group(function () {
     Route::get('', [JurnalAdminController::class, 'index'])->name('index');

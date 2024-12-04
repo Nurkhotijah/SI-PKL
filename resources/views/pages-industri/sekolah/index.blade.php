@@ -19,7 +19,7 @@
 
             <!-- Table Section -->
             <div class="overflow-x-auto">
-                <table class="min-w-full bg-white border" id="schoolTable">
+                <table class="min-w-full bg-white border text-gray-900" id="schoolTable">
                     <thead class="bg-gray-200">
                         <tr>
                             <th class="py-2 px-4 border-b text-center">No</th>
@@ -41,7 +41,7 @@
                                     <div class="flex justify-center space-x-2">
                                         <button onclick="window.open('{{ route('sekolah.detail-siswa', $item->sekolah->id) }}', '_blank')" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out">
                                             <i class="fas fa-eye mr-1"></i> Lihat
-                                        </button>                                    
+                                        </button>
                                         <button onclick="deleteSchool(1)" class="bg-red-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
                                             <i class="fas fa-trash mr-1"></i> Hapus
                                         </button>
@@ -51,7 +51,7 @@
                         @endforeach
                     </tbody>
                 </table>
-            </div>
+            </div>            
 
             <!-- Pagination Section -->
             <div class="flex justify-end items-center mt-4">

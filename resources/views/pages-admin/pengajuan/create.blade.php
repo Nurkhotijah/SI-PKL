@@ -27,26 +27,15 @@
                             <input type="text" name="nama" id="nama" class="w-full p-2 border rounded" required>
                         </div>
                         <div class="mb-4">
-                            <label for="jurusan" class="block text-sm font-medium text-gray-700">Jurusan</label>
-                            <input type="text" name="jurusan" id="jurusan" class="w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="tanggal_mulai" class="block text-sm font-medium text-gray-700">Tanggal Mulai</label>
-                            <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="tanggal_selesai" class="block text-sm font-medium text-gray-700">Tanggal Selesai</label>
-                            <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="w-full p-2 border rounded" required>
-                        </div>
-                        <div class="mb-4">
                             <label for="cv" class="block text-sm font-medium text-gray-700">CV</label>
-                            <input type="file" name="cv" id="cv" class="w-full p-2 border rounded">
+                            <input type="file" name="cv" id="cv" class="w-full p-2 border rounded" required>
                         </div>
                         <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Simpan</button>
                     </form>
                 </div>
             </main>
         </div>
-
+    </div>
+</div>
 @endsection
 
