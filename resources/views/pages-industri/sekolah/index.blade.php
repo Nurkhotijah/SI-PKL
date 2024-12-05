@@ -18,40 +18,44 @@
             </div>
 
             <!-- Table Section -->
-            <div class="overflow-x-auto">
-                <table class="min-w-full bg-white border text-gray-900" id="schoolTable">
-                    <thead class="bg-gray-200">
-                        <tr>
-                            <th class="py-2 px-4 border-b text-center">No</th>
-                            <th class="py-2 px-4 border-b text-left">Nama Sekolah</th>
-                            <th class="py-2 px-4 border-b text-left">Email Sekolah</th>
-                            <th class="py-2 px-4 border-b text-left">Alamat Sekolah</th>
-                            <th class="py-2 px-4 border-b text-center">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Example rows for schools -->
-                        @foreach ($listSekolah as $item)
-                            <tr class="school-row" data-school="smkn_1_ciomas">
-                                <td class="py-2 px-4 border-b text-center">1</td>
-                                <td class="py-2 px-4 border-b text-left">{{ $item->name }}</td>
-                                <td class="py-2 px-4 border-b text-left">{{ $item->email }}</td>
-                                <td class="py-2 px-4 border-b text-left">{{ $item->sekolah->alamat }}</td>
-                                <td class="py-2 px-4 border-b text-center">
-                                    <div class="flex justify-center space-x-2">
-                                        <button onclick="window.open('{{ route('sekolah.detail-siswa', $item->sekolah->id) }}', '_blank')" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out">
-                                            <i class="fas fa-eye mr-1"></i> Lihat
-                                        </button>
-                                        <button onclick="deleteSchool(1)" class="bg-red-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
-                                            <i class="fas fa-trash mr-1"></i> Hapus
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>            
+<div class="overflow-x-auto">
+    <table class="min-w-full bg-white border text-gray-900" id="schoolTable">
+        <thead class="bg-gray-200">
+            <tr>
+                <th class="py-2 px-4 border-b text-center">No</th>
+                <th class="py-2 px-4 border-b text-left">Nama Sekolah</th>
+                <th class="py-2 px-4 border-b text-left">Email Sekolah</th>
+                <th class="py-2 px-4 border-b text-left">Alamat Sekolah</th>
+                <th class="py-2 px-4 border-b text-center">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($listSekolah as $index => $item)
+                <tr class="school-row">
+                    <td class="py-2 px-4 border-b text-center">{{ $index + 1 }}</td>
+                    <td class="py-2 px-4 border-b text-left">{{ $item->name }}</td>
+                    <td class="py-2 px-4 border-b text-left">{{ $item->email }}</td>
+                    <td class="py-2 px-4 border-b text-left">{{ $item->sekolah->alamat }}</td>
+                    <td class="py-2 px-4 border-b text-center">
+                        <div class="flex justify-center space-x-2">
+                            <button onclick="validateSchool({{ $item->sekolah->id }})" class="bg-green-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-500 transition duration-300 ease-in-out">
+                                <i class="fas fa-check mr-1"></i> Validasi
+                            </button>
+                            <button onclick="window.open('{{ route('sekolah.detail-siswa', $item->sekolah->id) }}', '_blank')" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out">
+                                <i class="fas fa-eye mr-1"></i> Lihat
+                            </button>
+                            <button onclick="deleteSchool({{ $item->sekolah->id }})" class="bg-red-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-red-500 transition duration-300 ease-in-out">
+                                <i class="fas fa-trash mr-1"></i> Hapus
+                            </button>
+                            
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+           
 
             <!-- Pagination Section -->
             <div class="flex justify-end items-center mt-4">
@@ -68,6 +72,15 @@
 </div>
 
 <script>
+    function validateSchool(schoolId) {
+    const confirmation = confirm("Apakah Anda yakin ingin memvalidasi sekolah ini?");
+    if (confirmation) {
+        // Kirim request ke server untuk memvalidasi sekolah
+        alert(`Sekolah dengan ID ${schoolId} telah divalidasi.`);
+        // TODO: Tambahkan logika untuk menyimpan validasi ke server (AJAX atau API call)
+    }
+}
+
     // Function to handle searching in the table
     function searchTable() {
         const searchInput = document.getElementById('search').value.toLowerCase();
