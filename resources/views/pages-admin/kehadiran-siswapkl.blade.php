@@ -22,28 +22,6 @@
         <div class="overflow-x-auto">
             <table id="attendanceTable" class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
                 <thead class="bg-gray-200">
-<<<<<<< HEAD
-                    <tr class="text-gray-600 text-sm">
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">No</th>
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Nama Lengkap</th>
-                        <th class="py-3 px-4 text-left text-sm font-semibold text-gray-700 border-b border-gray-300">Tanggal</th>
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Waktu Masuk</th>
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Waktu Keluar</th>
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Foto Masuk</th> <!-- Foto Masuk column -->
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Foto Keluar</th> <!-- Foto Keluar column -->
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Foto Izin</th> <!-- Foto Izin column -->
-                        <th class="py-3 px-4 text-center text-sm font-semibold text-gray-700 border-b border-gray-300">Status</th> <!-- Status column moved -->
-                    </tr>
-                </thead>
-                <tbody class="text-gray-600 text-sm font-light">
-                    <!-- Data example for "Hadir" -->
-                    <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-700">1</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-800">Nur Khotijah</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-10-01</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">08:00</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">16:00</td>
-=======
                     <tr class="text-gray-900 text-sm">
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-900 border-b border-gray-300">No</th>
                         <th class="py-3 px-4 text-left text-sm font-semibold text-gray-900 border-b border-gray-300">Nama Lengkap</th>
@@ -64,7 +42,6 @@
                         <td class="py-4 px-4 border-b border-gray-300 text-gray-900">2024-10-01</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">08:00</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">16:00</td>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                         <td class="py-2 px-4 border-b text-center">
                             <img src="path/to/check-in.jpg" alt="Foto Masuk" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('path/to/check-in.jpg')">
                         </td> <!-- Foto Masuk -->
@@ -74,17 +51,6 @@
                         <td class="py-2 px-4 border-b text-center">
                             <!-- Foto Izin (empty in this case for "Hadir") -->
                         </td>
-<<<<<<< HEAD
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Hadir</td> <!-- Status -->
-                    </tr>
-                    <!-- Data example for "Izin" -->
-                    <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-700">2</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-800">Fitri Amaliah</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-10-02</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">-</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">-</td>
-=======
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">Hadir</td> <!-- Status -->
                     </tr>
                     <!-- Data example for "Izin" -->
@@ -94,7 +60,6 @@
                         <td class="py-4 px-4 border-b border-gray-300 text-gray-900">2024-10-02</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">-</td>
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">-</td>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                         <td class="py-2 px-4 border-b text-center">
                             <img src="https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg" alt="Foto Masuk" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
                         </td> <!-- Foto Masuk for Izin -->
@@ -104,21 +69,6 @@
                         <td class="py-2 px-4 border-b text-center">
                             <img src="https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg" alt="Foto Izin" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
                         </td> <!-- Foto Izin for Izin -->
-<<<<<<< HEAD
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Izin</td> <!-- Status -->
-                    </tr>
-                    <!-- Data example for "Tidak Hadir" -->
-                    <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-700">3</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-800">Rahmat Hidayat</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-gray-600">2024-10-03</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">-</td>
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">-</td>
-                        <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" -->
-                        <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" -->
-                        <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" -->
-                        <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">Tidak Hadir</td> <!-- Status -->
-=======
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">Izin</td> <!-- Status -->
                     </tr>
                     <!-- Data example for "Tidak Hadir" -->
@@ -132,7 +82,6 @@
                         <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" -->
                         <td class="py-2 px-4 border-b text-center"></td> <!-- Empty for "Tidak Hadir" -->
                         <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">Tidak Hadir</td> <!-- Status -->
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                     </tr>
                 </tbody>                
             </table>
@@ -141,17 +90,10 @@
         <!-- Pagination Section -->
         <div class="flex justify-end items-center mt-4">
             <span class="mr-4" id="pageNumber">Halaman 1</span>
-<<<<<<< HEAD
-            <button class="bg-gray-300 text-gray-700 p-2 rounded mr-2" onclick="prevPage()">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="bg-gray-300 text-gray-700 p-2 rounded" onclick="nextPage()">
-=======
             <button class="bg-gray-300 text-gray-900 p-2 rounded mr-2" onclick="prevPage()">
                 <i class="fas fa-chevron-left"></i>
             </button>
             <button class="bg-gray-300 text-gray-900 p-2 rounded" onclick="nextPage()">
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                 <i class="fas fa-chevron-right"></i>
             </button>
         </div>     
@@ -277,21 +219,12 @@ function closeModal() {
         paginatedData.forEach((item) => {
             const row = `
                 <tr class="bg-white hover:bg-gray-50 transition duration-200 ease-in-out">
-<<<<<<< HEAD
-                    <td class="py-4 px-4 border-b border-gray-300 text-gray-700">${item.no}</td>
-                    <td class="py-4 px-4 border-b border-gray-300 text-gray-800">${item.nama}</td>
-                    <td class="py-4 px-4 border-b border-gray-300 text-gray-600">${item.tanggal}</td>
-                    <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">${item.status}</td>
-                    <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">${item.masuk}</td>
-                    <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-600">${item.keluar}</td>
-=======
                     <td class="py-4 px-4 border-b border-gray-300 text-gray-900">${item.no}</td>
                     <td class="py-4 px-4 border-b border-gray-300 text-gray-900">${item.nama}</td>
                     <td class="py-4 px-4 border-b border-gray-300 text-gray-900">${item.tanggal}</td>
                     <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">${item.status}</td>
                     <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">${item.masuk}</td>
                     <td class="py-4 px-4 border-b border-gray-300 text-center text-gray-900">${item.keluar}</td>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                     <td class="py-4 px-4 border-b border-gray-300 text-center">
                         <button class="bg-blue-500 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-600 transition duration-300 ease-in-out transform hover:scale-105">
                             <i class="fas fa-eye"></i> Lihat

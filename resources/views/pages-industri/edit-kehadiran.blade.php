@@ -10,65 +10,36 @@
 
         <form id="attendanceForm" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-<<<<<<< HEAD
-                <label for="name" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
-=======
                 <label for="name" class="block text-sm font-medium text-gray-900">Nama Lengkap</label>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                 <input type="text" id="name" class="border rounded p-2 w-full mt-1" readonly value="Fitri Amaliah">
             </div>
 
             <div>
-<<<<<<< HEAD
-                <label for="school" class="block text-sm font-medium text-gray-700">Sekolah</label>
-=======
                 <label for="school" class="block text-sm font-medium text-gray-900">Sekolah</label>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                 <input type="text" id="school" class="border rounded p-2 w-full mt-1" readonly value="SMKN 1 Ciomas">
             </div>
 
             <div>
-<<<<<<< HEAD
-                <label for="date" class="block text-sm font-medium text-gray-700">Tanggal</label>
-=======
                 <label for="date" class="block text-sm font-medium text-gray-900">Tanggal</label>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                 <input type="date" id="date" class="border rounded p-2 w-full mt-1" readonly value="2023-10-01">
             </div>
 
             <div>
-<<<<<<< HEAD
-                <label for="checkInTime" class="block text-sm font-medium text-gray-700">Waktu Masuk</label>
-=======
                 <label for="checkInTime" class="block text-sm font-medium text-gray-900">Waktu Masuk</label>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                 <input type="time" id="checkInTime" class="border rounded p-2 w-full mt-1" readonly value="08:00">
             </div>
 
             <div>
-<<<<<<< HEAD
-                <label for="checkOutTime" class="block text-sm font-medium text-gray-700">Waktu Keluar</label>
-=======
                 <label for="checkOutTime" class="block text-sm font-medium text-gray-900">Waktu Keluar</label>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                 <input type="time" id="checkOutTime" class="border rounded p-2 w-full mt-1" readonly value="17:00">
             </div>
 
             <div>
-<<<<<<< HEAD
-                <label for="status" class="block text-sm font-medium text-gray-700">Status Kehadiran</label>
-                <select id="status" class="border rounded p-2 w-full mt-1" required>
-                    <option value="Hadir">Hadir</option>
-                    <option value="Izin">Izin</option>
-                    <option value="Sakit">Sakit</option>
-                    <option value="Alfa">Alfa</option>
-=======
                 <label for="status" class="block text-sm font-medium text-gray-900">Status Kehadiran</label>
                 <select id="status" class="border rounded p-2 w-full mt-1" required>
                     <option value="Hadir">Hadir</option>
                     <option value="Tidak Hadir">Tidak Hadir</option>  
                     <option value="Izin">Izin</option>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                 </select>
             </div>
 
