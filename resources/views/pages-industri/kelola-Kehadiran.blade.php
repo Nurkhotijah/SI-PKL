@@ -31,6 +31,17 @@
                 <table class="min-w-full bg-white border" id="attendanceTable">
                     <thead class="bg-gray-200">
                         <tr>
+<<<<<<< HEAD
+                            <th class="py-2 px-4 border-b text-center">No</th>
+                            <th class="py-2 px-4 border-b text-left">Nama Lengkap</th>
+                            <th class="py-2 px-4 border-b text-left">Sekolah</th>
+                            <th class="py-2 px-4 border-b text-center">Tanggal</th>
+                            <th class="py-2 px-4 border-b text-center">Waktu Masuk</th>
+                            <th class="py-2 px-4 border-b text-center">Waktu Keluar</th>
+                            <th class="py-2 px-4 border-b text-center">Status Kehadiran</th>
+                            <th class="py-2 px-4 border-b text-center">Lampiran</th> <!-- Kolom Lampiran -->
+                            <th class="py-2 px-4 border-b text-center">Aksi</th>
+=======
                             <th class="py-2 px-4 border-b text-center text-gray-900">No</th>
                             <th class="py-2 px-4 border-b text-left text-gray-900">Nama Lengkap</th>
                             <th class="py-2 px-4 border-b text-left text-gray-900">Sekolah</th>
@@ -42,10 +53,21 @@
                             <th class="py-2 px-4 border-b text-center text-gray-900">Foto Izin</th>
                             <th class="py-2 px-4 border-b text-center text-gray-900">Status Kehadiran</th>
                             <th class="py-2 px-4 border-b text-center text-gray-900">Aksi</th>
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+<<<<<<< HEAD
+                            <td class="py-2 px-4 border-b text-center">1</td>
+                            <td class="py-2 px-4 border-b text-left">Fitri Amaliah</td>
+                            <td class="py-2 px-4 border-b text-left">SMKN 1 Ciomas</td>
+                            <td class="py-2 px-4 border-b text-center">2023-10-01</td>
+                            <td class="py-2 px-4 border-b text-center">08:00</td>
+                            <td class="py-2 px-4 border-b text-center">17:00</td>
+                            <td class="py-2 px-4 border-b text-center">Hadir</td>
+                            <td class="py-2 px-4 border-b text-center">-</td> <!-- Tidak ada lampiran -->
+=======
                             <td class="py-2 px-4 border-b text-center text-gray-900">1</td>
                             <td class="py-2 px-4 border-b text-left text-gray-900">Fitri Amaliah</td>
                             <td class="py-2 px-4 border-b text-left text-gray-900">SMKN 1 Ciomas</td>
@@ -62,15 +84,35 @@
                                 <img src="https://storage.googleapis.com/a1aa/image/izin.jpg" alt="Foto Izin" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('https://storage.googleapis.com/a1aa/image/izin.jpg')">
                             </td>
                             <td class="py-2 px-4 border-b text-center text-gray-900">Hadir</td>
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                             <td class="py-2 px-4 border-b text-center">
                                 <div class="flex justify-center space-x-2">
                                     <a href="{{ route('edit-kehadiran', 1) }}" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out">
                                         <i class="fas fa-edit mr-1"></i> Edit
                                     </a>
+<<<<<<< HEAD
+                                    <button class="bg-blue-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-500 transition duration-300 ease-in-out" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
+                                        <i class="fas fa-eye"></i> Lihat
+                                    </button>
+=======
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                                 </div>
                             </td>
                         </tr>
                         <tr>
+<<<<<<< HEAD
+                            <td class="py-2 px-4 border-b text-center">2</td>
+                            <td class="py-2 px-4 border-b text-left">Marsya</td>
+                            <td class="py-2 px-4 border-b text-left">SMK Komputer Indonesia</td>
+                            <td class="py-2 px-4 border-b text-center">2023-10-02</td>
+                            <td class="py-2 px-4 border-b text-center">08:30</td>
+                            <td class="py-2 px-4 border-b text-center">17:30</td>
+                            <td class="py-2 px-4 border-b text-center">Izin</td>
+                            <td class="py-2 px-4 border-b text-center">
+                                <img src="https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg" alt="Lampiran Izin" class="w-16 h-16 object-cover rounded-md cursor-pointer" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
+                            </td>
+                            <td class="py-2 px-4 border-b text-center">
+=======
                             <td class="py-2 px-4 border-b text-center text-gray-900">2</td>
                             <td class="py-2 px-4 border-b text-left text-gray-900">Marsya</td>
                             <td class="py-2 px-4 border-b text-left text-gray-900">SMK Komputer Indonesia</td>
@@ -88,10 +130,17 @@
                             </td>
                             <td class="py-2 px-4 border-b text-center text-gray-900">Izin</td>
                             <td class="py-2 px-4 border-b text-center">
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                                 <div class="flex justify-center space-x-2">
                                     <button class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300 ease-in-out" onclick="editStatus('2')">
                                         <i class="fas fa-edit mr-1"></i> Edit
                                     </button>
+<<<<<<< HEAD
+                                    <button class="bg-blue-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-500 transition duration-300 ease-in-out" onclick="openModal('https://storage.googleapis.com/a1aa/image/your-uploaded-photo.jpg')">
+                                        <i class="fas fa-eye"></i> Lihat
+                                    </button>
+=======
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
                                 </div>
                             </td>
                         </tr>
@@ -99,9 +148,13 @@
                 </table>
             </div>
             
+<<<<<<< HEAD
+            <!-- Modal for showing photo -->
+=======
             
             
             {{-- <!-- Modal for showing photo -->
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
             <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden" id="modal" onclick="closeModal()">
                 <div class="bg-white rounded-lg shadow-lg p-6 w-96" onclick="event.stopPropagation();">
                     <h2 class="text-xl font-bold mb-4 flex justify-between items-center">
@@ -129,7 +182,11 @@
                         <img alt="Check Out" class="w-full h-auto rounded-lg shadow-md transition-transform transform hover:scale-105" height="300" src="https://storage.googleapis.com/a1aa/image/g3oYLVfAcszXFincakeNQgd7iGD8hUjPaeNQJJXHBXvo6tbnA.jpg" width="300"/>
                     </div>
                 </div>
+<<<<<<< HEAD
+            </div>
+=======
             </div> --}}
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
             
            
             <!-- Pagination Section -->

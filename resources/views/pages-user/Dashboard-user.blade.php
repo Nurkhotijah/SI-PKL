@@ -13,7 +13,11 @@
         </h1>
         <p class="text-lg font-semibold mb-1">Selamat Datang di Website Absensi PKL</p>
         <div class="flex space-x-4">
+<<<<<<< HEAD
+            <a class="bg-blue-500 text-white px-4 py-2 rounded-lg" href="{{ route('jurnal-kegiatan') }}">Lihat Jurnal</a>
+=======
             <a class="bg-blue-500 text-white px-4 py-2 rounded-lg" href="{{ route('jurnal-siswa.index') }}">Lihat Jurnal</a>
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
             <button class="bg-green-500 text-white px-4 py-2 rounded-lg" id="ayo-absen">Ayo Absen</button>
             <a class="bg-gray-800 text-white px-4 py-2 rounded-lg" 
                href="{{ asset('path/to/certificate.pdf') }}" 

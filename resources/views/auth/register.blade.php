@@ -36,7 +36,11 @@
         <label for="username" class="block text-sm font-medium text-gray-600 mb-1">Nama Sekolah</label>
         <input type="text" id="name" name="name" required
             class="w-full px-3 py-2 rounded-lg border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-300"
+<<<<<<< HEAD
+            placeholder="Nama Sekolah atau Username">
+=======
             placeholder="Nama Sekolah">
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
     </div>
     <div>
         <label for="email" class="block text-sm font-medium text-gray-600 mb-1">Email</label>

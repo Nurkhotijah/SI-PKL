@@ -14,13 +14,32 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable, HasRoles;
 
+<<<<<<< HEAD
+    // Relasi satu ke banyak (User ke PengajuanSiswa)
+    public function pengajuanSiswa()
+    {
+        return $this->hasMany(PengajuanSiswa::class, 'id_sekolah');
+    }
+
+    // Relasi dengan JurnalKegiatan (Seorang User dapat memiliki banyak JurnalKegiatan)
+    public function jurnalKegiatan()
+    {
+        return $this->hasMany(JurnalKegiatan::class,'id_user');
+=======
     public function profile()
     {
         return $this->hasOne(Profile::class);
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
     }
 
     public function sekolah()
     {
+<<<<<<< HEAD
+        return $this->belongsTo(Sekolah::class,);
+    }
+    
+    
+=======
         return $this->hasOne(Sekolah::class, 'user_id', 'id');
     }
 
@@ -36,6 +55,7 @@ class User extends Authenticatable
         return $this->hasMany(Jurnal::class, 'user_id');
     }
 
+>>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
     /**
      * The attributes that are mass assignable.
      *
