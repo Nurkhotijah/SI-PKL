@@ -44,11 +44,11 @@
                         <tr>
                             <td class="py-2 px-4 border-b text-center">1</td>
                             <td class="py-2 px-4 border-b">pkl qelopak</td>
-                            <td class="py-2 px-4 border-b">2024/2025</td>
-                            <td class="py-2 px-4 border-b text-center">2024-12-01</td>
+                            <td class="py-2 px-4 border-b">2025</td>
+                            <td class="py-2 px-4 border-b text-center">2025-12-01</td>
                             <td class="py-2 px-4 border-b text-center">2025-02-28</td>
                             <td class="py-2 px-4 border-b">PPLG</td>
-                            <td class="py-2 px-4 border-b">Bapak Arif Hidayat</td>
+                            <td class="py-2 px-4 border-b">Arif Hidayat S.Kom</td>
                             <td class="py-2 px-4 border-b text-center">
                                 <!-- Preview CV when clicked -->
                                 <a href="#" class="text-blue-500 hover:underline" onclick="previewCV('cv1.pdf')">Preview CV</a>
@@ -58,26 +58,6 @@
                             </td>
                             <td class="py-2 px-4 border-b text-center">
                                 <a href="{{ route('lihat-siswa') }}" class="text-blue-500 hover:text-blue-700">Lihat</a>                                 
-                                <button onclick="hapusData(this)" class="text-red-500 hover:text-red-700 ml-2">Hapus</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="py-2 px-4 border-b text-center">2</td>
-                            <td class="py-2 px-4 border-b">pkl qelopak</td>
-                            <td class="py-2 px-4 border-b">2023/2024</td>
-                            <td class="py-2 px-4 border-b text-center">2024-01-15</td>
-                            <td class="py-2 px-4 border-b text-center">2024-03-30</td>
-                            <td class="py-2 px-4 border-b">BCF</td>
-                            <td class="py-2 px-4 border-b">Ibu Rina Kurniawati</td>
-                            <td class="py-2 px-4 border-b text-center">
-                                <!-- Preview CV when clicked -->
-                                <a href="#" class="text-blue-500 hover:underline" onclick="previewCV('cv2.pdf')">Preview CV</a>
-                            </td>
-                            <td class="py-2 px-4 border-b text-center">
-                                <span class="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full">Disetujui</span>
-                            </td>
-                            <td class="py-2 px-4 border-b text-center">
-                                <button onclick="lihatData(this)" class="text-blue-500 hover:text-blue-700">Lihat</button>
                                 <button onclick="hapusData(this)" class="text-red-500 hover:text-red-700 ml-2">Hapus</button>
                             </td>
                         </tr>

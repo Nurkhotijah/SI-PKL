@@ -20,16 +20,6 @@
                             <i class="fas fa-plus mr-2"></i> Tambah
                         </a>
                     </div>
-
-                    <div class="flex items-center w-full sm:w-auto sm:ml-auto">
-                        <label class="mr-2" for="school">Pilih Sekolah:</label>
-                        <select class="border rounded p-2 w-full sm:w-auto" id="school" onchange="filterBySchool()">
-                            <option value="">Pilih Sekolah</option>
-                            <option value="smkn_1_ciomas">SMKN 1 Ciomas</option>
-                            <option value="smk_komputer_indonesia">SMK Komputer Indonesia</option>
-                            <option value="smk_adi_sanggoro">SMK Adi Sanggoro</option>
-                        </select>
-                    </div>
                 </div>
             </div>
 

@@ -38,12 +38,7 @@ public function jurnalKegiatan() {
 public function editjurnal() {
     return view('pages-user.Edit-jurnal');
 }
-public function penilaianpkl() {
-    return view('pages-user.Penilaian-pkl');
-}
-public function rekapkehadiran() {
-    return view('pages-user.Rekap-kehadiran');
-}
+
 public function profile() {
     return view('pages-user.Profile');
 }
@@ -59,10 +54,14 @@ public function tambahjurnal()
     return view('pages-user.Tambah-jurnal'); 
 }
 
-// Metode untuk menghapus pengajuan
 public function hapusizin()
 {
     return view('pages-user.Hapus-izin'); 
+}
+
+public function laporanpkl()
+{
+    return view('pages-user.laporan-pkl'); 
 }
 
    

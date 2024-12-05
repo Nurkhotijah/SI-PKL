@@ -14,9 +14,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_sekolah')->nullable();
             $table->text('alamat')->nullable();
             $table->string('foto_profil')->nullable();
-            $table->date('tanggal_mulai')->nullable();
-            $table->date('tanggal_selesai')->nullable();
-            $table->string('cv_file')->nullable();
+            // $table->date('tanggal_mulai')->nullable();
+            // $table->date('tanggal_selesai')->nullable();
+            // $table->string('cv_file')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

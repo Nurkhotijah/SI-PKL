@@ -26,9 +26,9 @@ class Profile extends Model
         'id_sekolah',
         'alamat',
         'foto_profil',
-        'tanggal_mulai',
-        'tanggal_selesai',
-        'cv_file',
+        // 'tanggal_mulai',
+        // 'tanggal_selesai',
+        // 'cv_file',
     ];
 
     /**

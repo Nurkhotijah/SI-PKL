@@ -50,26 +50,18 @@
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/attendance-mark.png" alt="attendance-mark" />
             <a href="{{ route('kelola-kehadiran') }}" class="text-sm">Kelola Kehadiran</a>
           </li>
-          {{-- <li class="p-3 {{ request()->is('kelola-pengajuan') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
-            <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/submit-document.png" alt="submit-document" />
-            <a href="{{ route('kelola-pengajuan') }}" class="text-sm">Pengajuan Izin Siswa</a>
-          </li> --}}
           <li class="p-3 {{ request()->is('jurnal-industri') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/book--v1.png" alt="book--v1" />
-            <a href="{{ route('jurnal-industri.index') }}" class="text-sm">Jurnal Siswa</a>
+            <a href="{{ route('jurnal-industri.index') }}" class="text-sm">Jurnal Siswa PKL</a>
           </li>
           <li class="p-3 {{ request()->is('kehadiran-siswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />
-            <a href="{{ route('kehadiran-siswa') }}" class="text-sm">Rekap Penilaian siswa</a>
+            <a href="{{ route('kehadiran-siswa') }}" class="text-sm">Penilaian siswa PKL</a>
           </li>
           <li class="p-3 {{ request()->is('sekolah') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/school.png" alt="school" />
-            <a href="{{ route('sekolah.index') }}" class="text-sm">Data Sekolah & Siswa</a>
+            <a href="{{ route('sekolah.index') }}" class="text-sm">Data Sekolah & Siswa PKL</a>
           </li>
-          {{-- <li class="p-3 {{ request()->is('kelola-pengajuansiswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
-            <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />
-            <a href="{{ route('kelola-pengajuansiswa') }}" class="text-sm">Data Pengajuan Siswa PKL</a>
-          </li> --}}
         </ul>        
       </div>
     </div>

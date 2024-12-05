@@ -120,6 +120,8 @@ Route::prefix('sekolah')->name('sekolah.')->group(function () {
     Route::get('/detail-siswa/{id}', [SekolahController::class, 'detailSiswa'])->name('detail-siswa');
     Route::post('/update-status-siswa', [SekolahController::class, 'updateStatusSiswa'])->name('update-status-siswa');
 });
+Route::get('lihat-detail', [IndustriController::class, 'lihatdetail'])->name('lihat-detail');
+
 
 Route::prefix('jurnal-industri')->name('jurnal-industri.')->group(function () {
     Route::get('', [JurnalIndustriController::class, 'index'])->name('index');
@@ -192,8 +194,7 @@ Route::put('/update-profile', [ProfileController::class, 'update'])->name('profi
 
 // USER
 
-// Route::post('/absen/masuk', [AbsenController::class, 'absenMasuk']);
-// Route::post('/absen/keluar', [AbsenController::class, 'absenKeluar']);
+
 Route::post('/absen', [AbsensiController::class, 'store'])->name('absen.store');
 
 Route::get('/dashboard-user', [UserController::class, 'dashboard'])->name('user.dashboard');
@@ -204,19 +205,14 @@ Route::post('/upload-foto-izin', [KehadiranController::class, 'uploadFotoIzin'])
 Route::get('/unduh-rekap', [KehadiranController::class, 'downloadRekap'])->name('downloadRekap');
 
 
-Route::get('/pengajuan-izin', [UserController::class, 'pengajuanizin'])->name('pengajuan-izin');
 
-Route::get('/penilaian-pkl', [UserController::class, 'penilaianpkl'])->name('penilaian-pkl');
+Route::get('/laporan-pkl', [UserController::class, 'laporanpkl'])->name('laporan-pkl');
 
-Route::get('/rekap-kehadiran', [UserController::class, 'rekapkehadiran'])->name('rekap-kehadiran');
 
 Route::get('/profile', [UserController::class, 'profile'])->name('profile');
 
 Route::get('/update-profile', [ProfileController::class, 'edit'])->name('profile.update');
 
-Route::get('/edit-izin', [UserController::class, 'editizin'])->name('edit-izin');
-
-Route::get('/hapus-izin', [UserController::class, 'hapusizin'])->name('hapus-izin');
 
 // Route untuk mengganti kata sandi
 Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');

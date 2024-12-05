@@ -84,6 +84,11 @@ class IndustriController extends Controller
         ]);
     }
 
+    public function lihatdetail()
+    {
+        return view('pages-industri.sekolah.lihat-detail');
+    }
+
     public function kelolaPengajuansiswa()
     {
         // Logika untuk mengelola kehadiran

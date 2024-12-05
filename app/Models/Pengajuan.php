@@ -9,19 +9,33 @@ class Pengajuan extends Model
 {
     use HasFactory;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'pengajuan';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'id_sekolah',
-        'nama',
+        'judul_pkl',
+        'tahun_ajaran',
+        'tanggal_mulai_pkl',
+        'tanggal_selesai_pkl',
         'jurusan',
-        'tanggal_mulai',
-        'tanggal_selesai',
-        'cv_file',
+        'pembimbing',
+        'lampiran',
         'status_persetujuan',
+        'id_sekolah',
     ];
 
-    // Relasi dengan model Sekolah
+    /**
+     * Get the related school.
+     */
     public function sekolah()
     {
         return $this->belongsTo(Sekolah::class, 'id_sekolah');

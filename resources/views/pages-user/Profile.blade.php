@@ -14,23 +14,23 @@
                     <input type="file" id="fileInput" class="hidden" onchange="changePhoto()">
                     <div class="mt-4">
                         <h2 class="text-2xl font-semibold text-gray-800">{{ Auth::user()->name }}</h2>
-                        <p class="text-gray-600">Siswa</p>
+                        <p class="text-gray-600">{{ Auth::user()->role }}</p>
                     </div>
                 </div>                              
                 
                 <!-- Data Industri di Sebelah Kanan -->
                 <div class="w-full md:w-2/3 text-center md:text-left md:pl-8">
                     <div class="max-w-2xl mx-auto border border-gray-300 rounded-lg mb-6">
-                        <h3 class="bg-blue-500 text-white p-3 font-semibold text-center rounded-t-lg">Informasi Sekolah</h3>
+                        <h3 class="bg-blue-500 text-white p-3 font-semibold text-center rounded-t-lg">Informasi</h3>
                         <div class="p-3 text-left space-y-2">
                             <p class="font-sans text-base"><span class="font-medium">Nama Sekolah:</span> SMK Negeri 1 Bogor</p>
                             <p class="font-sans text-base"><span class="font-medium">Jurusan:</span> PPLG</p>
+                            <p class="font-sans text-base"><span class="font-medium">Nama Pembimbing:</span> Andi Saputra S.Kom</p>
+                            <p class="font-sans text-base"><span class="font-medium">Tanggal Mulai PKL:</span> 5 Januari 2024</p>
+                            <p class="font-sans text-base"><span class="font-medium">Tanggal Selesai PKL:</span> 5 Maret 2024</p>
                         </div>
-                    </div>                    
-                    <!-- Tombol Edit di bawah Info Sekolah -->
-                    
+                    </div>
                 </div>
-                
             </div>
         </div>
     </main>

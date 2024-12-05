@@ -24,10 +24,7 @@
     <form action="{{ route('jurnal-siswa.upload', ['id' => $siswa->id]) }}" method="POST" enctype="multipart/form-siswa" class="inline-block">
         @csrf
         <input type="file" name="laporan_file" accept=".pdf" id="fileInput-{{ $siswa->id }}" class="hidden" onchange="this.form.submit()">
-        <button type="button" onclick="document.getElementById('fileInput-{{ $siswa->id }}').click()" 
-                class="bg-blue-500 text-white text-xs px-4 py-2 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
-            <i class="fas fa-upload mr-2"></i> Upload Laporan PKL
-        </button>
+       
     </form>
 @endforeach
 
@@ -44,7 +41,6 @@
                         <th class="py-2 px-4 border-b text-center">Waktu Mulai</th>
                         <th class="py-2 px-4 border-b text-center">Waktu Selesai</th>
                         <th class="py-2 px-4 border-b text-center">Foto</th>
-                        <th class="py-2 px-4 border-b text-center">Laporan PKL</th>
                         <th class="py-2 px-4 border-b text-center">Aksi</th>
                     </tr>
                 </thead>
@@ -59,16 +55,7 @@
                             <td class="py-2 px-4 border-b text-center">
                                 <img src="{{ asset('storage/'.$siswa->foto_kegiatan) }}" alt="Foto Kegiatan" class="w-14 h-14 object-cover rounded-full cursor-pointer" onclick="showActivityImage('{{ asset('storage/'.$siswa->foto_kegiatan) }}')">
                             </td>
-                            <td class="py-2 px-4 border-b text-center">
-                                @if($siswa->laporan_pkl)
-                                    <a href="{{ asset('storage/'.$siswa->laporan_pkl) }}" target="_blank" 
-                                       class="bg-green-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-green-600 transition duration-300 ease-in-out">
-                                        <i class="fas fa-file-pdf mr-1"></i> Lihat
-                                    </a>
-                                @else
-                                    <span class="text-gray-500 text-xs italic">Belum ada laporan</span>
-                                @endif
-                            </td>                            
+                                                     
                             <td class="py-2 px-4 border-b text-center">
                                 <a href="{{ route('jurnal-siswa.edit', ['id' => $siswa->id]) }}" class="bg-blue-500 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-600 transition duration-300 ease-in-out">
                                     <i class="fas fa-edit mr-1"></i> Edit
