@@ -17,7 +17,7 @@ class User extends Authenticatable
      */
     public function pengajuanSiswa()
     {
-        return $this->hasMany(PengajuanSiswa::class, 'id_sekolah');
+        return $this->hasMany(Pengajuan::class, 'id_sekolah');
     }
 
     /**

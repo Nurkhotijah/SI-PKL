@@ -78,34 +78,6 @@ class IndustriController extends Controller
         ]);
     }
 
-    public function jurnalSiswapkl()
-    {
-        $users = Auth::user();
-
-        if (!$users || !$users->id_user) {
-            return redirect()->route('login')->with('error', 'Pengguna tidak memiliki data sekolah.');
-        }
-
-        $listjurnal = JurnalKegiatan::where('id_sekolah', $users->id_sekolah)
-            ->where('id_user', $users->id)
-            ->get();
-
-        return view('pages-industri.jurnal-siswapkl', compact('listjurnal'));
-    }
-
-    public function detailJurnal($sekolahId, $userId)
-    {
-        if (!$sekolahId || !$userId) {
-            return redirect()->route('dataSekolah')->with('error', 'Data tidak ditemukan.');
-        }
-
-        $listdetail = JurnalKegiatan::where('id_sekolah', $sekolahId)
-            ->where('id_user', $userId)
-            ->get();
-
-        return view('pages-industri.detail-jurnal', compact('listdetail'));
-    }
-
     public function kelolaPengajuansiswa()
     {
         return view('pages-industri.kelola-pengajuansiswa');

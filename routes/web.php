@@ -111,10 +111,10 @@ Route::get('/dashboard-admin', [AdminController::class, 'dashboard'])->name('adm
 // Rute untuk mengelola kehadiran
 Route::get('/kehadiran-siswapkl', [AdminController::class, 'kehadiranSiswapkl'])->name('kehadiran-siswapkl');
 
-    Route::get('pengajuan-siswa', [SiswaController::class, 'index'])->name('pengajuan-siswa');
-    Route::get('tambah-siswa', [SiswaController::class, 'create'])->name('tambah-siswa');
-    Route::post('pengajuan-siswa', [SiswaController::class, 'store'])->name('pengajuan-siswa.store');
-    Route::delete('hapus-siswa/{id}', [SiswaController::class, 'destroy'])->name('hapus-siswa');
+Route::get('pengajuan-siswa', [SiswaController::class, 'index'])->name('pengajuan-siswa');
+Route::get('tambah-siswa', [SiswaController::class, 'create'])->name('tambah-siswa');
+Route::post('pengajuan-siswa', [SiswaController::class, 'store'])->name('pengajuan-siswa.store');
+Route::delete('hapus-siswa/{id}', [SiswaController::class, 'destroy'])->name('hapus-siswa');
 /* -------------------------------------------------------------------------- */
 /*                                  INDUSTRI                                  */
 /* -------------------------------------------------------------------------- */
@@ -147,8 +147,8 @@ Route::prefix('pengajuan')->name('pengajuan.')->group(function () {
     Route::post('/store', [PengajuanController::class, 'store'])->name('store');
     Route::delete('/delete/{id}', [PengajuanController::class, 'destroy'])->name('delete');
 });
-    Route::get('pengajuan-index', [AdminController::class, 'pengajuanindex'])->name('pengajuan-index');
-    Route::get('lihat-siswa', [AdminController::class, 'lihatsiswa'])->name('lihat-siswa');
+Route::get('pengajuan-index', [AdminController::class, 'pengajuanindex'])->name('pengajuan-index');
+Route::get('lihat-siswa', [AdminController::class, 'lihatsiswa'])->name('lihat-siswa');
 
 
 Route::prefix('jurnal-admin')->name('jurnal-admin.')->group(function () {
@@ -206,15 +206,6 @@ Route::get('/dashboard-user', [UserController::class, 'dashboard'])->name('user.
 Route::get('/riwayat-absensi', [KehadiranController::class, 'index'])->name('riwayat-absensi');
 Route::post('/upload-foto-izin', [KehadiranController::class, 'uploadFotoIzin'])->name('uploadFotoIzin');
 Route::get('/unduh-rekap', [KehadiranController::class, 'downloadRekap'])->name('downloadRekap');
-
-Route::get('/jurnal-kegiatan', [JurnalKegiatanController::class, 'index'])->name('jurnal-kegiatan');
-Route::get('/jurnal-kegiatan/create', [JurnalKegiatanController::class, 'create'])->name('tambah-jurnal');
-Route::post('/jurnal-kegiatan/store', [JurnalKegiatanController::class, 'store'])->name('jurnal-kegiatan.store');
-Route::get('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'show'])->name('jurnal-kegiatan.show');
-Route::get('/jurnal-kegiatan/{id}/edit', [JurnalKegiatanController::class, 'edit'])->name('jurnal-kegiatan.edit');
-Route::put('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'update'])->name('jurnal-kegiatan.update');
-Route::delete('/jurnal-kegiatan/{id}', [JurnalKegiatanController::class, 'destroy'])->name('jurnal-kegiatan.destroy');
-Route::post('/jurnal/upload/{id}', [JurnalKegiatanController::class, 'uploadLaporan'])->name('jurnal.upload');
 
 Route::get('/laporan-pkl', [UserController::class, 'laporanpkl'])->name('laporan-pkl');
 
