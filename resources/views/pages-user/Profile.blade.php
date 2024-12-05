@@ -10,7 +10,7 @@
             <div class="flex flex-col md:flex-row items-center md:items-start py-8 px-8">
                 <!-- Foto Profil di Pojok Kiri -->
                 <div class="flex-shrink-0 mb-4 md:mb-0 md:w-1/3 text-center relative">
-                    <img id="profilePic" class="w-auto h-20 mx-auto" src="{{ asset('assets/Fitri.jpg') }}" alt="Profile Picture">
+                    <img id="profilePic" class="w-auto h-20 mx-auto" src="{{ asset('assets/default-profile.png') }}" alt="Profile Picture">
                     <input type="file" id="fileInput" class="hidden" onchange="changePhoto()">
                     <div class="mt-4">
                         <h2 class="text-2xl font-semibold text-gray-800">{{ Auth::user()->name }}</h2>

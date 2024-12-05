@@ -23,11 +23,8 @@ class SiswaController extends Controller
     // Menyimpan data siswa baru
     public function store(Request $request)
     {
-<<<<<<< HEAD
         dd($request->all());
-        
-=======
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
+
         $request->validate([
             'nama' => 'required|string|max:255',
             'jurusan' => 'required|string|max:255',
@@ -35,20 +32,12 @@ class SiswaController extends Controller
             'tanggal_selesai' => 'required|date',
             'cv' => 'nullable|file|mimes:pdf,doc,docx',
         ]);
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
         $cvPath = null;
         if ($request->hasFile('cv')) {
             $cvPath = $request->file('cv')->store('cv');
         }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
         Siswa::create([
             'nama' => $request->nama,
             'jurusan' => $request->jurusan,
@@ -57,18 +46,10 @@ class SiswaController extends Controller
             'cv' => $cvPath,
             'status' => 'Pending',
         ]);
-<<<<<<< HEAD
-    
-        // Mengarahkan ke halaman yang sesuai
-        return redirect()->route('pages-admin.pengajuan-siswa')->with('success', 'Siswa berhasil ditambahkan.');    }
-    
-=======
 
         // Mengarahkan ke halaman yang sesuai
         return redirect()->route('pages-admin.pengajuan-siswa')->with('success', 'Siswa berhasil ditambahkan.');
     }
-
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
 
     // Menghapus data siswa
     public function destroy($id)

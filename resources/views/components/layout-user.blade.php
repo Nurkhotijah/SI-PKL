@@ -34,19 +34,13 @@
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/attendance-mark.png" alt="attendance-mark"/>
             <a href="{{ route('riwayat-absensi') }}" class="text-sm">Riwayat Kehadiran</a>
         </li>
-<<<<<<< HEAD
-=======
         <!-- Jurnal Kegiatan Harian -->
-<<<<<<< HEAD
         <li class="p-3 {{ request()->is('jurnal-kegiatan') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/book--v1.png" alt="book--v1"/>
             <a href="{{ route('jurnal-kegiatan') }}" class="text-sm">Jurnal Kegiatan Harian</a>
-=======
->>>>>>> df323360b582fd69d2e2a877035dac20917ed5c4
         <li class="p-3 {{ request()->is('jurnal-siswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/book--v1.png" alt="book--v1"/>
             <a href="{{ route('jurnal-siswa.index') }}" class="text-sm">Jurnal Kegiatan Harian</a>
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
         </li>
         <li class="p-3 {{ request()->is('laporan-pkl') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
             <img width="30" height="30" src="https://img.icons8.com/ios/50/FFFFFF/book--v1.png" alt="book--v1"/>
@@ -71,7 +65,7 @@
       <!-- Profil dan Dropdown -->
       <div class="relative">
         <button class="focus:outline-none flex items-center space-x-2" id="profileButton">
-            <img src="{{ asset('assets/fitri.jpg') }}" alt="profile" class="w-auto h-8 rounded-full"/>
+            <img src="{{ asset('assets/default-profile.png') }}" alt="profile" class="w-auto h-8 rounded-full"/>
             <i class="fas fa-chevron-down text-gray-800"></i>
         </button>        
        <!-- Dropdown profile -->

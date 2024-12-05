@@ -35,10 +35,7 @@ class AdminController extends Controller
         return view('pages-admin.tambah-siswa'); 
         
     }
-<<<<<<< HEAD
-=======
     
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
     public function dataSiswa() 
     {
         // Logika untuk mengelola pengajuan
@@ -81,8 +78,6 @@ class AdminController extends Controller
         return view('pages-admin.profile-update'); 
     }
 
-<<<<<<< HEAD
-=======
     public function pengajuanindex() 
     {
         // Logika untuk mengelola pengajuan
@@ -97,28 +92,4 @@ class AdminController extends Controller
         
     }
 
-
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
-    // public function showRiwayat()
-    // {
-    //     // // Debug ID pengguna yang sedang login
-    //     // dd(auth()->id()); // Pastikan ini mengembalikan ID pengguna yang sedang login
-        
-    //     // Mengambil riwayat pengajuan berdasarkan ID user yang sedang login
-    //     $riwayatPengajuan = Pengajuan::where('user_id', auth()->id())->get();
-    
-    //     // Mengirimkan data riwayat pengajuan ke view
-    //     return view('pages-admin.pengajuan', compact('riwayatPengajuan'));
-    // }
-    
-    // public function editPengajuan()
-    // {
-    //     // Logika untuk menampilkan jurnal siswa
-    //     return view('pages-admin.edit-pengajuan'); 
-    // }
-    // public function editKehadiran()
-    // {
-    //     // Logika untuk menampilkan jurnal siswa
-    //     return view('pages-admin.edit-kehadiran'); 
-    // }
 }

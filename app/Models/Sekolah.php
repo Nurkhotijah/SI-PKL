@@ -9,15 +9,6 @@ class Sekolah extends Model
 {
     use HasFactory;
 
-<<<<<<< HEAD
-    // Kolom yang dapat diisi
-    protected $fillable = [
-        'nama_sekolah',
-        'email',
-        'alamat_sekolah',
-        'password',
-    ];
-=======
     /**
      * The table associated with the model.
      *
@@ -45,5 +36,4 @@ class Sekolah extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
 }

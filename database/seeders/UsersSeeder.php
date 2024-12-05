@@ -19,28 +19,20 @@ class UsersSeeder extends Seeder
         ]);
         $Industri->assignRole('industri');
 
-<<<<<<< HEAD
-=======
         $Industri->profile()->create([
             'alamat' => null,
         ]);
 
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
         // Membuat akun sekolah (registrasi sekolah)
         $sekolah = User::create([
             'name' => 'SMKN 1 Ciomas',
             'email' => 'smkn1ciomas@gmail.com',
-<<<<<<< HEAD
             'alamat' => 'Jl. Raya Laladon, Laladon, Kec. Ciomas, Kabupaten Bogor, Jawa Barat 16610',
-=======
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
             'password' => Hash::make('skanic'), // Password sekolah
             'role' => 'sekolah', // Role admin sekolah
         ]);
         $sekolah->assignRole('sekolah');
 
-<<<<<<< HEAD
-=======
         $sekolah->profile()->create([
             'alamat' => 'Jl. Raya Laladon, Laladon, Kec. Ciomas, Kabupaten Bogor, Jawa Barat 16610',
         ]);
@@ -50,7 +42,6 @@ class UsersSeeder extends Seeder
             'alamat' => 'Jl. Raya Laladon, Laladon, Kec. Ciomas, Kabupaten Bogor, Jawa Barat 16610',
         ]);
 
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
         // Membuat akun siswa
         $siswa = User::create([
             'name' => 'Fitri Amaliah',
@@ -60,12 +51,6 @@ class UsersSeeder extends Seeder
         ]);
         $siswa->assignRole('siswa');
 
-<<<<<<< HEAD
-        // Siswa hanya perlu login menggunakan email dan password yang sudah dibuatkan oleh admin industri
-        // Akun siswa akan dibuat oleh admin industri
-    }
-}
-=======
         $siswa->profile()->create([
             'alamat' => null,
         ]);
@@ -74,4 +59,3 @@ class UsersSeeder extends Seeder
         // Akun siswa akan dibuat oleh admin industri
     }
 }
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
