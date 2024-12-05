@@ -12,26 +12,7 @@ class CreatePengajuanTable extends Migration
      * @return void
      */
     public function up()
-<<<<<<< HEAD
 {
-    Schema::create('pengajuan', function (Blueprint $table) {
-        $table->id();
-        $table->foreignId('siswa_id')->constrained('siswa');
-        $table->date('tanggal_mulai');
-        $table->date('tanggal_selesai');
-        $table->string('cv_file');
-        $table->enum('status_persetujuan', ['pending', 'diterima', 'ditolak'])->default('pending');
-        $table->timestamps();
-    });
-}
-
-public function down()
-{
-    Schema::dropIfExists('pengajuan');
-}
-
-=======
-    {
         Schema::create('pengajuan', function (Blueprint $table) {
             $table->id(); // Primary key
             $table->string('judul_pkl'); // Judul PKL
@@ -62,9 +43,5 @@ public function down()
     {
         Schema::dropIfExists('pengajuan');
     }
-<<<<<<< HEAD
 }
-=======
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
-};
->>>>>>> df323360b582fd69d2e2a877035dac20917ed5c4
+

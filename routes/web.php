@@ -188,8 +188,6 @@ Route::get('/nilai-siswa', [AdminController::class, 'nilaiSiswa'])->name('nilai-
 
 Route::get('/rekap-kehadiransiswa', [AdminController::class, 'rekapKehadiransiswa'])->name('rekap-kehadiransiswa');
 
-// Rute untuk jurnal siswa
-Route::get('/jurnal-siswa', [AdminController::class, 'jurnalSiswa'])->name('jurnal-siswa');
 Route::get('/jurnal-detail', [AdminController::class, 'jurnalDetail'])->name('jurnal-detail');
 
 Route::get('/profile-admin', [ProfileController::class, 'showprofilesekolah'])->name('profile-admin');

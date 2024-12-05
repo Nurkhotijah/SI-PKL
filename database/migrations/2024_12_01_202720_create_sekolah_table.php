@@ -10,16 +10,6 @@ return new class extends Migration
     {
         Schema::create('sekolah', function (Blueprint $table) {
             $table->id();
-<<<<<<< HEAD
-            $table->string('nama');
-            $table->text('alamat');
-            $table->string('email')->unique();
-            $table->string('foto_profil')->nullable();
-            $table->timestamps();
-        });
-    }
-    
-=======
             $table->unsignedBigInteger('user_id');
             $table->string('nama');
             $table->text('alamat');
@@ -29,13 +19,9 @@ return new class extends Migration
         });
     }
 
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
     public function down()
     {
         Schema::dropIfExists('sekolah');
     }
-<<<<<<< HEAD
     
-=======
->>>>>>> 402795bc6af553ab04d2b300b5defc5eaeefa3d4
 };

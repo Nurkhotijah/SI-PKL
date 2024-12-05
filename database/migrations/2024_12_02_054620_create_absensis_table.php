@@ -8,7 +8,7 @@ class CreateAbsensisTable extends Migration
 {
     public function up()
     {
-        Schema::create('absensis', function (Blueprint $table) {
+        Schema::create('absensi', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('photo')->nullable();
@@ -23,6 +23,6 @@ class CreateAbsensisTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('absensis');
+        Schema::dropIfExists('absensi');
     }
 }
