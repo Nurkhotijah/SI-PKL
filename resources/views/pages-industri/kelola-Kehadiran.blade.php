@@ -8,7 +8,7 @@
         <div class="max-w-7xl mx-auto bg-white p-4 sm:p-6 rounded-lg shadow-md">
             <!-- Header Section -->
             <div class="mb-4">
-                <h1 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Kelola Kehadiran</h1>
+                <h1 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-4">Kehadiran Siswa PKL</h1>
                 <div class="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0 sm:space-x-4">
                     <!-- Search Input -->
                     <div class="relative w-full sm:w-auto">
@@ -65,9 +65,7 @@
                                     <a href="{{ route('edit-kehadiran', 1) }}" class="bg-yellow-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-yellow-500 transition duration-300">
                                         <i class="fas fa-edit mr-1"></i> Edit
                                     </a>
-                                    <button class="bg-blue-400 text-white text-xs px-3 py-1 rounded shadow hover:bg-blue-500 transition duration-300" onclick="openModal('https://storage.googleapis.com/a1aa/image/masuk.jpg')">
-                                        <i class="fas fa-eye"></i> Lihat
-                                    </button>
+                                 
                                 </div>
                             </td>
                         </tr>

@@ -32,7 +32,7 @@ class JurnalSiswaController extends Controller
             'tanggal' => 'required|date',
             'waktu_mulai' => 'required',
             'waktu_selesai' => 'required',
-            'laporan_file' => 'nullable|file|mimes:pdf|max:5000',
+            'laporan_pkl' => 'nullable|file|mimes:pdf|max:5000',
             'foto_kegiatan' => 'nullable|image|mimes:jpeg,png,jpg|max:5000',
         ]);
 
@@ -40,7 +40,7 @@ class JurnalSiswaController extends Controller
         $users = Auth::user();
 
         // Menyimpan file laporan PKL jika ada
-        $laporanPath = $request->file('laporan_file') ? $request->file('laporan_file')->store('laporan', 'public') : null;
+        $laporanPath = $request->file('laporan_pkl') ? $request->file('laporan_pkl')->store('laporan', 'public') : null;
         // Menyimpan file foto kegiatan jika ada
         $fotoPath = $request->file('foto_kegiatan') ? $request->file('foto_kegiatan')->store('kegiatan', 'public') : null;
 
@@ -50,7 +50,7 @@ class JurnalSiswaController extends Controller
             'tanggal' => $request->tanggal,
             'waktu_mulai' => $request->waktu_mulai,
             'waktu_selesai' => $request->waktu_selesai,
-            'laporan_file' => $laporanPath,
+            'laporan_pkl' => $laporanPath,
             'foto_kegiatan' => $fotoPath,
             'user_id' => $users->id,  // ID pengguna yang login (siswa)
         ]);
@@ -84,11 +84,11 @@ class JurnalSiswaController extends Controller
         $jurnal = Jurnal::findOrFail($id);
 
         // Update file jika ada
-        if ($request->hasFile('laporan_file')) {
-            if ($jurnal->laporan_file) {
-                Storage::disk('public')->delete($jurnal->laporan_file);
+        if ($request->hasFile('laporan_pkl')) {
+            if ($jurnal->laporan_pkl) {
+                Storage::disk('public')->delete($jurnal->laporan_pkl);
             }
-            $jurnal->laporan_file = $request->file('laporan_file')->store('laporan', 'public');
+            $jurnal->laporan_pkl = $request->file('laporan_pkl')->store('laporan', 'public');
         }
 
         if ($request->hasFile('foto_kegiatan')) {
@@ -113,8 +113,8 @@ class JurnalSiswaController extends Controller
         $jurnal = Jurnal::findOrFail($id);
 
         // Hapus file laporan jika ada
-        if ($jurnal->laporan_file) {
-            Storage::disk('public')->delete($jurnal->laporan_file);
+        if ($jurnal->laporan_pkl) {
+            Storage::disk('public')->delete($jurnal->laporan_pkl);
         }
 
         // Hapus file foto jika ada
@@ -130,21 +130,21 @@ class JurnalSiswaController extends Controller
     public function uploadLaporan(Request $request, $id)
     {
         $request->validate([
-            'laporan_file' => 'required|file|mimes:pdf|max:5000',
+            'laporan_pkl' => 'required|file|mimes:pdf|max:5000',
         ]);
 
         $jurnal = Jurnal::findOrFail($id);
 
         // Hapus file lama jika ada
-        if ($jurnal->laporan_file) {
-            Storage::disk('public')->delete($jurnal->laporan_file);
+        if ($jurnal->laporan_pkl) {
+            Storage::disk('public')->delete($jurnal->laporan_pkl);
         }
 
         // Simpan file baru
-        $laporanPath = $request->file('laporan_file')->store('laporan', 'public');
+        $laporanPath = $request->file('laporan_pkl')->store('laporan', 'public');
 
         $jurnal->update([
-            'laporan_file' => $laporanPath,
+            'laporan_pkl' => $laporanPath,
         ]);
 
         return redirect()->back()->with('success', 'Laporan berhasil diunggah!');

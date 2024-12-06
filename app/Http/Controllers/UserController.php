@@ -31,9 +31,9 @@ public function uploadFotoizin() {
      public function pengajuanizin() {
     return view('pages-user.Pengajuan-izin');
 }
-public function jurnalKegiatan() {
-    return view('pages-user.Jurnal-kegiatan');
-}
+// public function jurnalKegiatan() {
+//     return view('pages-user.Jurnal-kegiatan');
+// }
 
 public function editjurnal() {
     return view('pages-user.Edit-jurnal');

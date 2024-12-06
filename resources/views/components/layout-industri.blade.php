@@ -27,46 +27,56 @@
   <div class="flex h-screen">
     <!-- Sidebar -->
     <div id="sidebar" class="fixed inset-0 w-64 md:w-1/6 bg-gray-800 text-white flex flex-col shadow-lg z-30 transition-transform transform md:relative md:block md:translate-x-0 -translate-x-full">
-<!-- Tombol untuk menutup sidebar (X) -->
-<button id="closeSidebarBtn" class="absolute top-3 right-3 text-white text-lg focus:outline-none md:hidden">
-  <i class="fas fa-times"></i>
-</button>
-
-<div class="flex items-center justify-center p-4 bg-gray-800 text-lg font-bold text-white border-b border-gray-700">
-  <div class="relative flex items-center justify-center  rounded-full ">
-    <div class="flex items-center justify-center  bg-white rounded-full border-2 border-gray-200 shadow-md">
-      <img src="{{ asset('assets/si-pkl.png') }}" alt="profile" class="rounded-full w-10 h-10">
-    </div>
-  </div>
-  <span class="ml-4 text-xl tracking-wide">SI-PKL</span>
-</div>
+      <!-- Tombol untuk menutup sidebar (X) -->
+      <button id="closeSidebarBtn" class="absolute top-3 right-3 text-white text-lg focus:outline-none md:hidden">
+        <i class="fas fa-times"></i>
+      </button>
+    
+      <div class="flex items-center justify-center p-4 bg-gray-800 text-lg font-bold text-white border-b border-gray-700">
+        <div class="relative flex items-center justify-center rounded-full">
+          <div class="flex items-center justify-center bg-white rounded-full border-2 border-gray-200 shadow-md">
+            <img src="{{ asset('assets/si-pkl.png') }}" alt="profile" class="rounded-full w-10 h-10">
+          </div>
+        </div>
+        <span class="ml-4 text-xl tracking-wide">SI-PKL</span>
+      </div>
+      
       <div class="mt-4 flex-grow">
         <ul>
-          <li class="p-3 {{ request()->is('pages-industri/dashboard-industri') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
-            <img width="25" height="25" src="https://img.icons8.com/material-outlined/25/FFFFFF/home--v2.png" alt="home--v2" />
-            <a href="{{ route('industri.dashboard') }}" class="text-sm">Dashboard</a>
+          <li class="{{ request()->is('pages-industri/dashboard-industri') ? 'bg-green-600' : 'hover:bg-gray-700' }}">
+            <a href="{{ route('industri.dashboard') }}" class="flex items-center space-x-2 p-3 text-sm block">
+              <img width="25" height="25" src="https://img.icons8.com/material-outlined/25/FFFFFF/home--v2.png" alt="home--v2" />
+              <span>Dashboard</span>
+            </a>
           </li>
-          <li class="p-3 {{ request()->is('kelola-kehadiran') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
-            <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/attendance-mark.png" alt="attendance-mark" />
-            <a href="{{ route('kelola-kehadiran') }}" class="text-sm">Kelola Kehadiran</a>
+          <li class="{{ request()->is('kelola-kehadiran') ? 'bg-green-600' : 'hover:bg-gray-700' }}">
+            <a href="{{ route('kelola-kehadiran') }}" class="flex items-center space-x-2 p-3 text-sm block">
+              <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/attendance-mark.png" alt="attendance-mark" />
+              <span>Kehadiran Siswa</span>
+            </a>
           </li>
-          <li class="p-3 {{ request()->is('jurnal-industri') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
-            <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/book--v1.png" alt="book--v1" />
-            <a href="{{ route('jurnal-industri.index') }}" class="text-sm">Jurnal Siswa PKL</a>
+          <li class="{{ request()->is('jurnal-industri') ? 'bg-green-600' : 'hover:bg-gray-700' }}">
+            <a href="{{ route('jurnal-industri.index') }}" class="flex items-center space-x-2 p-3 text-sm block">
+              <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/book--v1.png" alt="book--v1" />
+              <span>Jurnal Siswa PKL</span>
+            </a>
           </li>
-          <li class="p-3 {{ request()->is('kehadiran-siswa') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
-            <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />
-            <a href="{{ route('kehadiran-siswa') }}" class="text-sm">Penilaian siswa PKL</a>
+          <li class="{{ request()->is('kehadiran-siswa') ? 'bg-green-600' : 'hover:bg-gray-700' }}">
+            <a href="{{ route('kehadiran-siswa') }}" class="flex items-center space-x-2 p-3 text-sm block">
+              <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/test-results.png" alt="test-results" />
+              <span>Penilaian Siswa PKL</span>
+            </a>
           </li>
-          <li class="p-3 {{ request()->is('sekolah') ? 'bg-green-600' : 'hover:bg-gray-700' }} flex items-center space-x-2">
-            <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/school.png" alt="school" />
-            <a href="{{ route('sekolah.index') }}" class="text-sm">Data Sekolah & Siswa PKL</a>
+          <li class="{{ request()->is('sekolah') ? 'bg-green-600' : 'hover:bg-gray-700' }}">
+            <a href="{{ route('sekolah.index') }}" class="flex items-center space-x-2 p-3 text-sm block">
+              <img width="25" height="25" src="https://img.icons8.com/ios/25/FFFFFF/school.png" alt="school" />
+              <span>Data Sekolah & Siswa PKL</span>
+            </a>
           </li>
-
-        </ul>        
+        </ul>
       </div>
     </div>
-
+    
     <!-- Konten Utama -->
     <div class="flex-1 flex flex-col overflow-auto"> 
       <nav class="bg-white p-4 text-gray-800 flex items-center justify-between border-b border-white shadow-lg sticky top-0 z-10 w-full">

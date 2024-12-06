@@ -9,7 +9,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndustriController;
 use App\Http\Controllers\KehadiranController;
 use App\Http\Controllers\PengajuanSiswaController;
-use App\Http\Controllers\JurnalKegiatanController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\JurnalAdminController;
@@ -53,21 +52,21 @@ Route::get('/kelola-nilai', [IndustriController::class, 'kelolaNilai'])->name('k
 Route::get('/kehadiran-siswa', [IndustriController::class, 'kehadiranSiswa'])->name('kehadiran-siswa');
 
 // Route untuk menampilkan jurnal siswa
-Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->name('jurnal-siswapkl');
+// Route::get('/jurnal-siswapkl', [IndustriController::class, 'jurnalSiswapkl'])->name('jurnal-siswapkl');
 
 // Route untuk menampilkan detail jurnal berdasarkan ID sekolah dan ID user
-Route::get('/detail-jurnal/{sekolahId}/{userId}', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
+// Route::get('/detail-jurnal/{sekolahId}/{userId}', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
 
-Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
+// Route::get('/data-sekolah', [IndustriController::class, 'dataSekolah'])->name('data-sekolah');
 
-Route::get('/lihat-siswa/{id}', [IndustriController::class, 'lihatSiswa'])->name('lihat-siswa');
-Route::post('/update-status-siswa', [IndustriController::class, 'updateStatusSiswa'])->name('update-status-siswa');
+// Route::get('/lihat-siswa/{id}', [IndustriController::class, 'lihatSiswa'])->name('lihat-siswa');
+// Route::post('/update-status-siswa', [IndustriController::class, 'updateStatusSiswa'])->name('update-status-siswa');
 
 // Route untuk menampilkan detail jurnal berdasarkan ID sekolah dan ID user
-Route::get('/detail-jurnal/{sekolahId}/{userId}', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
+// Route::get('/detail-jurnal/{sekolahId}/{userId}', [IndustriController::class, 'detailJurnal'])->name('detail-jurnal');
 
 
-Route::get('/kelola-pengajuansiswa', [IndustriController::class, 'kelolaPengajuansiswa'])->name('kelola-pengajuansiswa');
+// Route::get('/kelola-pengajuansiswa', [IndustriController::class, 'kelolaPengajuansiswa'])->name('kelola-pengajuansiswa');
 
 Route::get('/profile-industri', [IndustriController::class, 'profileIndustri'])->name('profile-industri');
 
@@ -188,7 +187,7 @@ Route::get('/nilai-siswa', [AdminController::class, 'nilaiSiswa'])->name('nilai-
 
 Route::get('/rekap-kehadiransiswa', [AdminController::class, 'rekapKehadiransiswa'])->name('rekap-kehadiransiswa');
 
-Route::get('/jurnal-detail', [AdminController::class, 'jurnalDetail'])->name('jurnal-detail');
+// Route::get('/jurnal-detail', [AdminController::class, 'jurnalDetail'])->name('jurnal-detail');
 
 Route::get('/profile-admin', [ProfileController::class, 'showprofilesekolah'])->name('profile-admin');
 Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');

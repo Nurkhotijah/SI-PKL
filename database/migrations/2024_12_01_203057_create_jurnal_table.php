@@ -16,7 +16,7 @@ return new class extends Migration
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');
             $table->string('foto_kegiatan')->nullable();
-            $table->string('laporan_file')->nullable();
+            $table->string('lapora_pkl')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

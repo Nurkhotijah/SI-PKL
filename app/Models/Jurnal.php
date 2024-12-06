@@ -19,7 +19,7 @@ class Jurnal extends Model
         'waktu_mulai',
         'waktu_selesai',
         'foto_kegiatan',
-        'laporan_file',
+        'laporan_pkl',
         'user_id'
     ];
 
